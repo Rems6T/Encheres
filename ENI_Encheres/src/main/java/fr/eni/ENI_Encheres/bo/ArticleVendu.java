@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class ArticleVendu {
 	
+
+
+
 	int noArticle ;
 	String nomArticle ;
 	String description ;
@@ -14,6 +17,18 @@ public class ArticleVendu {
 	int noUtilisateur;
 	int noCategorie;
 	String etatVente ;
+	
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int miseAPrix, int prixVente, String etatVente) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+	}
 	
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
