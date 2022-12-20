@@ -73,13 +73,13 @@ public class UtilisateurManager {
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException{
+	public void modifierUtilisateur(Utilisateur utilisateur) throws BLLException{
 		try {
 			//validerUtilisateur(utilisateur);
 			daoUtilisateur.update(utilisateur);
 			
 		} catch (DALException e) {
-			throw new BLLException("Echec updateUtilisateur-utilisateur:"+utilisateur, e);
+			throw new BLLException("Echec modifierUtilisateur-utilisateur:"+utilisateur, e);
 		}
 	}
 	
@@ -91,7 +91,7 @@ public class UtilisateurManager {
 	 * @param index
 	 * @throws BLLException
 	 */
-	public void removeArticle(Utilisateur utilisateur ) throws BLLException{
+	public void supprimerUtilisateur(Utilisateur utilisateur ) throws BLLException{
 		try {
 			daoUtilisateur.delete(utilisateur);
 		} catch (DALException e) {
