@@ -2,6 +2,7 @@ package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
 
+import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
