@@ -6,12 +6,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
-
 <body class="container">
 
 	<%@ include file="/WEB-INF/fragments/header.html"%>
 
-	<!-- Formulaire d'inscription -->
+	<!-- Formulaire de connexion -->
 
 	<main>
 		<div class="row d-flex justify-content-center">
