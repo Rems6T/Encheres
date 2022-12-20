@@ -2,6 +2,8 @@ package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
 
+import fr.eni.ENI_Encheres.bll.BLLException;
+import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,7 +28,7 @@ public class CreerCompte extends HttpServlet {
 	{ 		if(request.getServletPath().equals("/creer"))
 	{
 		String pseudo,nom,prenom,email, telephone, rue, codePostal, ville, motDePasse;
-		int credit;
+		int credit = 0;
 		Utilisateur u;
 		pseudo=request.getParameter("pseudo");
 		nom=request.getParameter("nom");
@@ -39,10 +41,21 @@ public class CreerCompte extends HttpServlet {
 		motDePasse=request.getParameter("motDePasse");
 		credit+=100;
 		u=new Utilisateur(pseudo, nom, prenom, email,telephone,rue, codePostal, ville, motDePasse, credit, false);
-		UtilisateurManager.getInstance().insert(u); }
+		UtilisateurManager mgerUtilisateur;
+        try {
+            mgerUtilisateur = new UtilisateurManager();
+            mgerUtilisateur.ajoutUtilisateur(u);
+        } catch (BLLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		
+	}
+	
+		
 		
 		else if(request.getServletPath().equals("/annuler")) {
-			response.sendRedirect("Accueil");
+			response.sendRedirect("inde.jsp");
 		}
 		
 		

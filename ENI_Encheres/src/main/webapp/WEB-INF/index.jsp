@@ -9,7 +9,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body class="container">
 
-	<%@ include file="./fragments/header.html"%>
+	<%@ include file="/WEB-INF/fragments/header.html"%>
 
 	<!-- Formulaire d'inscription -->
 
