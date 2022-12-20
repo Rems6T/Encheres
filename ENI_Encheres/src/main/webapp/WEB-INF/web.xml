@@ -19,4 +19,14 @@
     <servlet-name>ModifierCompte</servlet-name>
     <url-pattern>/ModifierCompte</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AfficherProfil</display-name>
+    <servlet-name>AfficherProfil</servlet-name>
+    <servlet-class>fr.eni.ENI_Encheres.controleurs.AfficherProfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AfficherProfil</servlet-name>
+    <url-pattern>/AfficherProfil</url-pattern>
+  </servlet-mapping>
 </web-app>

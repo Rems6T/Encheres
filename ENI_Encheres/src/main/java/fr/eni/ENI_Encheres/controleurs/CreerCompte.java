@@ -39,7 +39,7 @@ public class CreerCompte extends HttpServlet {
 		motDePasse=request.getParameter("motDePasse");
 		credit+=100;
 		u=new Utilisateur(pseudo, nom, prenom, email,telephone,rue, codePostal, ville, motDePasse, credit, false);
-		UtilisateurManager.getInstance().save(u); }
+		UtilisateurManager.getInstance().insert(u); }
 		
 		else if(request.getServletPath().equals("/annuler")) {
 			response.sendRedirect("Accueil");

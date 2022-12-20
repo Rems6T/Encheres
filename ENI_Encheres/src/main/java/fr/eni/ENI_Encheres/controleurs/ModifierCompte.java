@@ -26,7 +26,7 @@ public class ModifierCompte extends HttpServlet {
 		int id;
 		Utilisateur user;
 		id=Integer.parseInt(request.getParameter("id"));
-		user=UtilisateurManager.getInstance().findById(id);
+		user=UtilisateurManager.getInstance().selectById(id);
 		request.setAttribute("utilisateur", user);
 		getServletContext().getRequestDispatcher("/WEB-INF/ModifierCompte.jsp").forward(request, response);
 		
@@ -37,7 +37,7 @@ public class ModifierCompte extends HttpServlet {
 	{ 			int id;
 	Utilisateur user;
 	id=Integer.parseInt(request.getParameter("id"));
-	user=UtilisateurManager.getInstance().findById(id);	
+	user=UtilisateurManager.getInstance().selectById(id);	
 		
 		if(request.getServletPath().equals("/enregistrer"))
 	{
@@ -50,13 +50,15 @@ public class ModifierCompte extends HttpServlet {
 			user.setCodePostal(request.getParameter("codePostal"));
 			user.setVille(request.getParameter("ville"));
 			user.setMotDePasse(request.getParameter("motDePasse"));
-			UtilisateurManager.getInstance().modifier(user);
-			response.sendRedirect("Accueil"); }
+			UtilisateurManager.getInstance().update(user);
+			response.sendRedirect("Accueil"); 
+			System.out.print("Votre compte a été modifié");}
 
 		
 		else if(request.getServletPath().equals("/supprimer")) {
-			UtilisateurManager.getInstance().supprimer(user);
+			UtilisateurManager.getInstance().delete(user);
 			response.sendRedirect("Accueil");
+			System.out.print("Votre compte est supprimé");
 		}
 		
 		
