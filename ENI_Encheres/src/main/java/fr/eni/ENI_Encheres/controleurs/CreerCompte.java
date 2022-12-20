@@ -25,8 +25,9 @@ public class CreerCompte extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{ 		if(request.getServletPath().equals("/creer"))
+	//{ 		if(request.getServletPath().equals("/creer"))
 	{
+		System.out.println("données recu");
 		String pseudo,nom,prenom,email, telephone, rue, codePostal, ville, motDePasse;
 		int credit = 0;
 		Utilisateur u;
@@ -36,7 +37,7 @@ public class CreerCompte extends HttpServlet {
 		email=request.getParameter("email");
 		telephone=request.getParameter("telephone");
 		rue=request.getParameter("rue");
-		codePostal=request.getParameter("cp");
+		codePostal=request.getParameter("codePostal");
 		ville=request.getParameter("ville");
 		motDePasse=request.getParameter("motDePasse");
 		credit+=100;
@@ -50,15 +51,15 @@ public class CreerCompte extends HttpServlet {
             e.printStackTrace();
         }
 		
-	}
-	
+//	}
+//	
+//		
+//		
+//		else if(request.getServletPath().equals("/annuler")) {
+//			response.sendRedirect("index.jsp");
+//		}
+//		
+//		
+//	}
 		
-		
-		else if(request.getServletPath().equals("/annuler")) {
-			response.sendRedirect("index.jsp");
-		}
-		
-		
-	}
-		
-	}
+	}}

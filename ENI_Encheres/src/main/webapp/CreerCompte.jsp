@@ -13,7 +13,7 @@
 
 	<h1>Mon profil</h1>
 
-	<form method="post" >
+	<form method="post"  action="<%= request.getContextPath() %>/CreerCompte" >
 	
 		<div class="row g-3">
 			<div class="col">
@@ -59,10 +59,10 @@
 			
 			<div class="row g-3">
 			<div class="col">
-    <button type="submit" class="btn btn-primary"name="action" value="creer">Créer</button>
+    <button type="submit" class="btn btn-primary"name="action" value="/creer">Créer</button>
 			</div>
 			<div class="col">
-    <button type="submit" class="btn btn-primary"name="action" value="annuler">Annuler</button>
+    <button type="submit" class="btn btn-primary"name="action" value="/annuler">Annuler</button>
 			</div> </div>
 			
 	</form>		
