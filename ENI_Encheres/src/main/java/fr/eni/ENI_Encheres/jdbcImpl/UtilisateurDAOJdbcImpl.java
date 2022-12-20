@@ -187,17 +187,17 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(Utilisateur data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 
 			rqt = cnx.prepareStatement(sqlDelete);
-			rqt.setInt(1, id);
+			rqt.setInt(1, data.getNo_utilisateur());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete utilisateur failed - id=" + id, e);
+			throw new DALException("Delete utilisateur failed - id=" + data.getNo_utilisateur(), e);
 		} finally {
 			try {
 				if (rqt != null) {

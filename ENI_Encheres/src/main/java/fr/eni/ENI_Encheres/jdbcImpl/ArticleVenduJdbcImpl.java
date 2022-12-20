@@ -176,17 +176,17 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 	}
 
 	@Override
-	public void delete(int id) throws DALException {
+	public void delete(ArticleVendu data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 
 			rqt = cnx.prepareStatement(sqlDelete);
-			rqt.setInt(1, id);
+			rqt.setInt(1, data.getNoArticle());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete article failed - id=" + id, e);
+			throw new DALException("Delete article failed - id=" + data.getNoArticle(), e);
 		} finally {
 			try {
 				if (rqt != null) {
