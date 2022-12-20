@@ -18,7 +18,7 @@ public class AfficherProfil extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Connexion/PAgeProfil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageProfil.jsp");
 		rd.forward(request, response); 
 		
 	}
@@ -29,7 +29,7 @@ public class AfficherProfil extends HttpServlet {
 		Utilisateur user = (Utilisateur) sessionUser.getAttribute("utilisateur");
 		request.setAttribute("user", true);
 		request.setAttribute("profil", user);
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/Connexion/PageProfil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/PageProfil.jsp");
 		rd.forward(request, response);
 	}
 	}

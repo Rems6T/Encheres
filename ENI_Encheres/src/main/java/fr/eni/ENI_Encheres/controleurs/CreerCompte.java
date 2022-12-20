@@ -18,7 +18,7 @@ public class CreerCompte extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		getServletContext().getRequestDispatcher("/CreerCompte.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/CreerCompte.jsp").forward(request, response);
 	}
 
 	 /**
@@ -55,7 +55,7 @@ public class CreerCompte extends HttpServlet {
 		
 		
 		else if(request.getServletPath().equals("/annuler")) {
-			response.sendRedirect("inde.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		
 		

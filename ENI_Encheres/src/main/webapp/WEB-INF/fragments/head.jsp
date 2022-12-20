@@ -5,7 +5,7 @@
     <meta name="author" content="">
 
     <title>HEAD</title>
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
-        <link href="${pageContext.request.contextPath}/style.css" rel="stylesheet">
     
 </head>
