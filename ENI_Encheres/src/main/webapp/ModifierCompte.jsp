@@ -9,7 +9,7 @@
 
 <body class="container">
 
-	<%@ include file="./fragments/header.html"%>
+	<%@ include file="WEB-INF/fragments/header.html"%>
 
 	<h1>Mon profil</h1>
 
@@ -27,7 +27,7 @@
 
 		<div class="row g-3">
 			<div class="col">
-				<label> Prénom : </label><input type="text" name="prenom" value="${utilisateur.prenom }">> <br>
+				<label> Prénom : </label><input type="text" name="prenom" value="${utilisateur.prenom }"><br>
 			</div>
 			<div class="col">
 				<label> Email : </label><input type="text" name="email" value="${utilisateur.email}"> <br>

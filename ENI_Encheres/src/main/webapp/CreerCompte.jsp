@@ -9,15 +9,15 @@
 
 <body class="container">
 
-	<%@ include file="./fragments/header.html"%>
+	<%@ include file="WEB-INF/fragments/header.html"%>
 
 	<h1>Mon profil</h1>
 
-	<form method="post" action="ajouter">
+	<form method="post" >
 	
 		<div class="row g-3">
 			<div class="col">
-				<label> Pseudo : </label><input type="text" name="pseudo" pattern="[a-zA-Z0-9-]"> <br>
+				<label> Pseudo : </label><input type="text" name="pseudo"> <br>
 			</div>
 			<div class="col">
 				<label> Nom : </label><input type="text" name="nom"> <br>

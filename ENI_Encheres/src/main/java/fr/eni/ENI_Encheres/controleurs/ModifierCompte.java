@@ -20,9 +20,9 @@ public class ModifierCompte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
+	{ 		getServletContext().getRequestDispatcher("/WEB-INF/ModifierCompte.jsp").forward(request, response);
+
 		int id;
-		Utilisateur user;
 		id=Integer.parseInt(request.getParameter("id"));
 		UtilisateurManager mgerUtilisateur;
         try {
