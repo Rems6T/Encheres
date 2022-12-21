@@ -52,23 +52,23 @@
 
 		<br /> <br /> <br />
 		<div class="row d-flex justify-content-center">
+			<c:forEach items="${ArticleList}" var="article">
 			<div class="col-4 d-flex" style="border: solid black 2px">
 				<div class="col-2 m-2"
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
 				<div>
-					<%
-					ArticleVendu article = (ArticleVendu) request.getAttribute("article");
-					int numeroUtilisateur = article.getNoUtilisateur();
-					UtilisateurDAOJdbcImpl utilisateurDAO = new UtilisateurDAOJdbcImpl();
-					Utilisateur utilisateur = utilisateurDAO.selectById(numeroUtilisateur);
-					%>
+				
 					<p>${article.nomArticle}</p>
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
-					<p>Vendeur : ${ utilisateur.pseudo }</p>
+					<p>Vendeur : ${ article.noUtilisateur }</p>
+					
 				</div>
 			</div>
 			<div class="col-1"></div>
+			</c:forEach>
+			</div>
+			<!-- 
 			<div class="col-4 d-flex" style="border: solid black 2px">
 				<div class="col-2 m-2"
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
@@ -81,7 +81,7 @@
 					<p>Vendeur : nom_vendeur</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</main>
 
 	<!-- Bootstrap JavaScript Libraries -->
