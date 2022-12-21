@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="fr.eni.ENI_Encheres.bo.ArticleVendu"%>
+<%@page import="fr.eni.ENI_Encheres.bo.Utilisateur"%>
+<%@page import="fr.eni.ENI_Encheres.jdbcImpl.UtilisateurDAOJdbcImpl"%>
 <!DOCTYPE html>
 <html>
 
@@ -10,13 +13,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 	<header class="p-3 row">
 		<div class="col-3 h4">ENI-Encheres</div>
 		<div class="col-2 d-flex ms-auto">
-			<div class="">
-				<a href="">S'inscrire</a>
-			</div>
-			&#160;-&#160;
-			<div class="">
-				<a href="">Se connecter</a>
-			</div>
+			<a href="/Inscription">S'inscrire</a> &#160;-&#160; <a
+				href="/Connexion">Se connecter</a>
 		</div>
 	</header>
 
@@ -35,8 +33,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 				<b>Recherche :</b> <br />
 				<div>
 					<input id="searchbar" type="text" name="search"
-						placeholder="Le nom de l'article" /> <br /> <br />
-					Categorie : <select name="categorie" id="categorie">
+						placeholder="Le nom de l'article" /> <br /> <br /> Categorie :
+					<select name="categorie" id="categorie">
 						<option value="toutes">Toutes</option>
 						<option value="informatique">Informatique</option>
 						<option value="ameublement">Ameublement</option>
@@ -52,20 +50,22 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
 		<!-- Affichage des articles -->
 
-		<br />
-		<br />
-		<br />
+		<br /> <br /> <br />
 		<div class="row d-flex justify-content-center">
 			<div class="col-4 d-flex" style="border: solid black 2px">
 				<div class="col-2 m-2"
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
-				<div class="">
-					<p>
-						<u>Article 1</u>
-					</p>
-					<p>Prix : X points</p>
-					<p>Fin de l'enchère : XX/XX/XXXX</p>
-					<p>Vendeur : nom_vendeur</p>
+				<div>
+					<%
+					ArticleVendu article = (ArticleVendu) request.getAttribute("article");
+					int numeroUtilisateur = article.getNoUtilisateur();
+					UtilisateurDAOJdbcImpl utilisateurDAO = new UtilisateurDAOJdbcImpl();
+					Utilisateur utilisateur = utilisateurDAO.selectById(numeroUtilisateur);
+					%>
+					<p>${article.nomArticle}</p>
+					<p>Prix : ${article.miseAPrix} points</p>
+					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
+					<p>Vendeur : ${ utilisateur.pseudo }</p>
 				</div>
 			</div>
 			<div class="col-1"></div>

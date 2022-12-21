@@ -1,7 +1,6 @@
 package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
