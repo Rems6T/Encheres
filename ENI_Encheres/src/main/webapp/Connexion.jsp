@@ -14,16 +14,20 @@
 
 	<main>
 		<div class="row d-flex justify-content-center">
-			<form class="login" action="<%=request.getContextPath() %>/Connexion" >
+			<form class="login" action="<%=request.getContextPath() %>/Connexion" method="post">
 				<div class="row">
 					<label for="pseudo" class="col-2">Identifiant : </label> <input
-						type="text" class="col-4" name="pseudo" />
+						type="text" class="col-4" name="pseudo" required/>
 				</div>
 				<br />
 				<div class="row">
 					<label for="motDePasse" class="col-2">Mot de passe : </label> <input
-						type="password" class="col-4" name="mdp" />
+						type="password" class="col-4" name="mdp" required/>
 				</div>
+				<%if (request.getAttribute("erreur")!=null){ 
+				%>
+				<p >pseudo et/ou mot de passe incorrect(s)! Veuillez ressaisir vos identifiants...</p>
+				<%} %>
 				<br /> <br />
 				<div class="row">
 					<div class="col-2">
