@@ -14,7 +14,7 @@
 <header>
  
        <nav class="navbar navbar-light  " >
-            <a class="nav-link active m-2" aria-current="page"  href="<%=request.getContextPath()%>/accueil.html">ENI Enchères</a>
+            <a class="nav-link active m-2" aria-current="page"  href="<%=request.getContextPath()%>/Accueil.jsp">ENI Enchères</a>
             <ul class="nav justify-content-end "  > 
 								
                 <li class="nav-item ">
@@ -24,7 +24,7 @@
                     <a class="nav-link" href="<%=request.getContextPath()%>/PageProfil.jsp">Mon Profil </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/deconnexion">Deconnexion  </a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/Logout">Deconnexion  </a>
                 </li>
                 
             </ul>

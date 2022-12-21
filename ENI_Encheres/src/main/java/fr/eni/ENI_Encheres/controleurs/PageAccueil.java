@@ -53,7 +53,7 @@ public class PageAccueil extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		request.getRequestDispatcher("WEB-INF/jsp/accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("Accueil.jsp").forward(request, response);
 	}
 
 }

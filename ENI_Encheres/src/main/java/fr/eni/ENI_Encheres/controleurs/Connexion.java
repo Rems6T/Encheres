@@ -48,7 +48,7 @@ public class Connexion extends HttpServlet {
 			if (user != null && password.equals(user.getMotDePasse())) {
 				request.getSession().setAttribute("ConnectedUser", user);
 
-				this.getServletContext().getRequestDispatcher("/ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/PageAccueil.java").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 			} else {
 				String erreur ="pseudo et/ou mot de passe incorrect(s)! Veuillez ressaisir vos identifiants...";

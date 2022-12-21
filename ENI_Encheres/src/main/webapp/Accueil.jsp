@@ -15,9 +15,10 @@
 		
 
 				
-				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		<%@include file="headerInvite.jsp"%>
+				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		
+				<%@include file="WEB-INF/headerInvite.jsp"%>
 	<%} else {%>
-		<%@include file="headerConnecte.jsp"%>
+		<%@include file="WEB-INF/headerConnecte.jsp"%>
 	<%} %>
 		</div>
 	</header>
