@@ -21,7 +21,7 @@
                 <a class="nav-link" href="<%=request.getContextPath()%>/Vente">Vendre un article</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/PageProfil.jsp">Mon Profil </a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/AfficherMonProfil">Mon Profil </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/deconnexion">Deconnexion  </a>
