@@ -25,7 +25,7 @@ public class ModifierCompte extends HttpServlet {
 
 		request.setAttribute("Utilisateur", utilisateur);
 
-		request.getRequestDispatcher("/WEB-INF/jsp/ModifierCompte.jsp").forward(request, response);
+		request.getRequestDispatcher("ModifierCompte.jsp").forward(request, response);
 
 	}
 
@@ -98,7 +98,7 @@ public class ModifierCompte extends HttpServlet {
 
 				request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
 				request.setAttribute("emailUniqueOK", emailUniqueOK);
-				request.getRequestDispatcher("/WEB-INF/jsp/PageProfil.jsp").forward(request, response);
+				request.getRequestDispatcher("/ModifierCompte.jsp").forward(request, response);
 				return;
 			}
 
