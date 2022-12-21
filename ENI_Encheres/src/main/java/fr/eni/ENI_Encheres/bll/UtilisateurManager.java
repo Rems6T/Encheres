@@ -6,6 +6,7 @@ import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
 import fr.eni.ENI_Encheres.dal.DAOFactory;
+import fr.eni.ENI_Encheres.jdbcImpl.UtilisateurDAOJdbcImpl;
 
 public class UtilisateurManager {
 
@@ -102,5 +103,31 @@ public class UtilisateurManager {
 	
 	
 	public void validerUtilisateur(Utilisateur utilisateur) throws BLLException
-	{}
+
+{}
+
+
+	// methode pour verifier que le pseudo est unique
+		public boolean verifUniquePseudo(String pseudo) throws DALException {
+
+			UtilisateurDAOJdbcImpl user = new UtilisateurDAOJdbcImpl();
+			
+			boolean ok;
+
+			ok = user.selectUniquePseudo(pseudo);
+
+			return ok;
+		}
+
+		// methode pour verifier que le mail est unique
+		public boolean verifUniqueMail(String mail) throws DALException {
+
+			UtilisateurDAOJdbcImpl user = new UtilisateurDAOJdbcImpl();
+			boolean ok;
+
+			ok = user.selectUniqueMail(mail);
+
+			return ok;
+		}
+
 }

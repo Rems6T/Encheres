@@ -13,60 +13,82 @@
 
 	<h1>Mon profil</h1>
 
-<form method="post" action="modifier">
-<input type="hidden" name="id" value="${utilisateur.id }">
-	
+
+	<form action="<%=request.getContextPath()%>/ModifierCompte"
+		method="post">
+		<input type="hidden" name="id" value="${utilisateur.id }">
+
 		<div class="row g-3">
 			<div class="col">
-				<label> Pseudo : </label><input type="text" name="pseudo" value="${utilisateur.pseudo }"pattern="[a-zA-Z0-9-]"> <br>
+				<label> Pseudo : </label><input type="text" name="pseudo"
+					value="${utilisateur.pseudo }"> <br>
 			</div>
 			<div class="col">
-				<label> Nom : </label><input type="text" name="nom" value="${utilisateur.nom }"> <br>
+				<label> Nom : </label><input type="text" name="nom"
+					value="${utilisateur.nom }"> <br>
 			</div>
 		</div>
 
 		<div class="row g-3">
 			<div class="col">
-				<label> Prénom : </label><input type="text" name="prenom" value="${utilisateur.prenom }"><br>
+				<label> Prénom : </label><input type="text" name="prenom"
+					value="${utilisateur.prenom }"><br>
 			</div>
 			<div class="col">
-				<label> Email : </label><input type="text" name="email" value="${utilisateur.email}"> <br>
-			</div> </div>
-			
-					<div class="row g-3">
+				<label> Email : </label><input type="text" name="email"
+					value="${utilisateur.email}"> <br>
+			</div>
+		</div>
+
+		<div class="row g-3">
 			<div class="col">
-				<label> Téléphone : </label><input type="text" name="telephone" value="${utilisateur.telephone }"> <br>
+				<label> Téléphone : </label><input type="text" name="telephone"
+					value="${utilisateur.telephone }"> <br>
 			</div>
 			<div class="col">
-				<label> Rue : </label><input type="text" name="rue" value="${utilisateur.rue }"> <br>
-			</div> </div>
-			
-								<div class="row g-3">
+				<label> Rue : </label><input type="text" name="rue"
+					value="${utilisateur.rue }"> <br>
+			</div>
+		</div>
+
+		<div class="row g-3">
 			<div class="col">
-				<label> Code Postal : </label><input type="text" name="codePostal" value="${utilisateur.codePostal }"> <br>
+				<label> Code Postal : </label><input type="text" name="codePostal"
+					value="${utilisateur.codePostal }"> <br>
 			</div>
 			<div class="col">
-				<label> Ville : </label><input type="text" name="ville" value="${utilisateur.ville}"> <br>
-			</div> </div>
-			
-			<div class="row g-3">
+				<label> Ville : </label><input type="text" name="ville"
+					value="${utilisateur.ville}"> <br>
+			</div>
+		</div>
+
+		<div class="row g-3">
 			<div class="col">
-				<label> Mot de passe : </label><input type="text" name="motDePasse" value="${utilisateur.motDePasse }"> <br>
+				<label> Mot de passe : </label><input type="text" name="motDePasse"
+					value="${utilisateur.motDePasse }"> <br>
 			</div>
 			<div class="col">
-				<label> Confirmation : </label><input type="text" name="motDePasse_confirm" value="${utilisateur.motDePasse }"> <br>
-			</div> </div>
-			
-			
-			<div class="row g-3">
-			<div class="col">
-    <button type="submit" class="btn btn-primary"name="action" value="enregistrer">Enregistrer</button>
+				<label> Confirmation : </label><input type="text"
+					name="motDePasse_confirm" value="${utilisateur.motDePasse }">
+				<br>
 			</div>
+		</div>
+
+
+		<div class="row g-3">
 			<div class="col">
-    <button type="submit" class="btn btn-primary"name="action" value="supprimer">Supprimer</button>
-			</div> </div>
-			
-	</form>		
+
+				<button type="submit" value="ModifierCompte" name="choix"
+					style="text-align: center;">Modifier</button>
+			</div>
+
+
+			<div class="col">
+				<button type="submit" name="choix" value="supprimer">Supprimer</button>
+			</div>
+		</div>
+
+	</form>
 
 
 

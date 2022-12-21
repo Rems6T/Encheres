@@ -13,59 +13,109 @@
 
 	<h1>Mon profil</h1>
 
-	<form method="post"  action="<%= request.getContextPath() %>/CreerCompte" >
-	
+
+	<form action="<%=request.getContextPath()%>/CreerCompte" method="post">
+
 		<div class="row g-3">
 			<div class="col">
-				<label> Pseudo : </label><input type="text" name="pseudo"> <br>
+				<label for="pseudo">Pseudo :</label> <input type="text" id="pseudo"
+					name="pseudo" />
+
+				<%
+				if (request.getAttribute("pseudoUniqueOK") != null) {
+					boolean pseudoUniqueOK = (boolean) request.getAttribute("pseudoUniqueOK");
+					if (!pseudoUniqueOK) {
+				%>
+				<div class="messageErreur">
+					<a>Ce pseudo n'est pas disponible</a>
+				</div>
+				<%
+				}
+				}
+				%>
 			</div>
+
+
+
+
 			<div class="col">
-				<label> Nom : </label><input type="text" name="nom"> <br>
+				<label for="nom">Nom :</label> <input type="text" id="nom"
+							name="nom" /> <br>
 			</div>
 		</div>
 
 		<div class="row g-3">
 			<div class="col">
-				<label> Prénom : </label><input type="text" name="prenom"> <br>
+				<label for="prenom">prenom :</label> <input type="text" id="prenom"
+					name="prenom" /> <br>
 			</div>
 			<div class="col">
-				<label> Email : </label><input type="text" name="email"> <br>
-			</div> </div>
-			
-					<div class="row g-3">
+<label for="mail">mail :</label> <input type="text" id="mail"
+							name="mail" />
+						<%
+							if (request.getAttribute("emailUniqueOK")!=null){
+								boolean emailUniqueOK = (boolean) request.getAttribute("emailUniqueOK");
+								if (!emailUniqueOK){
+						%>
+						<div class="messageErreur">
+							<a>Cet email est deja utilisé par un compte utilisateur</a>
+						</div>
+						<%
+								}
+							}
+						%>
+		</div></div>
+
+		<div class="row g-3">
 			<div class="col">
-				<label> Téléphone : </label><input type="text" name="telephone"> <br>
+				<label for="telephone">telephone :</label> <input type="text"
+					id="telephone" name="telephone" /> <br>
 			</div>
 			<div class="col">
-				<label> Rue : </label><input type="text" name="rue"> <br>
-			</div> </div>
-			
-								<div class="row g-3">
+				<label for="rue">Rue :</label> <input type="text" id="rue"
+							name="rue" /> <br>
+			</div>
+		</div>
+
+		<div class="row g-3">
 			<div class="col">
-				<label> Code Postal : </label><input type="text" name="codePostal"> <br>
+				<label for="codePostal">Code Postal :</label> <input type="text"
+							id="codePostal" name="codePostal" />
+				<br>
 			</div>
 			<div class="col">
-				<label> Ville : </label><input type="text" name="ville"> <br>
-			</div> </div>
-			
-			<div class="row g-3">
+				<label for="ville">ville :</label> <input type="text" id="ville"
+							name="ville" /> <br>
+			</div>
+		</div>
+
+		<div class="row g-3">
 			<div class="col">
-				<label> Mot de passe : </label><input type="text" name="motDePasse"> <br>
+				<label for="motDePasse"> Mot de passe : </label><input type="text" id="motDePasse" name="motDePasse">
+				<br>
 			</div>
 			<div class="col">
-				<label> Confirmation : </label><input type="text" name="motDePasse_confirm"> <br>
-			</div> </div>
-			
-			
-			<div class="row g-3">
-			<div class="col">
-    <button type="submit" class="btn btn-primary"name="action" value="/creer">Créer</button>
+				<label for="motDePasse_confirm"> Confirmation : </label><input type="text"
+					name="motDePasse_confirm" id="motDePasse_confirm"> <br>
 			</div>
-			<div class="col">
-    <button type="submit" class="btn btn-primary"name="action" value="/annuler">Annuler</button>
-			</div> </div>
-			
-	</form>		
+		</div>
+
+
+		<div class="row g-3">
+		
+						<div class="col">
+						<input type="submit" value="CréerCmpte">
+				</div>
+
+				<div class="col">
+					<a href="<%=request.getContextPath()%>/Accueil.jsp">
+						<button type="button">Annuler</button>
+					</a>
+				</div>
+		
+			</div>
+
+	</form>
 
 
 

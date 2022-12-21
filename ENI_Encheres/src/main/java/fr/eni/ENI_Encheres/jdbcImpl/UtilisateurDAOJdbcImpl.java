@@ -17,11 +17,16 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	/*
 	 * 
 	 */
+	
 	private static final String sqlSelectById = "select * from utilisateurs where no_utilisateur=?";
 	private static final String sqlSelectAll = "select * from utilisateurs";
 	private static final String sqlUpdate = "update  Utilisateurs set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=?   where no_utilisateur=?";
 	private static final String sqlInsert = "insert into Utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) values(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "delete from Utilisateurs where no_utilisateur=?";
+	private final static String SELECT_BY_MAIL = "select * from utilisateurs where email=?;";
+	private final static String SELECT_BY_PSEUDO = "select * from utilisateurs where pseudo = ?;";
+
+
 	
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
@@ -210,6 +215,63 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 
 		}
 
+	}
+	
+	
+	
+	public boolean selectUniquePseudo(String pseudo) throws DALException {
+
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		boolean ok = true;
+
+		try {
+			cnx = JdbcTools.getConnection();
+			stmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
+			stmt.setString(1, pseudo);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				ok = false;
+			}
+			rs.close();
+			stmt.close();
+			cnx.close();
+
+		} catch (SQLException e) {
+			throw new DALException("probleme avec la methode selectUniquePseudo", e);
+		}
+
+		return ok;
+	}
+
+	
+	public boolean selectUniqueMail(String mail) throws DALException {
+
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		boolean ok = true;
+
+		try {
+			cnx = JdbcTools.getConnection();
+			stmt = cnx.prepareStatement(SELECT_BY_MAIL);
+			stmt.setString(1, mail);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				ok = false;
+			}
+			rs.close();
+			stmt.close();
+			cnx.close();
+
+		} catch (SQLException e) {
+			throw new DALException("probleme avec la methode selectUniqueMail", e);
+		}
+
+		return ok;
 	}
 
 }
