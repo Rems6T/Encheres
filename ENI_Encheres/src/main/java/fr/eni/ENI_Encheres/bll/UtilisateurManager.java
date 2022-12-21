@@ -129,5 +129,7 @@ public class UtilisateurManager {
 
 			return ok;
 		}
-
+		public static Utilisateur selectByPseudo(String pseudo) throws BLLException, DALException{
+			return UtilisateurDAOJdbcImpl.selectByPseudo(pseudo);
+		}
 }

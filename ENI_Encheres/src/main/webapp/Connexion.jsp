@@ -14,7 +14,7 @@
 
 	<main>
 		<div class="row d-flex justify-content-center">
-			<form action="post">
+			<form class="login" action="<%=request.getContextPath() %>/Connexion" >
 				<div class="row">
 					<label for="pseudo" class="col-2">Identifiant : </label> <input
 						type="text" class="col-4" name="pseudo" />
@@ -22,7 +22,7 @@
 				<br />
 				<div class="row">
 					<label for="motDePasse" class="col-2">Mot de passe : </label> <input
-						type="password" class="col-4" name="motDePasse" />
+						type="password" class="col-4" name="mdp" />
 				</div>
 				<br /> <br />
 				<div class="row">
@@ -38,9 +38,10 @@
 			</form>
 		</div>
 		<div class="row">
-			<button class="col-6 my-5">
-				<a href="/CreerCompte">Créer un compte</a>
-			</button>
+			
+				<a href="${pageContext.request.contextPath}/CreerCompte"><button class="col-6 my-5">Créer un compte
+			</button> </a>
+				
 		</div>
 	</main>
 
