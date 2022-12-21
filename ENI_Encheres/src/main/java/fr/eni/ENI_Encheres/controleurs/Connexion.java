@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,8 +48,7 @@ public class Connexion extends HttpServlet {
 			// Si la connexion est reussie
 			if (user != null && password.equals(user.getMotDePasse())) {
 				request.getSession().setAttribute("ConnectedUser", user);
-
-				this.getServletContext().getRequestDispatcher("/ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/PageAccueil.java").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 			} else {
 				String erreur ="pseudo et/ou mot de passe incorrect(s)! Veuillez ressaisir vos identifiants...";
