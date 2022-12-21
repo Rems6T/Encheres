@@ -15,7 +15,7 @@
 <section>
         <div class="profil " style="text-align: center;">
             
-            	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("ConnectedUser"); %>
+            	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
 
                     <p>Pseudo :   ${utilisateur.pseudo} </p>
                     <p>nom    :    ${utilisateur.nom}</p>
@@ -29,7 +29,7 @@
             <% if (request.getAttribute("ok") != null){
            		boolean ok = (boolean) request.getAttribute("ok");
             	if(ok){%>
-            	<a href="<%=request.getContextPath()%>/ModifierProfil">
+            	<a href="<%=request.getContextPath()%>/ModifierCompte">
             <button type="submit" value="modifier" name="modifier" style="text-align: center;" >Modifier</button>					
             	</a>
 			<%}
