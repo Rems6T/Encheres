@@ -10,13 +10,15 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
 <body>
-	<header class="p-3 row">
-		<div class="col-3 h4">ENI-Encheres</div>
-		<div class="col-2 d-flex ms-auto">
-		<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>
-			<a href="/Inscription">S'inscrire</a> &#160;-&#160; <a
-				href="/Connexion">Se connecter</a>
-				<%} %>
+	<header>
+		<div>
+		
+
+				
+				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		<%@include file="headerInvite.jsp"%>
+	<%} else {%>
+		<%@include file="headerConnecte.jsp"%>
+	<%} %>
 		</div>
 	</header>
 

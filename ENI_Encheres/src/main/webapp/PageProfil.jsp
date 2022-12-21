@@ -15,7 +15,7 @@
 <section>
         <div class="profil " style="text-align: center;">
             
-            	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
+            	<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("ConnectedUser"); %>
 
                     <p>Pseudo :   ${utilisateur.pseudo} </p>
                     <p>nom    :    ${utilisateur.nom}</p>
