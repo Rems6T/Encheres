@@ -57,7 +57,7 @@
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
 				<div>
 					<%
-					ArticleVendu article = (ArticleVendu) request.getAttribute("article");
+					ArticleVendu article = (ArticleVendu) request.getAttribute("nom_article");
 					int numeroUtilisateur = article.getNoUtilisateur();
 					UtilisateurDAOJdbcImpl utilisateurDAO = new UtilisateurDAOJdbcImpl();
 					Utilisateur utilisateur = utilisateurDAO.selectById(numeroUtilisateur);
