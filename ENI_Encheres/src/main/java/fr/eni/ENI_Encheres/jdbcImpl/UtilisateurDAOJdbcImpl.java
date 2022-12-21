@@ -222,7 +222,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	public boolean selectUniquePseudo(String pseudo) throws DALException {
 
 		Connection cnx;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		ResultSet rs;
 		boolean ok = true;
 
@@ -235,13 +235,22 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			if (rs.next()) {
 				ok = false;
 			}
-			rs.close();
-			stmt.close();
-			cnx.close();
+			
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectUniquePseudo", e);
-		}
+		}finally {
+			try {
+
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			JdbcTools.closeConnection();
+
+			}
 
 		return ok;
 	}
@@ -250,10 +259,10 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	public boolean selectUniqueMail(String mail) throws DALException {
 
 		Connection cnx;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		ResultSet rs;
 		boolean ok = true;
-
+		System.out.println(mail);
 		try {
 			cnx = JdbcTools.getConnection();
 			stmt = cnx.prepareStatement(SELECT_BY_MAIL);
@@ -263,12 +272,21 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			if (rs.next()) {
 				ok = false;
 			}
-			rs.close();
-			stmt.close();
-			cnx.close();
+			
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectUniqueMail", e);
+		}finally {
+		try {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JdbcTools.closeConnection();
+
 		}
 
 		return ok;
