@@ -61,7 +61,7 @@
 					<p>${article.nomArticle}</p>
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
-					<p>Vendeur : ${ article.noUtilisateur }</p>
+					<p>Vendeur : ${article.noUtilisateur}</p>
 					
 				</div>
 			</div>
