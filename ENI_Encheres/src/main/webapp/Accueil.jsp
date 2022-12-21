@@ -13,8 +13,10 @@
 	<header class="p-3 row">
 		<div class="col-3 h4">ENI-Encheres</div>
 		<div class="col-2 d-flex ms-auto">
+		<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>
 			<a href="/Inscription">S'inscrire</a> &#160;-&#160; <a
 				href="/Connexion">Se connecter</a>
+				<%} %>
 		</div>
 	</header>
 
