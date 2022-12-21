@@ -8,24 +8,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.ENI_Encheres.bo.Categorie;
+import fr.eni.ENI_Encheres.bo.Encheres;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
 import fr.eni.ENI_Encheres.dal.JdbcTools;
 
-public class CategorieJdbcImpl implements DAO<Categorie> {
-	private static final String sqlSelectById = "select * from categories where no_categorie=?";
-	private static final String sqlSelectAll = "select * from categories";
-	private static final String sqlUpdate = "update  categories set libelle=?  where no_categorie=?";
-	private static final String sqlInsert = "insert into categories(libelle) values(?)";
-	private static final String sqlDelete = "delete from categories where no_categorie=?";
-
+public class EnchereJdbcImpl implements DAO<Encheres> {
+	private static final String sqlSelectById = "select * from encheres where no_article=?";
+	private static final String sqlSelectAll = "select * from encheres";
+	private static final String sqlUpdate = "update  encheres set no_utilisateur=?,date_enchere=?,montant_enchere=?   where no_article=?";
+	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?)";
+	private static final String sqlDelete = "delete from encheres where no_article=?";
 	@Override
-	public Categorie selectById(int id) throws DALException {
+	public Encheres selectById(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Categorie categorie = null;
+		Encheres encheres = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectById);
@@ -34,12 +33,13 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 
-				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getDate("date_enchere"),
+						rs.getInt("montant_enchere"));
 
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("selectByIdCategorie failed - id = " + id, e);
+			throw new DALException("selectByIdEnchere failed - id = " + id, e);
 		} finally {
 			try {
 
@@ -52,28 +52,28 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			JdbcTools.closeConnection();
 
 		}
-		return categorie;
+		return encheres;
 	}
-
 	@Override
-	public List<Categorie> selectAll() throws DALException {
+	public List<Encheres> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<Categorie> liste = new ArrayList<Categorie>();
+		List<Encheres> liste = new ArrayList<Encheres>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			Categorie categorie = null;
+			Encheres encheres = null;
 
 			while (rs.next()) {
 
-				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-				liste.add(categorie);
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getDate("date_enchere"),
+						rs.getInt("montant_enchere"));
+				liste.add(encheres);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectAllCategorie failed - ", e);
+			throw new DALException("selectAllUtilisateur failed - ", e);
 		} finally {
 			try {
 
@@ -89,20 +89,22 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 		}
 		return liste;
 	}
-
 	@Override
-	public void update(Categorie data) throws DALException {
+	public void update(Encheres data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
-			rqt.setString(1, data.getLibelle());
+			rqt.setInt(1, data.getNoUtilisateur());
+			rqt.setDate(2, data.getDateEnchere());
+			rqt.setInt(3, data.getMontantEnchere());
+		
 
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update categorie failed - " + data, e);
+			throw new DALException("Update encheres failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -115,29 +117,28 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 
 		}
 
+		
 	}
-
 	@Override
-	public void insert(Categorie data) throws DALException {
+	public void insert(Encheres data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+			rqt = cnx.prepareStatement(sqlInsert);
+			
+			rqt.setInt(1, data.getNoUtilisateur());
+			rqt.setInt(2, data.getNoArticle());
+			rqt.setDate(3, data.getDateEnchere());
+			rqt.setInt(4, data.getMontantEnchere());
+			
 
-			rqt.setString(1, data.getLibelle());
+			
 
-			int nbRows = rqt.executeUpdate();
-			if (nbRows == 1) {
-				ResultSet rs = rqt.getGeneratedKeys();
-				if (rs.next()) {
-					data.setNoCategorie(rs.getInt(1));
-				}
-
-			}
+			
 
 		} catch (SQLException e) {
-			throw new DALException("Insert categorie failed - " + data, e);
+			throw new DALException("Insert encheres failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -151,20 +152,20 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 
 		}
 
+		
 	}
-
 	@Override
-	public void delete(Categorie data) throws DALException {
+	public void delete(Encheres data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 
 			rqt = cnx.prepareStatement(sqlDelete);
-			rqt.setInt(1, data.getNoCategorie());
+			rqt.setInt(1, data.getNoArticle());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete categorie failed - id=" + data.getNoCategorie(), e);
+			throw new DALException("Delete encheres failed - id=" + data.getNoArticle(), e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -176,7 +177,9 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			JdbcTools.closeConnection();
 
 		}
-
+		
 	}
-
+	
+	
+	
 }

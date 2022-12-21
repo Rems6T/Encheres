@@ -8,24 +8,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.ENI_Encheres.bo.Categorie;
+import fr.eni.ENI_Encheres.bo.Retrait;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
 import fr.eni.ENI_Encheres.dal.JdbcTools;
 
-public class CategorieJdbcImpl implements DAO<Categorie> {
-	private static final String sqlSelectById = "select * from categories where no_categorie=?";
-	private static final String sqlSelectAll = "select * from categories";
-	private static final String sqlUpdate = "update  categories set libelle=?  where no_categorie=?";
-	private static final String sqlInsert = "insert into categories(libelle) values(?)";
-	private static final String sqlDelete = "delete from categories where no_categorie=?";
-
+public class RetraitJdbcImpl implements DAO<Retrait> {
+	private static final String sqlSelectById = "select * from retraits where no_article=?";
+	private static final String sqlSelectAll = "select * from retraits";
+	private static final String sqlUpdate = "update  retraits set rue=?,code_postal=?,ville=?   where no_article=?";
+	private static final String sqlInsert = "insert into retraits(no_article,rue,code_postal,ville) values(?,?,?,?)";
+	private static final String sqlDelete = "delete from retraits where no_article=?";
 	@Override
-	public Categorie selectById(int id) throws DALException {
+	public Retrait selectById(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Categorie categorie = null;
+		Retrait retrait = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectById);
@@ -34,12 +33,13 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 
-				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				retrait = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"));
 
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("selectByIdCategorie failed - id = " + id, e);
+			throw new DALException("selectByIdRetrait failed - id = " + id, e);
 		} finally {
 			try {
 
@@ -52,28 +52,28 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			JdbcTools.closeConnection();
 
 		}
-		return categorie;
+		return retrait;
 	}
-
 	@Override
-	public List<Categorie> selectAll() throws DALException {
+	public List<Retrait> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<Categorie> liste = new ArrayList<Categorie>();
+		List<Retrait> liste = new ArrayList<Retrait>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			Categorie categorie = null;
+			Retrait retrait = null;
 
 			while (rs.next()) {
 
-				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-				liste.add(categorie);
+				retrait = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"));
+				liste.add(retrait);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectAllCategorie failed - ", e);
+			throw new DALException("selectAllRetrait failed - ", e);
 		} finally {
 			try {
 
@@ -89,20 +89,22 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 		}
 		return liste;
 	}
-
 	@Override
-	public void update(Categorie data) throws DALException {
+	public void update(Retrait data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
-			rqt.setString(1, data.getLibelle());
+			rqt.setString(1, data.getRue());
+			rqt.setString(2, data.getCode_postal());
+			rqt.setString(3, data.getVille());
+		
 
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update categorie failed - " + data, e);
+			throw new DALException("Update retrait failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -114,30 +116,27 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			JdbcTools.closeConnection();
 
 		}
-
+		
 	}
-
 	@Override
-	public void insert(Categorie data) throws DALException {
+	public void insert(Retrait data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+			rqt = cnx.prepareStatement(sqlInsert);
+			rqt.setInt(1, data.getNo_article());
+			rqt.setString(2, data.getRue());
+			rqt.setString(3, data.getCode_postal());
+			rqt.setString(4, data.getVille());
+			
 
-			rqt.setString(1, data.getLibelle());
+			
 
-			int nbRows = rqt.executeUpdate();
-			if (nbRows == 1) {
-				ResultSet rs = rqt.getGeneratedKeys();
-				if (rs.next()) {
-					data.setNoCategorie(rs.getInt(1));
-				}
-
-			}
+			
 
 		} catch (SQLException e) {
-			throw new DALException("Insert categorie failed - " + data, e);
+			throw new DALException("Insert retrait failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -151,20 +150,20 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 
 		}
 
+		
 	}
-
 	@Override
-	public void delete(Categorie data) throws DALException {
+	public void delete(Retrait data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 
 			rqt = cnx.prepareStatement(sqlDelete);
-			rqt.setInt(1, data.getNoCategorie());
+			rqt.setInt(1, data.getNo_article());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete categorie failed - id=" + data.getNoCategorie(), e);
+			throw new DALException("Delete retrait failed - id=" + data.getNo_article(), e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -176,7 +175,7 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			JdbcTools.closeConnection();
 
 		}
-
+		
 	}
-
+	
 }
