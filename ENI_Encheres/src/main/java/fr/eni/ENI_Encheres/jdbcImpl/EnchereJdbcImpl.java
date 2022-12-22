@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ENI_Encheres.bll.ArticleManager;
+import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bo.Encheres;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
@@ -19,6 +21,8 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 	private static final String sqlUpdate = "update  encheres set no_utilisateur=?,date_enchere=?,montant_enchere=?   where no_article=?";
 	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?)";
 	private static final String sqlDelete = "delete from encheres where no_article=?";
+	private static final String GET_ALL_BY_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
+
 	@Override
 	public Encheres selectById(int id) throws DALException {
 		Connection cnx = null;
@@ -180,6 +184,36 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 		
 	}
 	
-	
-	
+public List<Encheres> getAllByArticle(int id) throws SQLException  {
+		
+
+		Connection cnx = null;
+		Statement rqt = null;
+		ResultSet rs = null;
+		List<Encheres> Listeencherespararticle = new ArrayList<Encheres>();
+
+
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.createStatement();
+			rs = rqt.executeQuery(sqlSelectAll);
+			Encheres enchere = null;
+
+			while (rs.next()) {
+
+				enchere = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getDate("date_enchere"),
+						rs.getInt("montant_enchere"));
+				Listeencherespararticle.add(enchere);
+			}
+		
+
+				if (rqt != null) {
+					rqt.close();
+				}
+
+
+			JdbcTools.closeConnection();
+		
+		return Listeencherespararticle;
+	}
 }
+

@@ -5,6 +5,16 @@
     <welcome-file>Accueil</welcome-file>
   </welcome-file-list>
   <session-config>
-    <session-timeout>10</session-timeout>
+    <session-timeout>5</session-timeout>
   </session-config>
+  <servlet>
+    <description></description>
+    <display-name>PageAcquisition</display-name>
+    <servlet-name>PageAcquisition</servlet-name>
+    <servlet-class>fr.eni.ENI_Encheres.controleurs.PageAcquisition</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PageAcquisition</servlet-name>
+    <url-pattern>/PageAcquisition</url-pattern>
+  </servlet-mapping>
 </web-app>

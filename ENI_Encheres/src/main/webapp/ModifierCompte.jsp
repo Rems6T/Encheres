@@ -89,12 +89,12 @@
 
 		<div class="row g-3">
 			<div class="col">
-				<label> Mot de passe : </label><input type="text" name="motDePasse"
+				<label> Mot de passe : </label><input type="text" name="AncienmotDePasse"
 					value="${utilisateur.motDePasse }"> <br>
 			</div>
 			<div class="col">
 				<label> Confirmation : </label><input type="text"
-					name="motDePasse_confirm" value="${utilisateur.motDePasse }">
+					name="AncienmotDePasse" value="">
 				<br>
 			</div>
 		</div>

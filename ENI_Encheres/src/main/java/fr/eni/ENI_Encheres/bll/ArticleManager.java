@@ -38,7 +38,7 @@ public class ArticleManager {
 	 * Select by Id
 	 * 
 	 */
-	public ArticleVendu getArticleById(int id) throws BLLException{
+	public static ArticleVendu getArticleById(int id) throws BLLException{
 		ArticleVendu article = null;
 		try {
 			article = daoArticle.selectById(id);

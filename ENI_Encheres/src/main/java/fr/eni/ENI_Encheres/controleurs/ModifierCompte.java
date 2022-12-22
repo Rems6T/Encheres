@@ -34,7 +34,7 @@ public class ModifierCompte extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("ConnectedUser");
 		
 		UtilisateurManager um = null;
 		try {
@@ -43,60 +43,29 @@ public class ModifierCompte extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//TODO Faire un test pour check que le mail et le pseudo ne sont pas utiulisé(par un autre que lui)
-	
-			int id = Integer.parseInt(request.getParameter("id").trim());
-			String pseudo = request.getParameter("pseudo").trim();
-			String nom = request.getParameter("nom").trim();
-			String prenom = request.getParameter("prenom").trim();
-			String email = request.getParameter("email").trim();
-			String telephone = request.getParameter("telephone").trim();
-			String rue = request.getParameter("rue").trim();
-			String codePostal = request.getParameter("codePostal").trim();
-			String ville = request.getParameter("ville").trim();
-			String motDePasse = request.getParameter("motDePasse").trim();
-			int credit = Integer.parseInt(request.getParameter("credit").trim());
-			boolean administrateur = false;
-			boolean pseudoUniqueOK = true;
-			boolean emailUniqueOK = true;
-			Utilisateur u = new Utilisateur(id,pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
-					credit, administrateur);
-			// verification si le pseudo est correspond
-			if (!utilisateur.getPseudo().equals(pseudo)) {
-					try {
-						pseudoUniqueOK = um.verifUniquePseudo(pseudo);
-					} catch (DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			
-				}
-			
 
-			// verification si le l'email est correspond
-			if (!utilisateur.getEmail().equals(email)) {
-					try {
-						emailUniqueOK = um.verifUniqueMail(email);
-					} catch (DALException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		
+		utilisateur.setPseudo(request.getParameter("pseudo"));
+		utilisateur.setNom(request.getParameter("nom"));
+		utilisateur.setPrenom(request.getParameter("prenom"));
+		utilisateur.setEmail(request.getParameter("email"));
+		utilisateur.setTelephone(request.getParameter("telephone"));
+		utilisateur.setRue(request.getParameter("rue"));
+		utilisateur.setCodePostal(request.getParameter("CodePostal"));
+		utilisateur.setVille(request.getParameter("ville"));
+	//	int credit = Integer.parseInt(request.getParameter("credit").trim());
+	//	boolean administrateur = false;
 
-			}
+		String NouveaumotDePasse = request.getParameter("NouveaumotDePasse");
 
-			// verification si un ou des parametres sont faux
-			if (!pseudoUniqueOK || !emailUniqueOK) {
-
-				request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
-				request.setAttribute("emailUniqueOK", emailUniqueOK);
-				request.getRequestDispatcher("/ModifierCompte.jsp").forward(request, response);
+			if (NouveaumotDePasse!=null) {
 				
-			}
-
+				utilisateur.setMotDePasse(NouveaumotDePasse);
+			} 
 			
 				try {
-					um.modifierUtilisateur(u);;
-					response.sendRedirect(request.getContextPath() + "/PageProfil");
+					um.modifierUtilisateur(utilisateur);
+					response.sendRedirect(request.getContextPath() + "/PageProfil.jsp");
 					System.out.println("user modifié");
 				} catch (BLLException e) {
 					// TODO Auto-generated catch block
