@@ -68,7 +68,8 @@ public class CreerCompte extends HttpServlet {
 				try {
 					mgerUtilisateur.ajoutUtilisateur(u);
 					System.out.print("Votre compte a été crée");
-					response.sendRedirect(request.getContextPath() + "/Connexion.jsp");
+					//response.sendRedirect(request.getContextPath() + "/Connexion.jsp");
+					request.getRequestDispatcher("/Accueil").forward(request, response);
 				} catch (BLLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

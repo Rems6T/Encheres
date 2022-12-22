@@ -50,10 +50,28 @@ public class PageAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
 		HttpSession session = request.getSession();
-		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+		request.setAttribute("utilisateur", session.getAttribute("utilisateur"));
+		ArticleManager artmger = null;
+		try {
+			artmger = new ArticleManager();
+			
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<ArticleVendu> ArticleList = null;
+		try {
+			ArticleList = artmger.getAllArticle();
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("ArticleList", ArticleList);
+
 		request.getRequestDispatcher("Accueil.jsp").forward(request, response);
+
 	}
 
 }
