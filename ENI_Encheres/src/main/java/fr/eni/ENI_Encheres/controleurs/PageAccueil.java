@@ -6,7 +6,6 @@ import java.util.List;
 import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
-import fr.eni.ENI_Encheres.bo.Utilisateur;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

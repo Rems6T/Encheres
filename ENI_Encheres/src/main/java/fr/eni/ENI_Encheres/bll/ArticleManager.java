@@ -74,7 +74,7 @@ public class ArticleManager {
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void modifierArticle(ArticleVendu article) throws BLLException{
+	public static void modifierArticle(ArticleVendu article) throws BLLException{
 		try {
 			//validerUtilisateur(utilisateur);
 			daoArticle.update(article);

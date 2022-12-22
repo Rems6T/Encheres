@@ -1,18 +1,17 @@
 package fr.eni.ENI_Encheres.controleursAdmin;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bo.Categorie;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.CategorieJdbcImpl;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CategorieAdmin

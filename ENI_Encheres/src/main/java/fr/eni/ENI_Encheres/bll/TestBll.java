@@ -1,10 +1,5 @@
 package fr.eni.ENI_Encheres.bll;
 
-import java.util.Iterator;
-import java.util.List;
-
-import fr.eni.ENI_Encheres.bo.ArticleVendu;
-import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 
 public class TestBll {
