@@ -51,7 +51,7 @@ public class ModifierCompte extends HttpServlet {
 		utilisateur.setEmail(request.getParameter("email"));
 		utilisateur.setTelephone(request.getParameter("telephone"));
 		utilisateur.setRue(request.getParameter("rue"));
-		utilisateur.setCodePostal(request.getParameter("CodePostal"));
+		utilisateur.setCodePostal(request.getParameter("codePostal"));
 		utilisateur.setVille(request.getParameter("ville"));
 	//	int credit = Integer.parseInt(request.getParameter("credit").trim());
 	//	boolean administrateur = false;
@@ -65,7 +65,7 @@ public class ModifierCompte extends HttpServlet {
 			
 				try {
 					um.modifierUtilisateur(utilisateur);
-					response.sendRedirect(request.getContextPath() + "/PageProfil.jsp");
+					response.sendRedirect("AfficherMonProfil");
 					System.out.println("user modifié");
 				} catch (BLLException e) {
 					// TODO Auto-generated catch block
