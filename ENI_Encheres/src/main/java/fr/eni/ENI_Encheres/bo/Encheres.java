@@ -1,7 +1,6 @@
 package fr.eni.ENI_Encheres.bo;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Encheres {
 	   private int noUtilisateur;

@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.ENI_Encheres.bll.ArticleManager;
-import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bo.Encheres;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;

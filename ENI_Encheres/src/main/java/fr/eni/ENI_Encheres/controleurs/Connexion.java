@@ -2,7 +2,6 @@ package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
 
-
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.Utilisateur;

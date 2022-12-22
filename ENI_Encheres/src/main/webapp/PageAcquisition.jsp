@@ -56,8 +56,8 @@
             <a href="#"><button>Back</button></a>
           </div>
         </div>
-      </main>
-      <footer></footer>
+     
+
     </div>
   </body>
 </html>
