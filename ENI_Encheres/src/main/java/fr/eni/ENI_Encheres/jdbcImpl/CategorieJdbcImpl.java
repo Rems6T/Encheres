@@ -98,7 +98,7 @@ public class CategorieJdbcImpl implements DAO<Categorie> {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setString(1, data.getLibelle());
-
+			rqt.setInt(2, data.getNoCategorie());
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {

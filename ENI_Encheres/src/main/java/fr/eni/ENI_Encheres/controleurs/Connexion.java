@@ -48,8 +48,14 @@ public class Connexion extends HttpServlet {
 			if (user != null && password.equals(user.getMotDePasse())) {
 				request.getSession().setAttribute("ConnectedUser", user);
 
+				//si admin se co redirection differente
+				if(identifiant.equals("admin")) {
+					request.getSession().setAttribute("ConnectedAdmin", user);
+					this.getServletContext().getRequestDispatcher("/ProfilAdmin").forward(request, response);
+				}else {
+				//sinon redirection page d'accueil
 				this.getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
-
+				}
 			} else {
 				String erreur ="pseudo et/ou mot de passe incorrect(s)! Veuillez ressaisir vos identifiants...";
 				request.setAttribute("erreur", erreur);

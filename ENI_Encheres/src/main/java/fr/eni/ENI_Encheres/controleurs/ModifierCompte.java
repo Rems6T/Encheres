@@ -59,7 +59,7 @@ public class ModifierCompte extends HttpServlet {
 			boolean administrateur = false;
 			boolean pseudoUniqueOK = true;
 			boolean emailUniqueOK = true;
-			Utilisateur u = new Utilisateur(id,pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
+			Utilisateur u = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
 					credit, administrateur);
 			// verification si le pseudo est correspond
 			if (!utilisateur.getPseudo().equals(pseudo)) {
