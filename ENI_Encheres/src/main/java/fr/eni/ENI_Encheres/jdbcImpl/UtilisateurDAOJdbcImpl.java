@@ -121,7 +121,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			rqt.setString(9, data.getMotDePasse());
 			rqt.setInt(10, data.getCredit());
 			rqt.setBoolean(11, data.isAdministrateur());
-
+			rqt.setInt(12, data.getNo_utilisateur());
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
