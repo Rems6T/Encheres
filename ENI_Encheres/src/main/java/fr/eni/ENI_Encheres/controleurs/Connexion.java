@@ -54,7 +54,7 @@ public class Connexion extends HttpServlet {
 					this.getServletContext().getRequestDispatcher("/ProfilAdmin").forward(request, response);
 				}else {
 				//sinon redirection page d'accueil
-				this.getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
+					response.sendRedirect("Accueil");
 				}
 			} else {
 				String erreur ="pseudo et/ou mot de passe incorrect(s)! Veuillez ressaisir vos identifiants...";
