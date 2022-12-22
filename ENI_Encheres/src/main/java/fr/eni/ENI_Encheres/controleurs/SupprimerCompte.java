@@ -36,7 +36,7 @@ public class SupprimerCompte extends HttpServlet {
 		//On supprime en Bll l'utilisateur
 		try {
 			UtilisateurManager mger = new UtilisateurManager();
-			mger.supprimerUtilisateur(utilisateur);
+			mger.supprimerDefUtilisateur(utilisateur);
 			System.out.println("utilisateur supprimé :"+utilisateur);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
