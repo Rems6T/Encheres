@@ -1,8 +1,10 @@
 package fr.eni.ENI_Encheres.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
+import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
 import fr.eni.ENI_Encheres.dal.DAOFactory;
@@ -96,6 +98,49 @@ public class ArticleManager {
 		} catch (DALException e) {
 			throw new BLLException("Echec de la suppression de l'article - ", e);
 		}
+		
+	}
+	/**
+	 * 
+	 * Select All
+	 * 
+	 * @return
+	 * @throws BLLException
+	 */
+	
+	public List<ArticleVendu> getAllArticlebyUtilisateur(Utilisateur utilisateur) throws BLLException{
+		List<ArticleVendu> articles;
+		List<ArticleVendu> articlesCorrespondant = new ArrayList<ArticleVendu>();
+		try {
+			articles = daoArticle.selectAll();
+			for (ArticleVendu articleVendu : articles) {
+				if(articleVendu.getNoUtilisateur()==utilisateur.getNo_utilisateur()) {
+					articlesCorrespondant.add(articleVendu);
+				}
+			}
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException("Erreur récupération articles", e);
+		}
+		
+		return articlesCorrespondant;
+	}
+	public int getIdArticle(ArticleVendu article)throws BLLException{
+		List<ArticleVendu> articles;
+		int id = 0 ;
+		try {
+			articles = daoArticle.selectAll();
+			for (ArticleVendu articleVendu : articles) {
+				if(articleVendu.getNoUtilisateur()==article.getNoUtilisateur()&&articleVendu.getNomArticle().equals( article.getNomArticle())&&articleVendu.getDescription().equals( article.getDescription())) {
+				id = articleVendu.getNoArticle();
+				}
+			}
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException("Erreur récupération articles", e);
+		}
+		
+		return id;
 		
 	}
 }

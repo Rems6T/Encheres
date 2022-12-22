@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
+<body>
+	<header>
+		<%@include file="WEB-INF/headerConnecte.jsp"%>
+	</header>
+<body>
+	<h1>Nouvelle Vente</h1>
+	<form action="<%=request.getContextPath()%>/CreerVente" method="post">
+
+
+		
+		<label for="nom">Article : <input type="text" id="nom"
+			name="nom">
+		</label> 
+		<label for="description">Description : <input type="text"
+			id="description" name="description">
+		</label>
+		<label for="categorie"> Categorie
+		<select name="categorie">
+		<c:forEach items="${categorieList}" var="categorie">
+		<option value="${categorie.noCategorie }" >${categorie.libelle }</option>
+		</c:forEach>
+		</select>
+		</label>
+		<label for="photo">Photo de l'article : <input type="file"
+       id="photo" name="photo"
+       accept="image/png, image/jpeg">
+		</label>
+		<label for="miseAPrix">Mise à Prix : <input type="number"
+			id="miseAPrix" name="miseAPrix">
+		</label>
+		
+		<label for="debutEnchere">Début de l'enchère : <input type="date"
+			id="debutEnchere" name="debutEnchere">
+		</label>
+		<label for="finEnchere">Fin de l'enchère : <input type="date"
+			id="finEnchere" name="finEnchere">
+		</label>
+		<fieldset>
+    <legend>Retrait</legend>
+    <label for="rue">Rue : <input type="text"
+			id="rue" name="rue">
+		</label>
+		<label for="codePostal">codePostal : <input type="text"
+			id="codePostal" name="codePostal">
+		</label>
+		<label for="ville">ville : <input type="text"
+			id="ville" name="ville">
+		</label>
+	</fieldset>
+	<button type="submit"  value="CréerVente">Valider</button>
+	</form>
+</body>
+</html>

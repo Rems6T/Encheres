@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.ENI_Encheres.bll.ArticleManager;
-import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bo.Encheres;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
@@ -19,7 +17,7 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 	private static final String sqlSelectById = "select * from encheres where no_article=?";
 	private static final String sqlSelectAll = "select * from encheres";
 	private static final String sqlUpdate = "update  encheres set no_utilisateur=?,date_enchere=?,montant_enchere=?   where no_article=?";
-	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?)";
+	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?,?)";
 	private static final String sqlDelete = "delete from encheres where no_article=?";
 	private static final String GET_ALL_BY_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
 

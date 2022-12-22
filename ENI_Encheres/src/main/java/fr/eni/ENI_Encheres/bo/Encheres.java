@@ -1,7 +1,6 @@
 package fr.eni.ENI_Encheres.bo;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Encheres {
 	   private int noUtilisateur;
@@ -47,4 +46,11 @@ public class Encheres {
 	   public void setMontantEnchere(int montantEnchere) {
 	      this.montantEnchere = montantEnchere;
 	   }
+
+	@Override
+	public String toString() {
+		return "Encheres [noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle + ", dateEnchere=" + dateEnchere
+				+ ", montantEnchere=" + montantEnchere + "]";
+	}
+	   
 	}
