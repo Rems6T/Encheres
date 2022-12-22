@@ -31,7 +31,7 @@
 				<br /> <br />
 				<div class="row">
 					<div class="col-2">
-						<input type="submit" />
+						<button type="submit"  >Connexion</button>
 					</div>
 					<div class="col-4">
 						<input type="checkbox" name="remember" id="remember" /> <label

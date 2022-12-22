@@ -39,19 +39,19 @@
 
 
 			<div class="col">
-				<label for="nom">Nom :</label> <input type="text" id="nom"
-							name="nom" /> <br>
+				<label for="nom">Nom : </label> <input type="text" id="nom"
+							name="nom" required /> <br>
 			</div>
 		</div>
 
 		<div class="row g-3">
 			<div class="col">
-				<label for="prenom">prenom :</label> <input type="text" id="prenom"
-					name="prenom" /> <br>
+				<label for="prenom">prenom : </label> <input type="text" id="prenom"
+					name="prenom" required/> <br>
 			</div>
 			<div class="col">
 <label for="mail">mail :</label> <input type="text" id="mail"
-							name="mail" />
+							name="mail" required/>
 						<%
 							if (request.getAttribute("emailUniqueOK")!=null){
 								boolean emailUniqueOK = (boolean) request.getAttribute("emailUniqueOK");
@@ -68,35 +68,35 @@
 
 		<div class="row g-3">
 			<div class="col">
-				<label for="telephone">telephone :</label> <input type="text"
-					id="telephone" name="telephone" /> <br>
+				<label for="telephone">telephone : </label> <input type="text"
+					id="telephone" name="telephone" required/> <br>
 			</div>
 			<div class="col">
-				<label for="rue">Rue :</label> <input type="text" id="rue"
-							name="rue" /> <br>
+				<label for="rue">Rue : </label> <input type="text" id="rue"
+							name="rue" required/> <br>
 			</div>
 		</div>
 
 		<div class="row g-3">
 			<div class="col">
-				<label for="codePostal">Code Postal :</label> <input type="text"
-							id="codePostal" name="codePostal" />
+				<label for="codePostal">Code Postal : </label> <input type="text"
+							id="codePostal" name="codePostal" required/>
 				<br>
 			</div>
 			<div class="col">
-				<label for="ville">ville :</label> <input type="text" id="ville"
-							name="ville" /> <br>
+				<label for="ville">ville : </label> <input type="text" id="ville"
+							name="ville" required/> <br>
 			</div>
 		</div>
 
 		<div class="row g-3">
 			<div class="col">
-				<label for="motDePasse"> Mot de passe : </label><input type="text" id="motDePasse" name="motDePasse">
+				<label for="motDePasse"> Mot de passe : </label><input type="text" id="motDePasse" name="motDePasse" required>
 				<br>
 			</div>
 			<div class="col">
 				<label for="motDePasse_confirm"> Confirmation : </label><input type="text"
-					name="motDePasse_confirm" id="motDePasse_confirm"> <br>
+					name="motDePasse_confirm" id="motDePasse_confirm" required> <br>
 			</div>
 		</div>
 
@@ -104,7 +104,8 @@
 		<div class="row g-3">
 		
 						<div class="col">
-						<input type="submit" value="CréerCmpte">
+										<button type="submit"  value="CréerCmpte">Valider</button>
+						
 				</div>
 
 				<div class="col">

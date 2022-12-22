@@ -49,7 +49,8 @@
 				</div>
 			</div>
 			<div class="me-auto col-3">
-				<input type="submit" style="width: 100%; height: 100%" />
+				
+					<button type="submit" style="width: 100%; height: 100%" >Rechercher</button>
 			</div>
 		</div>
 
