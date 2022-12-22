@@ -49,7 +49,7 @@ public class ModifierCompte extends HttpServlet {
 			String pseudo = request.getParameter("pseudo").trim();
 			String nom = request.getParameter("nom").trim();
 			String prenom = request.getParameter("prenom").trim();
-			String email = request.getParameter("mail").trim();
+			String email = request.getParameter("email").trim();
 			String telephone = request.getParameter("telephone").trim();
 			String rue = request.getParameter("rue").trim();
 			String codePostal = request.getParameter("codePostal").trim();
