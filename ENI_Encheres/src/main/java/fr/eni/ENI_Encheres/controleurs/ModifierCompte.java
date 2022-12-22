@@ -22,9 +22,9 @@ public class ModifierCompte extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("ConnectedUser");
 
-		request.setAttribute("Utilisateur", utilisateur);
+		request.setAttribute("utilisateur", utilisateur);
 
 		request.getRequestDispatcher("ModifierCompte.jsp").forward(request, response);
 
@@ -35,7 +35,7 @@ public class ModifierCompte extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		String choix = "";
+		
 		UtilisateurManager um = null;
 		try {
 			um = new UtilisateurManager();
@@ -43,22 +43,9 @@ public class ModifierCompte extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		if (request.getParameter("choix") != null) {
-			choix = request.getParameter("choix").trim();
-		}
-
-		if (!choix.isEmpty()) {
-			if (choix.equals("supprimer")) {
-				try {
-					um.supprimerUtilisateur(utilisateur);
-				} catch (BLLException e) {
-					System.err.println(e.getMessage());
-				}
-				response.sendRedirect(request.getContextPath() + "/Accueil.jsp");
-				return;
-			} 
-		} else {
+//TODO Faire un test pour check que le mail et le pseudo ne sont pas utiulisé(par un autre que lui)
+	
+			int id = Integer.parseInt(request.getParameter("id").trim());
 			String pseudo = request.getParameter("pseudo").trim();
 			String nom = request.getParameter("nom").trim();
 			String prenom = request.getParameter("prenom").trim();
@@ -67,10 +54,13 @@ public class ModifierCompte extends HttpServlet {
 			String rue = request.getParameter("rue").trim();
 			String codePostal = request.getParameter("codePostal").trim();
 			String ville = request.getParameter("ville").trim();
-
+			String motDePasse = request.getParameter("motDePasse").trim();
+			int credit = Integer.parseInt(request.getParameter("credit").trim());
+			boolean administrateur = false;
 			boolean pseudoUniqueOK = true;
 			boolean emailUniqueOK = true;
-
+			Utilisateur u = new Utilisateur(id,pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
+					credit, administrateur);
 			// verification si le pseudo est correspond
 			if (!utilisateur.getPseudo().equals(pseudo)) {
 					try {
@@ -100,13 +90,14 @@ public class ModifierCompte extends HttpServlet {
 				request.setAttribute("pseudoUniqueOK", pseudoUniqueOK);
 				request.setAttribute("emailUniqueOK", emailUniqueOK);
 				request.getRequestDispatcher("/ModifierCompte.jsp").forward(request, response);
-				return;
+				
 			}
 
 			
 				try {
-					um.modifierUtilisateur(utilisateur);;
+					um.modifierUtilisateur(u);;
 					response.sendRedirect(request.getContextPath() + "/PageProfil");
+					System.out.println("user modifié");
 				} catch (BLLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -114,5 +105,4 @@ public class ModifierCompte extends HttpServlet {
 			
 		}
 	
-}
 }

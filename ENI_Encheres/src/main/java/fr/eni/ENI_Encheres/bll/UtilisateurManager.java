@@ -101,10 +101,6 @@ public class UtilisateurManager {
 		
 	}
 	
-	
-	public void validerUtilisateur(Utilisateur utilisateur) throws BLLException
-
-{}
 
 
 	// methode pour verifier que le pseudo est unique
@@ -132,4 +128,8 @@ public class UtilisateurManager {
 		public static Utilisateur selectByPseudo(String pseudo) throws BLLException, DALException{
 			return UtilisateurDAOJdbcImpl.selectByPseudo(pseudo);
 		}
+		
+		//
+		
+		
 }

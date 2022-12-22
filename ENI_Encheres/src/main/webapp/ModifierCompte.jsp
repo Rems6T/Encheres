@@ -16,12 +16,25 @@
 
 	<form action="<%=request.getContextPath()%>/ModifierCompte"
 		method="post">
-		<input type="hidden" name="id" value="${utilisateur.id }">
+		<input type="hidden" name="id" value="${utilisateur.no_utilisateur }">
+		<input type="hidden" name="credit" value="${utilisateur.credit }">
 
 		<div class="row g-3">
 			<div class="col">
 				<label> Pseudo : </label><input type="text" name="pseudo"
 					value="${utilisateur.pseudo }"> <br>
+				<%
+				if (request.getAttribute("pseudoUniqueOK") != null) {
+					boolean pseudoUniqueOK = (boolean) request.getAttribute("pseudoUniqueOK");
+					if (!pseudoUniqueOK) {
+				%>
+				<div class="messageErreur">
+					<a>Ce pseudo n'est pas disponible</a>
+				</div>
+				<%
+				}
+				}
+				%>
 			</div>
 			<div class="col">
 				<label> Nom : </label><input type="text" name="nom"
@@ -37,6 +50,18 @@
 			<div class="col">
 				<label> Email : </label><input type="text" name="email"
 					value="${utilisateur.email}"> <br>
+				<%
+				if (request.getAttribute("emailUniqueOK") != null) {
+					boolean emailUniqueOK = (boolean) request.getAttribute("emailUniqueOK");
+					if (!emailUniqueOK) {
+				%>
+				<div class="messageErreur">
+					<a>Cet email est deja utilisé par un compte utilisateur</a>
+				</div>
+				<%
+				}
+				}
+				%>
 			</div>
 		</div>
 
@@ -83,13 +108,21 @@
 			</div>
 
 
+			
+		</div>
+		
+	</form>
+	<form action="<%=request.getContextPath()%>/SupprimerCompte"
+		method="post">
 			<div class="col">
+
+				<input type="checkbox" value="ModifierCompte" name="supprimer" required>
+					<label>Cocher la case pour confirmer la suppression du compte</label>
+			</div>
+		<div class="col">
 				<button type="submit" name="choix" value="supprimer">Supprimer</button>
 			</div>
-		</div>
-
-	</form>
-
+		</form>
 
 
 

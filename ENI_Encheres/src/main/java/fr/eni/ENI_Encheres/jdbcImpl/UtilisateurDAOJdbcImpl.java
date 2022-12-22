@@ -17,7 +17,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	/*
 	 * 
 	 */
-	
+
 	private static final String sqlSelectById = "select * from utilisateurs where no_utilisateur=?";
 	private static final String sqlSelectAll = "select * from utilisateurs";
 	private static final String sqlUpdate = "update  Utilisateurs set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=?   where no_utilisateur=?";
@@ -26,9 +26,6 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 	private final static String SELECT_BY_MAIL = "select * from utilisateurs where email=?;";
 	private final static String SELECT_BY_PSEUDO = "select * from utilisateurs where pseudo = ?;";
 
-
-
-	
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
 		Connection cnx = null;
@@ -149,8 +146,8 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlInsert,Statement.RETURN_GENERATED_KEYS);
-			
+			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+
 			rqt.setString(1, data.getPseudo());
 			rqt.setString(2, data.getNom());
 			rqt.setString(3, data.getPrenom());
@@ -172,8 +169,6 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 
 			}
 
-			
-
 		} catch (SQLException e) {
 			throw new DALException("Insert utilisateur failed - " + data, e);
 		} finally {
@@ -188,7 +183,6 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			JdbcTools.closeConnection();
 
 		}
-
 
 	}
 
@@ -217,9 +211,7 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 		}
 
 	}
-	
-	
-	
+
 	public boolean selectUniquePseudo(String pseudo) throws DALException {
 
 		Connection cnx;
@@ -236,11 +228,10 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			if (rs.next()) {
 				ok = false;
 			}
-			
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectUniquePseudo", e);
-		}finally {
+		} finally {
 			try {
 
 				if (stmt != null) {
@@ -251,12 +242,11 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			}
 			JdbcTools.closeConnection();
 
-			}
+		}
 
 		return ok;
 	}
 
-	
 	public boolean selectUniqueMail(String mail) throws DALException {
 
 		Connection cnx;
@@ -273,25 +263,25 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 			if (rs.next()) {
 				ok = false;
 			}
-			
 
 		} catch (SQLException e) {
 			throw new DALException("probleme avec la methode selectUniqueMail", e);
-		}finally {
-		try {
+		} finally {
+			try {
 
-			if (stmt != null) {
-				stmt.close();
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		JdbcTools.closeConnection();
+			JdbcTools.closeConnection();
 
 		}
 
 		return ok;
 	}
+
 	public static Utilisateur selectByPseudo(String pseudo) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -327,4 +317,5 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 
 		}
 		return utilisateur;
-	}}
+	}
+}
