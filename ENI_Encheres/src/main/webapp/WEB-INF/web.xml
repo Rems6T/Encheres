@@ -7,14 +7,5 @@
   <session-config>
     <session-timeout>5</session-timeout>
   </session-config>
-  <servlet>
-    <description></description>
-    <display-name>EmailMdpOublier</display-name>
-    <servlet-name>EmailMdpOublier</servlet-name>
-    <servlet-class>fr.eni.ENI_Encheres.controleursEmail.EmailMdpOublier</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EmailMdpOublier</servlet-name>
-    <url-pattern>/EmailMdpOublier</url-pattern>
-  </servlet-mapping>
+
 </web-app>

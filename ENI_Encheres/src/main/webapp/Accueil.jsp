@@ -64,9 +64,7 @@
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
 				<div>
 				
-					<a></a>
-<a href="/Encherir?id=${c.id}" class="badge" title="Lien vers vente"><i class="material-icons">${article.nomArticle}</i></a>
-					
+					<p>${article.nomArticle}</p>
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
 					<p>Vendeur : ${article.noUtilisateur}</p>

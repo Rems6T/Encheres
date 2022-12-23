@@ -44,7 +44,7 @@ public class EmailMdpOublier extends HttpServlet {
 		String emailDestinataire = request.getParameter("nom").trim();
 		//on teste si il est dans la base de donné
 		UtilisateurManager mger;
-		Utilisateur utilisateur;
+		Utilisateur utilisateur = null;
 		try {
 			 mger = new UtilisateurManager();
 			 utilisateur = mger.selectByMail(emailDestinataire);
@@ -56,8 +56,9 @@ public class EmailMdpOublier extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-		//provide recipient's email ID
+		//Si l'utilisateur existe on ecrit le mail
+		if(utilisateur!=null) {
+			//provide recipient's email ID
 	      String to = "jakartato@example.com";
 	      //provide sender's email ID
 	      String from = "jakartafrom@example.com";
@@ -99,7 +100,13 @@ public class EmailMdpOublier extends HttpServlet {
 	         throw new RuntimeException(e);
 	      }
 	      	//redirection vers page de connexion
-	request.getRequestDispatcher("/MotDePasse.jsp").forward(request, response);
+	request.getRequestDispatcher("/Connexion.jsp").forward(request, response);
+		} else {
+			//redirection si email inconnu
+			request.getRequestDispatcher("/MotDePasse.jsp").forward(request, response);
+		}
+		
+		
 	}
 	
 }

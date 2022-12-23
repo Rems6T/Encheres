@@ -35,7 +35,7 @@
 					</div>
 					<div class="col-4">
 						<input type="checkbox" name="remember" id="remember" /> <label
-							for="remember">Se souvenir de moi</label> <br /> <a href="#">Mot
+							for="remember">Se souvenir de moi</label> <br /> <a href="EmailMdpOublier">Mot
 							de passe oublié</a>
 					</div>
 				</div>

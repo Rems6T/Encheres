@@ -3,3 +3,7 @@ ENI_Encheres/build/classes/fr/eni/ENI_Encheres/bo/ArticleVendu.class
 ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/ModifierCompte.java
 ENI_Encheres/build/classes/fr/eni/ENI_Encheres/controleurs/ModifierCompte.class
 ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/SupprimerCompte.java
+ENI_Encheres/src/main/webapp/Accueil.jsp
+ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleursEmail/EmailMdpOublier.java
+ENI_Encheres/src/main/webapp/WEB-INF/web.xml
+ENI_Encheres/src/main/webapp/Connexion.jsp
