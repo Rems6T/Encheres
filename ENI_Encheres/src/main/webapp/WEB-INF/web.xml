@@ -7,37 +7,5 @@
   <session-config>
     <session-timeout>5</session-timeout>
   </session-config>
-<<<<<<< HEAD
-=======
-  <servlet>
-    <description></description>
-    <display-name>PageAcquisition</display-name>
-    <servlet-name>PageAcquisition</servlet-name>
-    <servlet-class>fr.eni.ENI_Encheres.controleurs.PageAcquisition</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PageAcquisition</servlet-name>
-    <url-pattern>/PageAcquisition</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>VendreArticle</display-name>
-    <servlet-name>VendreArticle</servlet-name>
-    <servlet-class>fr.eni.ENI_Encheres.controleurs.VendreArticle</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>VendreArticle</servlet-name>
-    <url-pattern>/VendreArticle</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Encherir</display-name>
-    <servlet-name>Encherir</servlet-name>
-    <servlet-class>fr.eni.ENI_Encheres.controleursAdmin.Encherir</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Encherir</servlet-name>
-    <url-pattern>/Encherir</url-pattern>
-  </servlet-mapping>
->>>>>>> 8092f221a403bb5a5d6862817d0809ea67b76142
+
 </web-app>
