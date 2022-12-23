@@ -34,13 +34,7 @@ import fr.eni.ENI_Encheres.jdbcImpl.RetraitJdbcImpl;
 public class CreerVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreerVente() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,7 +53,7 @@ public class CreerVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("categorieList", categorieList);
-		getServletContext().getRequestDispatcher("/CreerVente.jsp").forward(request, response);
+		request.getRequestDispatcher("/CreerVente.jsp").forward(request, response);
 	}
 
 	/**
@@ -120,6 +114,7 @@ public class CreerVente extends HttpServlet {
 		RetraitJdbcImpl retraitMger = new RetraitJdbcImpl();
 		try {
 			retraitMger.insert(retrait);
+			System.out.println("retrait ajouté");
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,6 +124,7 @@ public class CreerVente extends HttpServlet {
 		EnchereJdbcImpl encImpl = new EnchereJdbcImpl();
 		try {
 			encImpl.insert(enchere);
+			System.out.println("enchere ajouté");
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

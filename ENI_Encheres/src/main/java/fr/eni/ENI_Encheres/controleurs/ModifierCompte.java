@@ -26,7 +26,7 @@ public class ModifierCompte extends HttpServlet {
 
 		request.setAttribute("utilisateur", utilisateur);
 
-		request.getRequestDispatcher("ModifierCompte.jsp").forward(request, response);
+		request.getRequestDispatcher("/ModifierCompte.jsp").forward(request, response);
 
 	}
 

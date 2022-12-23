@@ -23,13 +23,7 @@ import fr.eni.ENI_Encheres.bo.Utilisateur;
 public class Vente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Vente() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+ 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,7 +48,7 @@ public class Vente extends HttpServlet {
 		
 		request.setAttribute("articleList", articleList);
 
-		request.getRequestDispatcher("Vente.jsp").forward(request, response);
+		request.getRequestDispatcher("/Vente.jsp").forward(request, response);
 	
 	}
 

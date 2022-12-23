@@ -42,7 +42,7 @@ public class PageAccueil extends HttpServlet {
 		
 		request.setAttribute("ArticleList", ArticleList);
 
-		request.getRequestDispatcher("Accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("/Accueil.jsp").forward(request, response);
 		
 	}
 
@@ -69,7 +69,7 @@ public class PageAccueil extends HttpServlet {
 		
 		request.setAttribute("ArticleList", ArticleList);
 
-		request.getRequestDispatcher("Accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 	}
 
