@@ -12,12 +12,16 @@
 
 
 <body class="container">
-
+e
 <div class="head">
       <h1>Détail Vente</h1>
     </div>
     <% Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser"); %>
+        <% Utilisateur vendeur = (Utilisateur)request.getAttribute("vendeur"); %>
 	<% ArticleVendu article = (ArticleVendu)request.getAttribute("ArticleAffiche"); %>
+		<% Retrait retraitArticle = (Retrait)request.getAttribute("retraitVente"); %>
+	
+	
     <div class="container">
         <div>
             <img src="" alt="">
@@ -47,8 +51,8 @@
             </tr>
             <tr>
                 <td class="td1"><p class="value-td1">Retrait:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.Retrait.getRue()  %>, 
-                <%=article.retrait.getCodePostal()%>, <%=article.retrait.getVille() %></p></td>
+                <td class="td2"><p class="value-td2"><%=retraitArticle.getRue()  %>, 
+                <%=retraitArticle.getCode_postal()%>, <%=retraitArticle.getVille() %></p></td>
             </tr>
             <tr>
                 <td class="td1"><p class="value-td1">Vendeur:</p></td>
@@ -59,7 +63,7 @@
         
         
         
-	<% if(!article.getNoUtilisateur().getPseudo().equals(connectedUser.getPseudo())) { %>
+	<% if(!vendeur.equals(connectedUser)) { %>
 		<form action="<%=request.getContextPath()%>/encherir" method="post">
 			<div class="input-field">
 				<label for="mPrix">Ma Proposition :</label>
@@ -68,23 +72,20 @@
 		    <div>
 		        <button class="btn-login" type="submit">Enchérir</button>
 		    </div>
-	      <input value="<%=article.getNoArticle()%>" type="text" id="idArticle" name="idArticle" style="visibility:hidden;">
+	      <input value="<%=article.getNoArticle()%>" type="hidden" id="idArticle" name="idArticle" >
 		</form>
 		
 		
-	<% } else { %>
-		<a href ="<%=request.getContextPath()%>/updateVente?idArticle=<%=article.getNoArticle()%>"><button class="btn" type="button"> 
-        Modifier
-     	 </button>
-     	 </a>
-     	 
-
-	<% } %>
-	
-	
+	<% }   %>
       <a href ="<%=request.getContextPath()%>/Accueil.jsp"><button class="btn" type="button"> <!--change that with index.html file location-->
         Back
       </button>
+     	 
+
+
+	
+	
+
       </a>
     </div>
   </body>
