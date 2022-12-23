@@ -1,9 +1,11 @@
 package fr.eni.ENI_Encheres.bll;
 
+import fr.eni.ENI_Encheres.bo.Retrait;
 import fr.eni.ENI_Encheres.dal.DALException;
+import fr.eni.ENI_Encheres.jdbcImpl.RetraitJdbcImpl;
 
 public class TestBll {
-	public static void main(String[] args) throws DALException {
+	public static void main(String[] args)  {
 //	Utilisateur utilisateur = new Utilisateur("man06",	"Manu", "Valance", "manu@orange.com", "0643063142", "rue", "06420", "St Sau", "mdp", 0, false);
 //	try {
 //		UtilisateurManager mger = new UtilisateurManager();
@@ -16,7 +18,16 @@ public class TestBll {
 //		// TODO Auto-generated catch block
 //		e.printStackTrace();
 //	}
-//	
+		Retrait retrait = new Retrait(26, "rue", "06200", "Nice"); 
+		RetraitJdbcImpl retraitMger = new RetraitJdbcImpl();
+		
+		try {
+			retraitMger.insert(retrait);
+			System.out.println(retrait);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	
 	}

@@ -125,12 +125,14 @@ public class RetraitJdbcImpl implements DAO<Retrait> {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert);
+			
+			
 			rqt.setInt(1, data.getNo_article());
 			rqt.setString(2, data.getRue());
 			rqt.setString(3, data.getCode_postal());
 			rqt.setString(4, data.getVille());
 			
-
+			rqt.executeUpdate();
 			
 
 			

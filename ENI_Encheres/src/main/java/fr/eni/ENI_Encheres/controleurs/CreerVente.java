@@ -110,10 +110,11 @@ public class CreerVente extends HttpServlet {
 		String rue =request.getParameter("rue").trim();
 		String codePostal =request.getParameter("codePostal").trim();
 		String ville =request.getParameter("ville").trim();
-		 Retrait retrait = new Retrait(idArticle, rue, codePostal, ville); 
+		Retrait retrait = new Retrait(idArticle, rue, codePostal, ville); 
 		RetraitJdbcImpl retraitMger = new RetraitJdbcImpl();
 		try {
 			retraitMger.insert(retrait);
+			System.out.println(retrait);
 			System.out.println("retrait ajouté");
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
