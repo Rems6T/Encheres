@@ -1,0 +1,18 @@
+div>.row, fieldset>.row {
+    padding-bottom: 1.5rem;
+}
+
+fieldset {
+    border: solid black 2px;
+    padding: 3px 6px;
+}
+
+#buttons {
+    margin-top: 1rem;
+}
+
+button {
+    height: 4rem;
+    width: 8rem;
+    margin-right: 2rem;
+}
