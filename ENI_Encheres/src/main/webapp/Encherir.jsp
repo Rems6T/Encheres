@@ -12,7 +12,7 @@
 
 
 <body class="container">
-e
+
 <div class="head">
       <h1>Détail Vente</h1>
     </div>
@@ -29,42 +29,43 @@ e
         <table>
        		 <tr>
                 <td class="td1"><p class="value-td1">Nom:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.getNomArticle() %></p></td>
+                <td class="td2"><p class="value-td2">${articleAffiche.nomArticle }</p></td>
             </tr>
             <tr>
                 <td class="td1"><p class="value-td1">Description:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.getDescription() %></p></td>
+                <td class="td2"><p class="value-td2">${articleAffiche.description }</p></td>
             </tr>
-            <%if(article.getPrixVente() != 0) { %>
+            
             <tr>
                 <td class="td1"><p class="value-td1">Meilleure offre:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.getPrixVente()%> pts </p></td>
+                <td class="td2"><p class="value-td2">${articleAffiche.prixVente } pts </p></td>
             </tr>
-            <% } %>
+            
             <tr>
                 <td class="td1"><p class="value-td1">Mise à prix:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.getMiseAPrix()  %> pts</p></td>
+                <td class="td2"><p class="value-td2">${articleAffiche.miseAPrix } pts</p></td>
             </tr>  
             <tr>
                 <td class="td1"><p class="value-td1">Fin de l'enchère:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.getDateFinEncheres() %></p></td>
+                <td class="td2"><p class="value-td2">${articleAffiche.dateFinEncheres }</p></td>
             </tr>
             <tr>
                 <td class="td1"><p class="value-td1">Retrait:</p></td>
-                <td class="td2"><p class="value-td2"><%=retraitArticle.getRue()  %>, 
-                <%=retraitArticle.getCode_postal()%>, <%=retraitArticle.getVille() %></p></td>
+                <td class="td2"><p class="value-td2">${retraitVente.rue }, 
+                ${retraitVente.code_postal }, ${retraitVente.ville }</p></td>
             </tr>
             <tr>
                 <td class="td1"><p class="value-td1">Vendeur:</p></td>
-                <td class="td2"><p class="value-td2"><%=article.getNoUtilisateur() %></p></td>
+                <td class="td2"><p class="value-td2">${vendeur.pseudo}</p></td>
             </tr> 
         </table>
         
         
         
         
-	<% if(!vendeur.equals(connectedUser)) { %>
-		<form action="<%=request.getContextPath()%>/encherir" method="post">
+	
+	<c:if test="${vendeur.no_utilisateur != userSession.no_utilisateur && userSession !=null}">
+		<form action="<%=request.getContextPath()%>/Encherir" method="post">
 			<div class="input-field">
 				<label for="mPrix">Ma Proposition :</label>
 				<input class="input" type="number" name="mPrix" id="mPrix" step="1" max= "10000" required>
@@ -72,12 +73,12 @@ e
 		    <div>
 		        <button class="btn-login" type="submit">Enchérir</button>
 		    </div>
-	      <input value="<%=article.getNoArticle()%>" type="hidden" id="idArticle" name="idArticle" >
+	      <input value="${articleAffiche.noArticle }" type="hidden" id="idArticle" name="idArticle" >
 		</form>
+		</c:if>
 		
-		
-	<% }   %>
-      <a href ="<%=request.getContextPath()%>/Accueil.jsp"><button class="btn" type="button"> <!--change that with index.html file location-->
+	
+      <a href ="Accueil"><button class="btn" type="button"> <!--change that with index.html file location-->
         Back
       </button>
      	 

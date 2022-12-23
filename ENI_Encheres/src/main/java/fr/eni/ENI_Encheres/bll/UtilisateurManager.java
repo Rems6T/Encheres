@@ -46,7 +46,7 @@ public class UtilisateurManager {
 	 * Select by Id
 	 * 
 	 */
-	public Utilisateur getUtilisateurById(int id) throws BLLException {
+	public  Utilisateur getUtilisateurById(int id) throws BLLException {
 		Utilisateur utilisateur = null;
 		try {
 			utilisateur = daoUtilisateur.selectById(id);

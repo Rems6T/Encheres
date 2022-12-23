@@ -65,8 +65,8 @@
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
 				<div>
 				
-					<a></a>
-<a href="Encherir?noArticle=${article.noArticle}"  title="Lien vers vente">Article : ${article.nomArticle}</a>
+					
+<a href="EnchereArticle?idArticle=${article.noArticle}" >Article : ${article.nomArticle}</a>
 					
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
