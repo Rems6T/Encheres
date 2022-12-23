@@ -318,4 +318,40 @@ public class UtilisateurDAOJdbcImpl implements DAO<Utilisateur> {
 		}
 		return utilisateur;
 	}
+	public static Utilisateur selectByMail(String email) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Utilisateur utilisateur = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(SELECT_BY_MAIL);
+			rqt.setString(1, email);
+
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+
+				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
+						rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+						rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
+						rs.getInt("credit"), rs.getBoolean("administrateur"));
+
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectByIPseudo failed - email = " + email, e);
+		} finally {
+			try {
+
+				if (rqt != null) {
+					rqt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			JdbcTools.closeConnection();
+
+		}
+		return utilisateur;
+	}
 }

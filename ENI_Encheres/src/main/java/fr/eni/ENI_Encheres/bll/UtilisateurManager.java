@@ -175,6 +175,9 @@ public class UtilisateurManager {
 		return UtilisateurDAOJdbcImpl.selectByPseudo(pseudo);
 	}
 
+	public Utilisateur selectByMail(String email) throws BLLException, DALException {
+		return UtilisateurDAOJdbcImpl.selectByMail(email);
+	}
 	//
 
 }

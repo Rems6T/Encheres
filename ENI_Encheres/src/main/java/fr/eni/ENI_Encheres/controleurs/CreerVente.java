@@ -74,7 +74,7 @@ public class CreerVente extends HttpServlet {
 		String dateDebut=request.getParameter("debutEnchere");
 		String dateFin=request.getParameter("finEnchere");
 		
-		java.util.Date  utilDateDebut=null;
+		java.util.Date utilDateDebut=null;
 		java.util.Date utilDateFin=null;
 		
         try {
