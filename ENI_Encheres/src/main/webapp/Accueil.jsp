@@ -14,6 +14,7 @@
 		<div>
 		
 
+					<% ArticleVendu article = (ArticleVendu)request.getAttribute("ArticleAffiche"); %>
 				
 				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		
 				<%@include file="WEB-INF/headerInvite.jsp"%>
@@ -64,7 +65,9 @@
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
 				<div>
 				
-					<p>${article.nomArticle}</p>
+					<a></a>
+<a href="Encherir?noArticle=${article.noArticle}"  title="Lien vers vente">Article : ${article.nomArticle}</a>
+					
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
 					<p>Vendeur : ${article.noUtilisateur}</p>

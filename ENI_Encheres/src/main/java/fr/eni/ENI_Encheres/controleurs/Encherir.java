@@ -12,6 +12,7 @@ import fr.eni.ENI_Encheres.bo.Encheres;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,11 +21,14 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class Encherir
  */
+@WebServlet("/Encherir")
 public class Encherir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		request.getRequestDispatcher("/Encherir.jsp").forward(request, response);
 	}
 
