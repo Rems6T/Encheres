@@ -27,6 +27,8 @@ public class Encherir extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		request.getRequestDispatcher("/Encherir.jsp").forward(request, response);
 	}
 
