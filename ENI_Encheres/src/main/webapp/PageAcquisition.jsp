@@ -20,6 +20,7 @@
 
     <div class="container-vente">
       <div class="encherisseur">
+          <% Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser"); %>
       <% if(connectedUser.getPseudo().equals(gagnantEnchere.getPseudo())) { %>
         <h1>Vous avez remporté la vente</h1>
        <% } else {%>
