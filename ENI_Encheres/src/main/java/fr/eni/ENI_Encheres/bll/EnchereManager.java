@@ -1,15 +1,20 @@
 package fr.eni.ENI_Encheres.bll;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
+import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
+import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.EnchereJdbcImpl;
 
 public class EnchereManager {
 
 	private static EnchereJdbcImpl enchere = new EnchereJdbcImpl();
+
 	
 	public EnchereManager() {
 		
@@ -42,6 +47,17 @@ public class EnchereManager {
 		return enchere.getAllByArticle(id);
 		
 	}
-}
+	
+	public static Boolean enchereTerminee (ArticleVendu article) {
+		Boolean encheretermniee;
+	       long miliseconds = System.currentTimeMillis();
+	        Date date = new Date(miliseconds);
+		if (article.getDateFinEncheres().before(date)) {
+		return encheretermniee  =true ;
+	}else 
+		return encheretermniee= false;
+	
+	}
+	}
 	
 

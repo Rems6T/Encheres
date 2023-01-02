@@ -20,6 +20,7 @@ import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Categorie;
 import fr.eni.ENI_Encheres.bo.Encheres;
+import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.bo.Retrait;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
@@ -92,12 +93,15 @@ public class CreerVente extends HttpServlet {
 		int prixVente = 0;
 		int noUtilisateur = u.getNo_utilisateur();
 		int  noCategorie = Integer.parseInt(request.getParameter("categorie"));
+
 		
 		ArticleVendu article = new ArticleVendu(nomArticle,description, sqlDateDebut, sqlDateFin, miseAprix, prixVente, noUtilisateur,noCategorie);
+
 		int idArticle=0;
 		try {
 			ArticleManager mger = new ArticleManager();
 			mger.ajoutArticle(article);
+			article.setEtatVente(EtatVente.CREE);
 			//on recupere l'id de l'objet créer
 			 idArticle = mger.getIdArticle(article);
 			 System.out.println("idArticle "+idArticle);

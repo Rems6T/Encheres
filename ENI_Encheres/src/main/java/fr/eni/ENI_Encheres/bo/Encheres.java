@@ -7,12 +7,14 @@ public class Encheres {
 	   private int noArticle;
 	   private Date dateEnchere;
 	   private int montantEnchere;
+		private boolean remporte = false;
 
 	   public Encheres(int noUtilisateur, int noArticle, Date dateEnchere, int montantEnchere) {
 	      this.noUtilisateur = noUtilisateur;
 	      this.noArticle = noArticle;
 	      this.dateEnchere = dateEnchere;
 	      this.montantEnchere = montantEnchere;
+	      this.setRemporte(false);
 	   }
 
 	   public int getNoUtilisateur() {
@@ -51,6 +53,14 @@ public class Encheres {
 	public String toString() {
 		return "Encheres [noUtilisateur=" + noUtilisateur + ", noArticle=" + noArticle + ", dateEnchere=" + dateEnchere
 				+ ", montantEnchere=" + montantEnchere + "]";
+	}
+
+	public boolean isRemporte() {
+		return remporte;
+	}
+
+	public void setRemporte(boolean remporte) {
+		this.remporte = remporte;
 	}
 	   
 	}
