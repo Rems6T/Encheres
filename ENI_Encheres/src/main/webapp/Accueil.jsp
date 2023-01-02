@@ -66,7 +66,7 @@
 				<div>
 				
 					
-<a href="EnchereArticle?idArticle=${article.noArticle}" >Article : ${article.nomArticle}</a>
+<a href="Encherir?idArticle=${article.noArticle}" >Article : ${article.nomArticle}</a>
 					
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>

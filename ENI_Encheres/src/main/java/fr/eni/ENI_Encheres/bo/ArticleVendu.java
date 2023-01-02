@@ -32,7 +32,7 @@ public class ArticleVendu {
 	
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
+			Date dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie, EtatVente etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -43,6 +43,7 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
+		this.etatVente = etatVente;
 	}
 
 

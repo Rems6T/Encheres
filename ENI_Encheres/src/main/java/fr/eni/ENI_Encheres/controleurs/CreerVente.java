@@ -101,15 +101,16 @@ public class CreerVente extends HttpServlet {
 		try {
 			ArticleManager mger = new ArticleManager();
 			mger.ajoutArticle(article);
-			article.setEtatVente(EtatVente.CREE);
 			//on recupere l'id de l'objet créer
 			 idArticle = mger.getIdArticle(article);
+
+
 			 System.out.println("idArticle "+idArticle);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		article.setEtatVente(EtatVente.CREE);
 		//on ajoute le retrait
 		String rue =request.getParameter("rue").trim();
 		String codePostal =request.getParameter("codePostal").trim();

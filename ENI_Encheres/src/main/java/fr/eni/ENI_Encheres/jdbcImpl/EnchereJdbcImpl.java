@@ -8,7 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.ENI_Encheres.bll.BLLException;
+import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
+import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
 import fr.eni.ENI_Encheres.dal.JdbcTools;
@@ -20,7 +23,20 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?,?)";
 	private static final String sqlDelete = "delete from encheres where no_article=?";
 	private static final String GET_ALL_BY_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
-
+	   private static final String IS_MEILLEUR_ENCHERISSEUR = "SELECT e.no_utilisateur, e.montant_enchere, u.pseudo " +
+			    "FROM Encheres e " +
+			    "INNER JOIN Articles a on a.no_article = e.no_article " +
+			    "INNER JOIN Utilisateurs u on e.no_utilisateur = u.no_utilisateur " +
+			    "WHERE e.no_article = ? AND e.no_utilisateur = ? AND a.date_fin_encheres > GETDATE() AND e.montant_enchere = (SELECT MAX(montant_enchere) "+
+			    "FROM ENCHERES e2 "+
+			    "WHERE e2.no_article = a.no_article)";
+	   private static final String SELECT_MEILLEUR_ENCHERISSEUR = "SELECT u.no_utilisateur, u.pseudo, u.nom, u.prenom, u.email, u.telephone, u.rue, u.code_postal, u.ville, u.mot_de_passe, u.credit " +
+	            "FROM Encheres e " +
+	            "INNER JOIN Articles a on a.no_article = e.no_article " +
+	            "INNER JOIN Utilisateurs u on e.no_utilisateur = u.no_utilisateur " +
+	            "WHERE e.no_article = ? AND a.date_fin_encheres > GETDATE() AND e.montant_enchere = (SELECT MAX(montant_enchere) "+
+	                                                                                                "FROM ENCHERES e2 "+
+	                                                                                                "WHERE e2.no_article = a.no_article)";
 	@Override
 	public Encheres selectById(int id) throws DALException {
 		Connection cnx = null;
@@ -213,5 +229,45 @@ public List<Encheres> getAllByArticle(int id) throws SQLException  {
 		
 		return Listeencherespararticle;
 	}
+public boolean isMeilleurEncherisseur(int noArticle, int noUtilisateur) throws SQLException {
+    boolean isMeilleurEncherisseur = false;
+    
+	Connection cnx = null;
+PreparedStatement pstmt = cnx.prepareStatement(IS_MEILLEUR_ENCHERISSEUR);
+        pstmt.setInt(1, noArticle);
+        pstmt.setInt(2, noUtilisateur);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        if(rs.next()) {
+            isMeilleurEncherisseur = true;
+        }
+
+        pstmt.close();
+        rs.close();
+
+    return isMeilleurEncherisseur;
 }
+	 public Utilisateur selectMeilleurEncherisseur(ArticleVendu article) throws BLLException, SQLException {
+	        Utilisateur utilisateur = null;
+	    	Connection cnx = null;	            
+	    	PreparedStatement pstmt = cnx.prepareStatement(SELECT_MEILLEUR_ENCHERISSEUR);
+	            pstmt.setInt(1, article.getNoArticle());
+	            ResultSet rs = pstmt.executeQuery();
+
+	            if(rs.next()) {
+	                utilisateur = new Utilisateur(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+	                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),
+	                        rs.getInt(11), false);
+	                utilisateur.setNo_utilisateur(rs.getInt(1));
+	            }
+
+	            rs.close();
+	            pstmt.close();
+
+	        return utilisateur;
+	    }
+
+}
+
 

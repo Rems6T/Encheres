@@ -1,7 +1,11 @@
 package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
@@ -24,112 +28,188 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class Encherir
  */
-@WebServlet("/EnchereArticle")
+@WebServlet("/Encherir")
 public class Encherir extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idArticle = Integer.parseInt(request.getParameter("idArticle"));
-		//on recupere un article 
-		ArticleVendu articleAffiche = null;
-		System.out.println(idArticle);
-		try {
-			articleAffiche = ArticleManager.getArticleById(idArticle);
-			System.out.println(articleAffiche);
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("articleAffiche", articleAffiche);
-		//on recupere le retrait associe
-		Retrait retraitVente = null;
-		RetraitJdbcImpl retraitJdbcImpl = new RetraitJdbcImpl();
-		try {
-			retraitVente = retraitJdbcImpl.selectById(idArticle);
-			System.out.println(retraitVente);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("retraitVente", retraitVente);
-		// on recupere le vendeur grace aux no_utlisateur de l'article
-		Utilisateur vendeur = null;
-		System.out.println(articleAffiche.getNoUtilisateur());
-		int idUtilisateur =articleAffiche.getNoUtilisateur();
-		UtilisateurManager uMger = null;
-		try {
-			uMger = new UtilisateurManager();
-			vendeur = uMger.getUtilisateurById(idUtilisateur);
-			System.out.println(vendeur);
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("vendeur", vendeur);
-		//on envoie le user de la session
-	Utilisateur userSession = (Utilisateur) request.getSession().getAttribute("ConnectedUser");
-		request.setAttribute("userSession", userSession);
-		
-		request.getRequestDispatcher("/Encherir.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    /**
+	 * 
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
+	@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
+
+        request.getRequestDispatcher("/Encherir?no_article="+noArticle).forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        List<Integer> listeCodesErreur=new ArrayList<>();
+            try {
+				encherir(request, response, listeCodesErreur);
+			} catch (ServletException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (BLLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (DALException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}        
+                try {
+					preleverCredit(request, response, listeCodesErreur);
+				} catch (BLLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}           
+
+ updatePrixVenteArticle(request, response, listeCodesErreur);
+            
+
+            HttpSession session = request.getSession();
+            session.setAttribute("succes","Enchère ajoutée avec succès");
+            response.sendRedirect(request.getContextPath()+"/accueil");
+        }
 
 
-//		HttpSession session = request.getSession();
-//		Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser");
-//		int currentCredit = connectedUser.getCredit();
-//		
-//		int prixEnchere = Integer.parseInt(request.getParameter("mPrix"));
-//		int idArticle = Integer.parseInt(request.getParameter("idArticle"));
-//		
-//		ArticleVendu articleAffiche = null;
-//		
-//			try {
-//				articleAffiche = ArticleManager.getArticleById(idArticle);
-//			} catch (BLLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//		Date date = new Date();
-//		if (articleAffiche != null && prixEnchere > articleAffiche.getMiseAPrix()
-//				&& connectedUser.getCredit() >= prixEnchere) {
-//			Encheres enchere = new Encheres(articleAffiche.getNoArticle() , connectedUser.getNo_utilisateur(), (java.sql.Date) date, prixEnchere);
-//			
-//			articleAffiche.setPrixVente(prixEnchere);
-//			
-//			
-//			
-//				try {
-//					EnchereManager.ajoutEnchere(enchere);
-//				} catch (DALException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				request.setAttribute("mPrix", prixEnchere);
-//				request.setAttribute("meilleureEnchere", enchere);
-//				try {
-//					ArticleManager.modifierArticle(articleAffiche);
-//				} catch (BLLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				connectedUser.setCredit(currentCredit - prixEnchere);
-//				try {
-//					UtilisateurManager.modifierUtilisateur(connectedUser);
-//				} catch (BLLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		article.setEtatVente(EtatVente.EN_COURS);
-//			request.getRequestDispatcher("/WEB-INF/jsp/accueilConnected.jsp").forward(request, response);
-		}
-		
-	}
+    private void encherir(HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws ServletException, IOException, BLLException, SQLException, DALException {
+        Encheres enchere = creerEnchere(request, listeCodesErreur);
+        isMeilleurEncherisseur(request, listeCodesErreur);
+
+        EnchereManager enchereManager = new EnchereManager();
+
+        //si la création d'enchère et isMeilleurEnchrisseur ont renvoyé des erreurs, on renvoi vers details article avec les erreurs
+        if(listeCodesErreur.size() > 0) {
+            request.setAttribute("listeCodesErreur", listeCodesErreur);
+            this.doGet(request, response);
+        } else {
+            //selectMeilleurEncherisseur si null 0 enchères
+            Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
+            Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
+            ArticleVendu article = null ;
+            article.setNoArticle(noArticle);
+            article.setPrixVente(prixVente);
+            Utilisateur encherisseurPrecedent = enchereManager.selectMeilleurEncherisseur(article);
+            //si il n'y a eu aucune enchère sur l'article on insère l'enchère en base
+            if(encherisseurPrecedent == null) {
+                EnchereManager.ajoutEnchere(enchere);
+            } else {
+                //s'il y a une autre enchère sur l'article on rend les crédit à l'enchérisseur précédent avant d'ajouter notre enchère
+
+            	rendreCredit(encherisseurPrecedent, prixVente);
+
+                EnchereManager.ajoutEnchere(enchere);
+            }
+        }
+    }
+
+    private Encheres creerEnchere(HttpServletRequest request, List<Integer> listeCodesErreur) {
+        HttpSession session = request.getSession();
+        Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
+        
+        
+        Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
+        Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
+        ArticleVendu article = null ;
+        article.setNoArticle(noArticle);
+        article.setPrixVente(prixVente);
+
+        
+        
+        long miliseconds = System.currentTimeMillis();
+        Date dateEnchere = new Date(miliseconds);
+        
+        
+        int montant = Integer.parseInt(request.getParameter("montant"));
 
 
+        Encheres enchere = new Encheres(utilisateurConnecte.getNo_utilisateur() , article.getNoArticle() , (java.sql.Date) dateEnchere, montant);
+
+        return enchere;
+    }
+
+    private void isMeilleurEncherisseur(HttpServletRequest request, List<Integer> listeCodesErreur) throws BLLException, SQLException {
+        HttpSession session = request.getSession();
+        Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
+        Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
+        Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
+        ArticleVendu article = null ;
+        article.setNoArticle(noArticle);
+        article.setPrixVente(prixVente);
+        EnchereManager enchereManager = new EnchereManager();
+
+        //On vérifie si l'utilisateur est déjà le meilleur encherisseur, si c'est le cas on ajoute une erreur
+        boolean isMeilleurEncherisseur = enchereManager.isMeilleurEncherisseur(article.getNoArticle(), utilisateurConnecte.getNo_utilisateur());
+
+    }
+
+    private void preleverCredit (HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws BLLException, ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        //récupérer utilisateur en session et soustraire à son crédit le montant de l'enchère
+        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+        UtilisateurManager utilisateurManager = new UtilisateurManager();
+       
+        Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
+
+        int montant = Integer.parseInt(request.getParameter("montant"));
+        
+        Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
+        ArticleVendu article = null ;
+        article.setNoArticle(noArticle);
+        article.setPrixVente(prixVente);
+        utilisateur.setCredit(utilisateur.getCredit() - article.getPrixVente());
+
+        if(listeCodesErreur.size() > 0) {
+            request.setAttribute("listeCodesErreur", listeCodesErreur);
+            this.doGet(request, response);
+        } else {
+            //update l'utilisateur
+
+            UtilisateurManager.modifierUtilisateur(utilisateur);
+
+            //l'utilisateur est update en base, on le remet correctement dans la session
+            session.setAttribute("utilisateur", utilisateur);
+        }
+    }
+
+    private void rendreCredit (Utilisateur u, Integer prixVente) throws BLLException {
+        UtilisateurManager utilisateurManager = new UtilisateurManager();
+
+        Utilisateur encherisseurPrecedent = u;
+        encherisseurPrecedent.setCredit(encherisseurPrecedent.getCredit() + prixVente);
+        UtilisateurManager.modifierUtilisateur(encherisseurPrecedent);
+    }
+
+    private void updatePrixVenteArticle (HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws ServletException, IOException {
+        Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
+        Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
+        ArticleVendu article ;
+        article.setNoArticle(noArticle);
+        article.setPrixVente(prixVente);
+
+        //Récupérer l'article au complet
+        ArticleManager articleManager = new ArticleManager();
+        ArticleVendu fullArticle = ArticleManager.getArticleById(article.getNoArticle());
+
+        //Set nouveau prix de vente
+        fullArticle.setPrixVente =Integer.valueOf(request.getParameter("montant"));
+            ArticleManager.modifierArticle(fullArticle);
+        }
+    
+
+   
+}

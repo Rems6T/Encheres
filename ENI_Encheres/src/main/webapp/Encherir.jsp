@@ -64,7 +64,7 @@
         
         
 	
-	<c:if test="${vendeur.no_utilisateur != userSession.no_utilisateur && userSession !=null}">
+	<c:if test="${vendeur.no_utilisateur != userSession.no_utilisateur && userSession !=null} ">
 		<form action="<%=request.getContextPath()%>/Encherir" method="post">
 			<div class="input-field">
 				<label for="mPrix">Ma Proposition :</label>

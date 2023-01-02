@@ -35,10 +35,10 @@
 			id="miseAPrix" name="miseAPrix">
 		</label>
 		
-		<label for="debutEnchere">Début de l'enchère : <input type="date"
+		<label for="debutEnchere">Début de l'enchère : <input type="datetime-local"
 			id="debutEnchere" name="debutEnchere">
 		</label>
-		<label for="finEnchere">Fin de l'enchère : <input type="date"
+		<label for="finEnchere">Fin de l'enchère : <input  type="datetime-local"
 			id="finEnchere" name="finEnchere">
 		</label>
 		<fieldset>

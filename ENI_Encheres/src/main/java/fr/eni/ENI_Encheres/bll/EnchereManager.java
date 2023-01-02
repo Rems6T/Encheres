@@ -8,6 +8,7 @@ import java.util.List;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
 import fr.eni.ENI_Encheres.bo.EtatVente;
+import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.EnchereJdbcImpl;
 
@@ -58,6 +59,16 @@ public class EnchereManager {
 		return encheretermniee= false;
 	
 	}
+	
+    private  EnchereJdbcImpl enchereDAO;
+
+    public boolean isMeilleurEncherisseur(int noArticle, int noUtilisateur) throws BLLException, SQLException {
+        return this.enchereDAO.isMeilleurEncherisseur(noArticle, noUtilisateur);
+    }
+
+    public Utilisateur selectMeilleurEncherisseur(ArticleVendu article) throws BLLException, SQLException {
+        return this.enchereDAO.selectMeilleurEncherisseur(article);
+    }
 	}
 	
 
