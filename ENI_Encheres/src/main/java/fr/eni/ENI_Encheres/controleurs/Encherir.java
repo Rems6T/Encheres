@@ -76,7 +76,18 @@ public class Encherir extends HttpServlet {
 					e.printStackTrace();
 				}           
 
- updatePrixVenteArticle(request, response, listeCodesErreur);
+ try {
+	updatePrixVenteArticle(request, response, listeCodesErreur);
+} catch (ServletException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} catch (BLLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
             
 
             HttpSession session = request.getSession();
@@ -194,10 +205,10 @@ public class Encherir extends HttpServlet {
         UtilisateurManager.modifierUtilisateur(encherisseurPrecedent);
     }
 
-    private void updatePrixVenteArticle (HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws ServletException, IOException {
+    private void updatePrixVenteArticle (HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws ServletException, IOException, BLLException {
         Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
         Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
-        ArticleVendu article ;
+        ArticleVendu article = null ;
         article.setNoArticle(noArticle);
         article.setPrixVente(prixVente);
 
@@ -206,7 +217,7 @@ public class Encherir extends HttpServlet {
         ArticleVendu fullArticle = ArticleManager.getArticleById(article.getNoArticle());
 
         //Set nouveau prix de vente
-        fullArticle.setPrixVente =Integer.valueOf(request.getParameter("montant"));
+        fullArticle.setPrixVente(Integer.valueOf(request.getParameter("montant")));
             ArticleManager.modifierArticle(fullArticle);
         }
     
