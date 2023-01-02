@@ -9,6 +9,7 @@ import fr.eni.ENI_Encheres.bll.EnchereManager;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
+import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.bo.Retrait;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
@@ -125,7 +126,7 @@ public class Encherir extends HttpServlet {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
 //				}
-//
+//		article.setEtatVente(EtatVente.EN_COURS);
 //			request.getRequestDispatcher("/WEB-INF/jsp/accueilConnected.jsp").forward(request, response);
 		}
 		

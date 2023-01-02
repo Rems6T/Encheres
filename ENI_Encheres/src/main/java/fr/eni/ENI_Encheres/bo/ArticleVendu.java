@@ -16,10 +16,10 @@ public class ArticleVendu {
 	int prixVente ;
 	int noUtilisateur;
 	int noCategorie;
-	String etatVente ;
+	private EtatVente etatVente;
 	
 	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			int miseAPrix, int prixVente, String etatVente) {
+			int miseAPrix, int prixVente, EtatVente etatVente) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -61,7 +61,7 @@ public class ArticleVendu {
 
 
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, String etatVente) {
+			Date dateFinEncheres, int miseAPrix, int prixVente, EtatVente etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -144,12 +144,12 @@ public class ArticleVendu {
 	}
 
 
-	public String getEtatVente() {
+	public EtatVente getEtatVente() {
 		return etatVente;
 	}
 
 
-	public void setEtatVente(String etatVente) {
+	public void setEtatVente(EtatVente etatVente) {
 		this.etatVente = etatVente;
 	}
 

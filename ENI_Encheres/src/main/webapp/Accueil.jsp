@@ -71,6 +71,8 @@
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
 					<p>Vendeur : ${article.noUtilisateur}</p>
+					<p>Statut de la vente : ${article.etatVente}</p>
+					
 					
 				</div>
 			</div>
