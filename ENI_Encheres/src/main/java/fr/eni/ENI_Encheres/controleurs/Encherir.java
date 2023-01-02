@@ -2,7 +2,6 @@ package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,11 +12,8 @@ import fr.eni.ENI_Encheres.bll.EnchereManager;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
-import fr.eni.ENI_Encheres.bo.EtatVente;
-import fr.eni.ENI_Encheres.bo.Retrait;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
-import fr.eni.ENI_Encheres.jdbcImpl.RetraitJdbcImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,70 +40,39 @@ public class Encherir extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        List<Integer> listeCodesErreur=new ArrayList<>();
-            try {
-				encherir(request, response, listeCodesErreur);
-			} catch (ServletException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (BLLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (DALException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}        
-                try {
-					preleverCredit(request, response, listeCodesErreur);
-				} catch (BLLException e) {
+        
+				try {
+					encherir(request, response);
+				} catch (ServletException | IOException | BLLException | SQLException | DALException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (ServletException e) {
+				}
+				try {
+					preleverCredit(request, response);
+				} catch (BLLException | ServletException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}           
-
- try {
-	updatePrixVenteArticle(request, response, listeCodesErreur);
-} catch (ServletException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (BLLException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-            
-
-            HttpSession session = request.getSession();
+				}
+	try {
+		updatePrixVenteArticle(request, response);
+	} catch (ServletException | IOException | BLLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+    HttpSession session = request.getSession();
             session.setAttribute("succes","Enchère ajoutée avec succès");
             response.sendRedirect(request.getContextPath()+"/accueil");
         }
 
 
-    private void encherir(HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws ServletException, IOException, BLLException, SQLException, DALException {
-        Encheres enchere = creerEnchere(request, listeCodesErreur);
-        isMeilleurEncherisseur(request, listeCodesErreur);
+    private void encherir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, BLLException, SQLException, DALException {
+        Encheres enchere = creerEnchere(request);
+        isMeilleurEncherisseur(request);
 
         EnchereManager enchereManager = new EnchereManager();
 
-        //si la création d'enchère et isMeilleurEnchrisseur ont renvoyé des erreurs, on renvoi vers details article avec les erreurs
-        if(listeCodesErreur.size() > 0) {
-            request.setAttribute("listeCodesErreur", listeCodesErreur);
-            this.doGet(request, response);
-        } else {
-            //selectMeilleurEncherisseur si null 0 enchères
+        
             Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
             Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
             ArticleVendu article = null ;
@@ -125,9 +90,9 @@ public class Encherir extends HttpServlet {
                 EnchereManager.ajoutEnchere(enchere);
             }
         }
-    }
+    
 
-    private Encheres creerEnchere(HttpServletRequest request, List<Integer> listeCodesErreur) {
+    private Encheres creerEnchere(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
         
@@ -152,7 +117,7 @@ public class Encherir extends HttpServlet {
         return enchere;
     }
 
-    private void isMeilleurEncherisseur(HttpServletRequest request, List<Integer> listeCodesErreur) throws BLLException, SQLException {
+    private void isMeilleurEncherisseur(HttpServletRequest request) throws BLLException, SQLException {
         HttpSession session = request.getSession();
         Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
         Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
@@ -167,7 +132,7 @@ public class Encherir extends HttpServlet {
 
     }
 
-    private void preleverCredit (HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws BLLException, ServletException, IOException {
+    private void preleverCredit (HttpServletRequest request, HttpServletResponse response) throws BLLException, ServletException, IOException {
         HttpSession session = request.getSession();
 
         //récupérer utilisateur en session et soustraire à son crédit le montant de l'enchère
@@ -184,18 +149,14 @@ public class Encherir extends HttpServlet {
         article.setPrixVente(prixVente);
         utilisateur.setCredit(utilisateur.getCredit() - article.getPrixVente());
 
-        if(listeCodesErreur.size() > 0) {
-            request.setAttribute("listeCodesErreur", listeCodesErreur);
-            this.doGet(request, response);
-        } else {
-            //update l'utilisateur
+
 
             UtilisateurManager.modifierUtilisateur(utilisateur);
 
             //l'utilisateur est update en base, on le remet correctement dans la session
             session.setAttribute("utilisateur", utilisateur);
         }
-    }
+    
 
     private void rendreCredit (Utilisateur u, Integer prixVente) throws BLLException {
         UtilisateurManager utilisateurManager = new UtilisateurManager();
@@ -205,7 +166,7 @@ public class Encherir extends HttpServlet {
         UtilisateurManager.modifierUtilisateur(encherisseurPrecedent);
     }
 
-    private void updatePrixVenteArticle (HttpServletRequest request, HttpServletResponse response, List<Integer> listeCodesErreur) throws ServletException, IOException, BLLException {
+    private void updatePrixVenteArticle (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, BLLException {
         Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
         Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
         ArticleVendu article = null ;
