@@ -77,39 +77,8 @@ public class Encherir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int idArticle = Integer.parseInt(request.getParameter("idArticle"));
-//		//on recupere un article 
-//		ArticleVendu articleAffiche = null;
-//		
-//		try {
-//			articleAffiche = ArticleManager.getArticleById(idArticle);
-//		} catch (BLLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		request.setAttribute("articleAffiche", articleAffiche);
-//		//on recupere le retrait associe
-//		Retrait retraitVente = null;
-//		RetraitJdbcImpl retraitJdbcImpl = new RetraitJdbcImpl();
-//		try {
-//			retraitVente = retraitJdbcImpl.selectById(idArticle);
-//		} catch (DALException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		request.setAttribute("retraitVente", retraitVente);
-//		// on recupere le vendeur grace aux no_utlisateur de l'article
-//		Utilisateur vendeur = null;
-//		try {
-//			//vendeur = UtilisateurManager.getUtilisateurById(articleAffiche.getNoUtilisateur());
-//		} catch (BLLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		request.setAttribute("vendeur", vendeur);
-//		
-//		request.getRequestDispatcher("/Encherir.jsp").forward(request, response);
-//	}
+
+
 //		HttpSession session = request.getSession();
 //		Utilisateur connectedUser = (Utilisateur) session.getAttribute("ConnectedUser");
 //		int currentCredit = connectedUser.getCredit();
