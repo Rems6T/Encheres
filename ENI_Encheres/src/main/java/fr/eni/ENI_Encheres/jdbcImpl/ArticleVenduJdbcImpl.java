@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
+import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.dal.DAO;
 import fr.eni.ENI_Encheres.dal.JdbcTools;
@@ -17,8 +18,8 @@ import fr.eni.ENI_Encheres.dal.JdbcTools;
 public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 	private static final String sqlSelectById = "select * from articles_vendus where no_article=?";
 	private static final String sqlSelectAll = "select * from articles_vendus";
-	private static final String sqlUpdate = "update  articles_vendus set nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?   where no_article=?";
-	private static final String sqlInsert = "insert into articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie) values(?,?,?,?,?,?,?,?)";
+	private static final String sqlUpdate = "update  articles_vendus set nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?,etatVente=?   where no_article=?";
+	private static final String sqlInsert = "insert into articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,etatVente) values(?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "delete from articles_vendus where no_article=?";
 	@Override
 	public ArticleVendu selectById(int id) throws DALException {
@@ -38,7 +39,7 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 						rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
 						rs.getTimestamp("date_fin_encheres").toLocalDateTime(),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
-						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), null);
+						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), EtatVente.valueOf(rs.getString("etatVente")) );
 
 			}
 
@@ -79,7 +80,7 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 					//	((Timestamp) rs.getObject(4)).toLocalDateTime(),
 					//	((Timestamp) rs.getObject(5)).toLocalDateTime(),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
-						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), null);
+						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), EtatVente.valueOf(rs.getString("etatVente")) );
 				liste.add(articleVendu);
 			}
 		} catch (SQLException e) {
@@ -120,7 +121,7 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rqt.setInt(7, data.getNoUtilisateur());
 			rqt.setInt(8, data.getNoCategorie());
 			rqt.setInt(9, data.getNoArticle());
-
+			rqt.setString(10, data.getEtatVente().toString());
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -157,7 +158,7 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rqt.setInt(6, data.getPrixVente());
 			rqt.setInt(7, data.getNoUtilisateur());
 			rqt.setInt(8, data.getNoCategorie());
-			
+			 rqt.setString(9, data.getEtatVente().toString());
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
 				ResultSet rs = rqt.getGeneratedKeys();

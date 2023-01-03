@@ -1,11 +1,13 @@
 package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
+import fr.eni.ENI_Encheres.bo.EtatVente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,6 +41,35 @@ public class PageAccueil extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//Pour chaque article on check si l'enchere est fini ou en cours
+		for (ArticleVendu articleVendu : ArticleList) {
+			LocalDateTime now = LocalDateTime.now();
+			LocalDateTime debutEnchere = articleVendu.getDateDebutEncheres();
+			LocalDateTime finEnchere = articleVendu.getDateFinEncheres();
+			//Si l'enchere est termine
+			if(now.compareTo(finEnchere)>0) {
+				articleVendu.setEtatVente(EtatVente.ENCHERES_TERMINEES);
+				//on le save en Bd
+				try {
+					artmger.modifierArticle(articleVendu);
+				} catch (BLLException e) {
+					e.printStackTrace();
+				}
+			}else {
+				//verifie si l'enchere a debuté
+				if(now.compareTo(debutEnchere)>0) {
+					articleVendu.setEtatVente(EtatVente.EN_COURS);
+					//on le save en bd
+					try {
+						artmger.modifierArticle(articleVendu);
+					} catch (BLLException e) {
+						e.printStackTrace();
+					}
+				}
+			} 
+		}
+		
+		
 		
 		request.setAttribute("ArticleList", ArticleList);
 

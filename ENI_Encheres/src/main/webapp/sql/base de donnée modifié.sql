@@ -5,3 +5,9 @@ alter table encheres ALTER COLUMN date_enchere Datetime not null
 alter table utilisateurs ALTER COLUMN email varchar(120) not null
 alter table utilisateurs ALTER COLUMN rue varchar(120) not null
 alter table retraits ALTER COLUMN rue varchar(120) not null
+alter table articles_vendus add etatVente varchar(80) not null
+
+--supprime tous les articles
+delete from RETRAITS
+delete from encheres
+delete from ARTICLES_VENDUS

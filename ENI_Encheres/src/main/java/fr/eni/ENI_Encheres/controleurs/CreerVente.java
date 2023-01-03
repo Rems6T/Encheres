@@ -95,9 +95,9 @@ public class CreerVente extends HttpServlet {
 		int prixVente = Integer.parseInt(request.getParameter("miseAPrix"));
 		int noUtilisateur = u.getNo_utilisateur();
 		int  noCategorie = Integer.parseInt(request.getParameter("categorie"));
-
+		EtatVente etatVente =EtatVente.CREE;
 		
-		ArticleVendu article = new ArticleVendu(nomArticle,description, dateDebut, dateFin, miseAprix, prixVente, noUtilisateur,noCategorie);
+		ArticleVendu article = new ArticleVendu(nomArticle,description, dateDebut, dateFin, miseAprix, prixVente, noUtilisateur,noCategorie,etatVente);
 
 		int idArticle=0;
 		try {
