@@ -32,7 +32,7 @@
 				
 				
 				
-			<td><a href="desactiver?id=${u.no_utilisateur}">desactiver</a></td>		
+			<td><a href="modifierVenteAdmin?id=${u.no_utilisateur}">Voir les ventes</a></td>		
 			<td><a href="supprimer?id=${u.no_utilisateur}">supprimer</a></td>
 						
 
