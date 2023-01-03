@@ -3,6 +3,7 @@ package fr.eni.ENI_Encheres.bll;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
@@ -49,16 +50,16 @@ public class EnchereManager {
 		
 	}
 	
-	public static Boolean enchereTerminee (ArticleVendu article) {
+	/* public static Boolean enchereTerminee (ArticleVendu article) {
 		Boolean encheretermniee;
 	       long miliseconds = System.currentTimeMillis();
 	        Date date = new Date(miliseconds);
-		if (article.getDateFinEncheres().before(date)) {
+		if (article.getDateFinEncheres().isBefore(date)) {
 		return encheretermniee  =true ;
 	}else 
 		return encheretermniee= false;
 	
-	}
+	} */
 	
     private  EnchereJdbcImpl enchereDAO;
 

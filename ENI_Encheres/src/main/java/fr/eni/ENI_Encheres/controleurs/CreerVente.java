@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -72,22 +73,23 @@ public class CreerVente extends HttpServlet {
 		String description = request.getParameter("description").trim();
 		
 		
-		String dateDebut=request.getParameter("debutEnchere");
-		String dateFin=request.getParameter("finEnchere");
-		
-		java.util.Date utilDateDebut=null;
-		java.util.Date utilDateFin=null;
-		
-        try {
+	//	String dateDebut=request.getParameter("debutEnchere");
+	//	String dateFin=request.getParameter("finEnchere");
+		LocalDateTime dateDebut = LocalDateTime.parse(request.getParameter("debutEnchere"));
+		LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("finEnchere"));
+	/*	LocalDateTime utilDateDebut=null;
+		LocalDateTime utilDateFin=null;
+		*/
+    /*    try {
 			utilDateDebut= new SimpleDateFormat("yyyy-mm-dd").parse(dateDebut);
 			 utilDateFin= new SimpleDateFormat("yyyy-mm-dd").parse(dateFin);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        
-        java.sql.Date sqlDateDebut = new java.sql.Date(utilDateDebut.getTime());	
-        java.sql.Date sqlDateFin = new java.sql.Date(utilDateFin.getTime());	
+        */
+	//	LocalDateTime sqlDateDebut = new java.sql.Date(utilDateDebut.getTime());	
+	//	LocalDateTime sqlDateFin = new java.sql.Date(utilDateFin.getTime());	
 		
 		int miseAprix = Integer.parseInt(request.getParameter("miseAPrix"));
 		int prixVente = Integer.parseInt(request.getParameter("miseAPrix"));
@@ -95,7 +97,7 @@ public class CreerVente extends HttpServlet {
 		int  noCategorie = Integer.parseInt(request.getParameter("categorie"));
 
 		
-		ArticleVendu article = new ArticleVendu(nomArticle,description, sqlDateDebut, sqlDateFin, miseAprix, prixVente, noUtilisateur,noCategorie);
+		ArticleVendu article = new ArticleVendu(nomArticle,description, dateDebut, dateFin, miseAprix, prixVente, noUtilisateur,noCategorie);
 
 		int idArticle=0;
 		try {
@@ -126,7 +128,7 @@ public class CreerVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		//on ajoute l'encheres
-		Encheres enchere = new Encheres(noUtilisateur, idArticle, sqlDateDebut, miseAprix);
+		Encheres enchere = new Encheres(noUtilisateur, idArticle, dateDebut, miseAprix);
 		EnchereJdbcImpl encImpl = new EnchereJdbcImpl();
 		try {
 			encImpl.insert(enchere);

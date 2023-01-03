@@ -2,6 +2,7 @@ package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -240,12 +241,12 @@ public class Encherir extends HttpServlet {
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
 		// On recupere le numero de l'article
 		int noArticle = Integer.valueOf(request.getParameter("noArticle"));
-		long miliseconds = System.currentTimeMillis();
-		Date dateEnchere = new Date(miliseconds);
+		LocalDateTime dateEnchere = LocalDateTime.now();
+		
 
 		int montant = Integer.parseInt(request.getParameter("montant"));
 
-		Encheres enchere = new Encheres(utilisateurConnecte.getNo_utilisateur(), noArticle, (java.sql.Date) dateEnchere,
+		Encheres enchere = new Encheres(utilisateurConnecte.getNo_utilisateur(), noArticle, dateEnchere,
 				montant);
 
 		return enchere;

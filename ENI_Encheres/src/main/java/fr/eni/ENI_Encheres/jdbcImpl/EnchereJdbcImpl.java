@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 
-				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getDate("date_enchere"),
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), ((Timestamp) rs.getObject(2)).toLocalDateTime(),
 						rs.getInt("montant_enchere"));
 
 			}
@@ -86,7 +87,7 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 
 			while (rs.next()) {
 
-				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getDate("date_enchere"),
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getTimestamp("date_enchere").toLocalDateTime(),
 						rs.getInt("montant_enchere"));
 				liste.add(encheres);
 			}
@@ -115,7 +116,9 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setInt(1, data.getNoUtilisateur());
-			rqt.setDate(2, data.getDateEnchere());
+			rqt.setTimestamp(2,  Timestamp.valueOf(data.getDateEnchere()));
+
+		//	rqt.setDate(2, data.getDateEnchere());
 			rqt.setInt(3, data.getMontantEnchere());
 			rqt.setInt(4, data.getNoArticle());
 
@@ -147,7 +150,10 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 			
 			rqt.setInt(1, data.getNoUtilisateur());
 			rqt.setInt(2, data.getNoArticle());
-			rqt.setDate(3, data.getDateEnchere());
+			rqt.setTimestamp(3,  Timestamp.valueOf(data.getDateEnchere()));
+
+
+		//	rqt.setDate(3, data.getDateEnchere());
 			rqt.setInt(4, data.getMontantEnchere());
 			
 			rqt.executeUpdate();
@@ -214,7 +220,7 @@ public List<Encheres> getAllByArticle(int id) throws SQLException  {
 
 			while (rs.next()) {
 
-				enchere = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getDate("date_enchere"),
+				enchere = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getTimestamp("date_enchere").toLocalDateTime(),
 						rs.getInt("montant_enchere"));
 				Listeencherespararticle.add(enchere);
 			}

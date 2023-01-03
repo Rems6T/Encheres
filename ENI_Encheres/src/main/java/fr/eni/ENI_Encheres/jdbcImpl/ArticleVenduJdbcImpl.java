@@ -1,11 +1,11 @@
 package fr.eni.ENI_Encheres.jdbcImpl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +34,10 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 
-				articleVendu = new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"),
-						rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
+				articleVendu = new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"), rs.getString("description"),
+						rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
+						rs.getTimestamp("date_fin_encheres").toLocalDateTime(),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), null);
 
 			}
@@ -71,8 +73,12 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 
 			while (rs.next()) {
 
-				articleVendu = new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"),
-						rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
+				articleVendu = new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"), rs.getString("description"),
+					rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
+					rs.getTimestamp("date_fin_encheres").toLocalDateTime(),
+					//	((Timestamp) rs.getObject(4)).toLocalDateTime(),
+					//	((Timestamp) rs.getObject(5)).toLocalDateTime(),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), null);
 				liste.add(articleVendu);
 			}
@@ -103,8 +109,12 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setString(1, data.getNomArticle());
 			rqt.setString(2, data.getDescription());
-			rqt.setDate(3, (Date) data.getDateDebutEncheres());
-			rqt.setDate(4, (Date) data.getDateFinEncheres());
+			rqt.setTimestamp(3,  Timestamp.valueOf(data.getDateDebutEncheres()));
+			rqt.setTimestamp(4,  Timestamp.valueOf(data.getDateFinEncheres()));
+          //  data.setDateDebutEncheres(((Timestamp) ((ResultSet) rqt).getObject(4)).toLocalDateTime());
+          //  data.setDateFinEncheres(((Timestamp) ((ResultSet) rqt).getObject(5)).toLocalDateTime());
+			//rqt.setDate(3, (Date) data.getDateDebutEncheres());
+			//rqt.setDate(4, (Date) data.getDateFinEncheres());
 			rqt.setInt(5, data.getMiseAPrix());
 			rqt.setInt(6, data.getPrixVente());
 			rqt.setInt(7, data.getNoUtilisateur());
@@ -139,8 +149,10 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			
 			rqt.setString(1, data.getNomArticle());
 			rqt.setString(2, data.getDescription());
-			rqt.setDate(3, (Date) data.getDateDebutEncheres());
-			rqt.setDate(4, (Date) data.getDateFinEncheres());
+			rqt.setTimestamp(3,  Timestamp.valueOf(data.getDateDebutEncheres()));
+			rqt.setTimestamp(4,  Timestamp.valueOf(data.getDateFinEncheres()));
+			//rqt.setDate(3, (Date) data.getDateDebutEncheres());
+			//rqt.setDate(4, (Date) data.getDateFinEncheres());
 			rqt.setInt(5, data.getMiseAPrix());
 			rqt.setInt(6, data.getPrixVente());
 			rqt.setInt(7, data.getNoUtilisateur());

@@ -1,6 +1,7 @@
 package fr.eni.ENI_Encheres.bo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class ArticleVendu {
 	
@@ -10,15 +11,15 @@ public class ArticleVendu {
 	int noArticle ;
 	String nomArticle ;
 	String description ;
-	Date dateDebutEncheres;
-	Date dateFinEncheres;
+	LocalDateTime dateDebutEncheres;
+	LocalDateTime dateFinEncheres;
 	int miseAPrix ;
 	int prixVente ;
 	int noUtilisateur;
 	int noCategorie;
 	private EtatVente etatVente;
 	
-	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+	public ArticleVendu(String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
 			int miseAPrix, int prixVente, EtatVente etatVente) {
 		super();
 		this.nomArticle = nomArticle;
@@ -31,8 +32,8 @@ public class ArticleVendu {
 	}
 	
 	
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie, EtatVente etatVente) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
+			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie, EtatVente etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -47,7 +48,7 @@ public class ArticleVendu {
 	}
 
 
-	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+	public ArticleVendu(String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
 			int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
@@ -61,8 +62,8 @@ public class ArticleVendu {
 	}
 
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, EtatVente etatVente) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
+			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, EtatVente etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -105,22 +106,22 @@ public class ArticleVendu {
 	}
 
 
-	public Date getDateDebutEncheres() {
+	public LocalDateTime getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
 
-	public void setDateDebutEncheres(Date dateDebutEncheres) {
+	public void setDateDebutEncheres(LocalDateTime dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 
 
-	public Date getDateFinEncheres() {
+	public LocalDateTime getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
 
-	public void setDateFinEncheres(Date dateFinEncheres) {
+	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 

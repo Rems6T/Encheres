@@ -3,6 +3,7 @@ package fr.eni.ENI_Encheres.controleurs;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,7 @@ public class PageAcquisition extends HttpServlet {
 		int encherisseur = 0;
 		Encheres meilleureOffre = null;
 
-	       long miliseconds = System.currentTimeMillis();
-	        Date date = new Date(miliseconds);
+		LocalDateTime date = LocalDateTime.now();
 		
 	
 		
@@ -42,7 +42,7 @@ public class PageAcquisition extends HttpServlet {
 			ArticleManager aMger = new ArticleManager();
 			articleAffiche = aMger.getArticleById(id);
 			encheres = EnchereManager.elsectionnerEncheresParArticle(id);
-			if (articleAffiche.getDateFinEncheres().before(date)) {
+			if (articleAffiche.getDateFinEncheres().isBefore(date)) {
 	
 			if (encheres.size() > 0) {		
 				meilleureOffre = encheres.get(encheres.size()-1);
