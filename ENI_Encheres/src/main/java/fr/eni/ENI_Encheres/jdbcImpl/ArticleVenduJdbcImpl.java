@@ -108,8 +108,8 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rqt.setInt(5, data.getMiseAPrix());
 			rqt.setInt(6, data.getPrixVente());
 			rqt.setInt(7, data.getNoUtilisateur());
-			rqt.setInt(8, data.getNoArticle());
-			
+			rqt.setInt(8, data.getNoCategorie());
+			rqt.setInt(9, data.getNoArticle());
 
 			rqt.executeUpdate();
 
@@ -145,7 +145,7 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rqt.setInt(6, data.getPrixVente());
 			rqt.setInt(7, data.getNoUtilisateur());
 			rqt.setInt(8, data.getNoCategorie());
-
+			
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
 				ResultSet rs = rqt.getGeneratedKeys();

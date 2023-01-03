@@ -40,7 +40,7 @@ public class ArticleManager {
 	 * Select by Id
 	 * 
 	 */
-	public static ArticleVendu getArticleById(int id) throws BLLException{
+	public ArticleVendu getArticleById(int id) throws BLLException{
 		ArticleVendu article = null;
 		try {
 			article = daoArticle.selectById(id);
@@ -74,7 +74,7 @@ public class ArticleManager {
 	 * @param article
 	 * @throws BLLException
 	 */
-	public static void modifierArticle(ArticleVendu article) throws BLLException{
+	public void modifierArticle(ArticleVendu article) throws BLLException{
 		try {
 			//validerUtilisateur(utilisateur);
 			daoArticle.update(article);

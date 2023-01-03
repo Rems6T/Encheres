@@ -90,7 +90,7 @@ public class CreerVente extends HttpServlet {
         java.sql.Date sqlDateFin = new java.sql.Date(utilDateFin.getTime());	
 		
 		int miseAprix = Integer.parseInt(request.getParameter("miseAPrix"));
-		int prixVente = 0;
+		int prixVente = Integer.parseInt(request.getParameter("miseAPrix"));
 		int noUtilisateur = u.getNo_utilisateur();
 		int  noCategorie = Integer.parseInt(request.getParameter("categorie"));
 

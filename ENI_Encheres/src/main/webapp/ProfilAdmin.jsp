@@ -22,7 +22,7 @@
 		<c:forEach items="${utilisateurList}" var="u">
 		<c:choose>
 		<c:when test="${u.pseudo == 'admin' }"></c:when>
-	<c:otherwise>
+		<c:otherwise>
 			<tr>
 				<td>${u.pseudo}</td>
 				<td>${u.nom }</td>
@@ -32,7 +32,7 @@
 				
 				
 				
-					
+			<td><a href="desactiver?id=${u.no_utilisateur}">desactiver</a></td>		
 			<td><a href="supprimer?id=${u.no_utilisateur}">supprimer</a></td>
 						
 

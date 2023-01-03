@@ -82,7 +82,7 @@ public class UtilisateurManager {
 	 * @param article
 	 * @throws BLLException
 	 */
-	public static void modifierUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public void modifierUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
 			// validerUtilisateur(utilisateur);
 			daoUtilisateur.update(utilisateur);

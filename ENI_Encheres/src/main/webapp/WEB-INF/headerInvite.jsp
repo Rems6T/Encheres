@@ -17,7 +17,7 @@
 
 		<div class="border border-primary ">
 			<div class="row m-auto">
-				<a href="<%=request.getContextPath()%>/Accueil.jsp" style="text-decoration-line: none;">ENI-Encheres</a>
+				<a href="<%=request.getContextPath()%>/Accueil" style="text-decoration-line: none;">ENI-Encheres</a>
 				<div class="col ">
 					<nav>
 						<ul class="nav justify-content-end col-lg  ">

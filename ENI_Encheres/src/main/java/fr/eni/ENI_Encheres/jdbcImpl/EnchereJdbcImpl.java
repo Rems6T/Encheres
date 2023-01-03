@@ -117,7 +117,7 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 			rqt.setInt(1, data.getNoUtilisateur());
 			rqt.setDate(2, data.getDateEnchere());
 			rqt.setInt(3, data.getMontantEnchere());
-		
+			rqt.setInt(4, data.getNoArticle());
 
 			rqt.executeUpdate();
 

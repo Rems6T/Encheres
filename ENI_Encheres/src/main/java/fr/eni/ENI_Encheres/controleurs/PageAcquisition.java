@@ -39,7 +39,8 @@ public class PageAcquisition extends HttpServlet {
 
 
 		try {
-			articleAffiche = ArticleManager.getArticleById(id);
+			ArticleManager aMger = new ArticleManager();
+			articleAffiche = aMger.getArticleById(id);
 			encheres = EnchereManager.elsectionnerEncheresParArticle(id);
 			if (articleAffiche.getDateFinEncheres().before(date)) {
 	

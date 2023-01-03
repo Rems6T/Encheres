@@ -44,13 +44,13 @@
 		<fieldset>
     <legend>Retrait</legend>
     <label for="rue">Rue : <input type="text"
-			id="rue" name="rue">
+			id="rue" name="rue" value="${ConnectedUser.rue }">
 		</label>
 		<label for="codePostal">codePostal : <input type="text"
-			id="codePostal" name="codePostal">
+			id="codePostal" name="codePostal" value="${ConnectedUser.codePostal }">
 		</label>
 		<label for="ville">ville : <input type="text"
-			id="ville" name="ville">
+			id="ville" name="ville" value="${ConnectedUser.ville }">
 		</label>
 	</fieldset>
 	<button type="submit"  value="CréerVente">Valider</button>
