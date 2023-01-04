@@ -18,7 +18,9 @@ justify-content: right;
   background: var(--couleur_bandeau_fond);
 }
 main {
+	width : 90%;
 	margin : 30px;
+
 }
 
 .header2 {

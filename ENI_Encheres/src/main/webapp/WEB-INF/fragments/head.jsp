@@ -9,6 +9,7 @@
 
         <link href="${pageContext.request.contextPath}/css/styleheader.css" rel="stylesheet" type="text/css">
                 <link href="${pageContext.request.contextPath}/css/formulaire.css" rel="stylesheet" type="text/css">
+                        <link href="${pageContext.request.contextPath}/css/vente.css" rel="stylesheet" type="text/css">
         
 
     
