@@ -7,9 +7,10 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
 
-<body class="container">
+<body>
 
-	<%@ include file="WEB-INF/fragments/header.html"%>
+	<%@ include file="/WEB-INF/fragments/HeaderAutre.jsp"%>
+	<main>
 
 	<h1>Mon profil</h1>
 
@@ -104,13 +105,13 @@
 		<div class="row g-3">
 		
 						<div class="col">
-										<button type="submit"  value="CréerCmpte">Valider</button>
+										<button class ="btn" type="submit"  value="CréerCmpte">Valider</button>
 						
 				</div>
 
 				<div class="col">
-					<a href="<%=request.getContextPath()%>/Accueil.jsp">
-						<button type="button">Annuler</button>
+					<a href="<%=request.getContextPath()%>/Accueil">
+						<button class="btn" type="button">Annuler</button>
 					</a>
 				</div>
 		
@@ -119,9 +120,9 @@
 	</form>
 
 
-
+</main>
 </body>
 
-<jsp:include page="/WEB-INF/fragments/footer.html"></jsp:include>
+<jsp:include page="/WEB-INF/fragments/footer.jsp"></jsp:include>
 
 </html>

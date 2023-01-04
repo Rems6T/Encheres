@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 <body>
 	<header>
-		<%@include file="WEB-INF/headerConnecte.jsp"%>
+		<%@include file="WEB-INF/fragments/headerConnecte.jsp"%>
 	</header>
 <body>
 
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<h1>Creer nouvelle vente</h1>
-		<a href="CreerVente"><input type="button" placeholder="Creer"></a>
+		<a href="CreerVente"><input type="button" class="btn" placeholder="Creer"></a>
 		<h1>Mes ventes</h1>
 		<!-- Affichage des articles -->
 

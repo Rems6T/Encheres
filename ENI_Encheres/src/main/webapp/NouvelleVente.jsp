@@ -6,7 +6,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
   <body>
-    <%@ include file="WEB-INF/fragments/header.html"%>
+    <%@ include file="WEB-INF/fragments/HeaderAutre.jsp"%>
     <main class="p-5">
       <div class="d-flex justify-content-center pb-5">
         <h1>Nouvelle vente</h1>
@@ -160,5 +160,5 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
   </body>
   
-  <jsp:include page="/WEB-INF/fragments/footer.html"></jsp:include>
+  <jsp:include page="/WEB-INF/fragments/footer.jsp"></jsp:include>
 </html>

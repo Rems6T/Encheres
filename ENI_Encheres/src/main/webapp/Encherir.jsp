@@ -19,9 +19,9 @@
 					<% ArticleVendu article = (ArticleVendu)request.getAttribute("ArticleAffiche"); %>
 				
 				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		
-				<%@include file="WEB-INF/headerInvite.jsp"%>
+				<%@include file="WEB-INF/fragments/headerInvite.jsp"%>
 	<%} else {%>
-		<%@include file="WEB-INF/headerConnecte.jsp"%>
+		<%@include file="WEB-INF/fragments/headerConnecte.jsp"%>
 	<%} %>
 		</div>
 	</header>

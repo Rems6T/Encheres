@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 <body>
 	<header>
-		<%@include file="WEB-INF/headerAdmin.jsp"%>
+		<%@include file="WEB-INF/fragments/headerAdmin.jsp"%>
 	</header>
 <body>
 			<h3>Modifier categorie</h3>

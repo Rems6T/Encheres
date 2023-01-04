@@ -6,9 +6,10 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 <body>
 	<header>
-		<%@include file="WEB-INF/headerConnecte.jsp"%>
+		<%@include file="WEB-INF/fragments/headerConnecte.jsp"%>
 	</header>
 <body>
+<div class="vente">
 	<h1>Nouvelle Vente</h1>
 	<form action="<%=request.getContextPath()%>/CreerVente" method="post">
 
@@ -20,7 +21,7 @@
 		<label for="description">Description : <input type="text"
 			id="description" name="description">
 		</label>
-		<label for="categorie"> Categorie
+		<label for="categorie"> Categorie : 
 		<select name="categorie">
 		<c:forEach items="${categorieList}" var="categorie">
 		<option value="${categorie.noCategorie }" >${categorie.libelle }</option>
@@ -53,7 +54,7 @@
 			id="ville" name="ville" value="${ConnectedUser.ville }">
 		</label>
 	</fieldset>
-	<button type="submit"  value="CréerVente">Valider</button>
-	</form>
+	<button class="btn" type="submit"  value="CréerVente">Valider</button>
+	</form></div>
 </body>
 </html>

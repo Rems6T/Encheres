@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+
+
+:root {
+  --couleur_bandeau_fond: #1A1E23;
+    --couleur_bandeau_texte: #198CE6;
+    --couleur_bouton_fond: #008CBA;
+     --couleur_footer_fond: #F9FAFB;
+  
+}
+
+
+
+.header1 {
+  display: flex;
+  height: 100px;
+justify-content: right;
+  align-items: end;
+  text-align: center;
+  background: var(--couleur_bandeau_fond);
+}
+main {
+	margin : 30px;
+}
+
+.header2 {
+  display: flex;
+  height: 100px;
+justify-content: right;
+  align-items: end;
+  text-align: center;
+  background: var(--couleur_bandeau_fond);
+}
+
+.logo {
+    position: fixed;
+    left: 0;
+    top: 0;
+  display: block;
+
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  list-style-type: none;
+}
+ul li {
+  padding: 10px ;
+}
+ul li a {
+  --fill-color: var(--couleur_bandeau_texte);
+  position: relative;
+  display: block;
+  padding: 4px;
+  font: 700 x-large Raleway, sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px var(--fill-color);
+  background: linear-gradient(var(--fill-color) 0 100%) left/0 no-repeat;
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  transition: 0.5s linear;
+}
+ul li a:hover {
+  background-size: 100%;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: var(--couleur_footer_fond);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-top: 24px;
+}
+
+footer>p {
+    font-size: 14px;
+    color: var(--couleur_bandeau_fond);
+}

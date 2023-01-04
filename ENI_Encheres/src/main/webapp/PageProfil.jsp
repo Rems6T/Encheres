@@ -8,10 +8,10 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
 
-<body class="container">
+<body>
 
-	<%@ include file="WEB-INF/fragments/header.html"%>
-
+	<%@ include file="/WEB-INF/fragments/HeaderAutre.jsp"%>
+<main>
 <section>
         <div class="profil " style="text-align: center;">
             
@@ -30,14 +30,14 @@
            		boolean ok = (boolean) request.getAttribute("ok");
             	if(ok){%>
             	<a href="<%=request.getContextPath()%>/ModifierCompte">
-            <button type="submit" value="modifier" name="modifier" style="text-align: center;" >Modifier</button>					
+            <button class="btn" type="submit" value="modifier" name="modifier" style="text-align: center;" >Modifier</button>					
             	</a>
 			<%}
             	}%>	
         </div>
     </section>
-
+</main>
 </body>
 
-<jsp:include page="/WEB-INF/fragments/footer.html"></jsp:include>
+<jsp:include page="/WEB-INF/fragments/footer.jsp"></jsp:include>
 </html>

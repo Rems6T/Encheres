@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 <body>
 	<header>
-		<%@include file="WEB-INF/headerAdmin.jsp"%>
+		<%@include file="WEB-INF/fragments/headerAdmin.jsp"%>
 	</header>
 <h1>Liste des ventes</h1>
 <h2>"${u.pseudo}"</h2>

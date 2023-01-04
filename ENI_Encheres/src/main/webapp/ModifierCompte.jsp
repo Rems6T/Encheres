@@ -128,5 +128,5 @@
 
 </body>
 
-<jsp:include page="/WEB-INF/fragments/footer.html"></jsp:include>
+<jsp:include page="/WEB-INF/fragments/footer.jsp"></jsp:include>
 </html>

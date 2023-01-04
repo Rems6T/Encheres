@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 <body>
 	<header>
-		<%@include file="WEB-INF/headerAdmin.jsp"%>
+		<%@include file="WEB-INF/fragments/headerAdmin.jsp"%>
 	</header>
 
 	<table border="1">
