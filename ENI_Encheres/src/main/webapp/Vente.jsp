@@ -10,9 +10,8 @@
 	</header>
 <body>
 
-
-<div class="row my-5">
-			<div class="ms-auto col-3">
+<main>
+		<!--  	<div class="ms-auto col-3">
 				<b>Recherche :</b> <br />
 				<div>
 					<input id="searchbar" type="text" name="search"
@@ -29,30 +28,36 @@
 			<div class="me-auto col-3">
 				
 					<button type="submit" style="width: 100%; height: 100%" >Rechercher</button>
-			</div>
-		</div>
-		<h1>Creer nouvelle vente</h1>
-		<a href="CreerVente"><input type="button" class="btn" placeholder="Creer"></a>
+			</div> -->
+
+
 		<h1>Mes ventes</h1>
 		<!-- Affichage des articles -->
 
-		<br /> <br /> <br />
-		<div class="row d-flex justify-content-center">
+		<br />
+		<div class="contenant">
 			<c:forEach items="${articleList}" var="article">
-			<div class="col-4 d-flex" style="border: solid black 2px">
-				<div class="col-2 m-2"
-					style="border: solid black 2px; height: 100px; width: 100px"></div>
-				<div>
-				
+			
+			
+				<div class="article">
 					<p>${article.nomArticle}</p>
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
 					<a href="ModifierVente?id=${article.noArticle}">Modifier</a>
 					
+				
+			</div></c:forEach>
+			</div>
+			
+			
+			
+					
+
+
+		
+		<div class="contenant2">
+				<a href="CreerVente"><button class="btn large" >Creer nouvelle vente</button></a>
 				</div>
-			</div>
-			<div class="col-1"></div>
-			</c:forEach>
-			</div>
+		</main>
 </body>
 </html>

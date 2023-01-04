@@ -20,7 +20,7 @@
 		<div class="row g-3">
 			<div class="col">
 				<label for="pseudo">Pseudo :</label> <input type="text" id="pseudo"
-					name="pseudo" />
+					name="pseudo" pattern="[a-zA-Z0-9]{2,20}"/>
 
 				<%
 				if (request.getAttribute("pseudoUniqueOK") != null) {
