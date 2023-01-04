@@ -18,7 +18,7 @@ import fr.eni.ENI_Encheres.dal.JdbcTools;
 public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 	private static final String sqlSelectById = "select * from articles_vendus where no_article=?";
 	private static final String sqlSelectAll = "select * from articles_vendus";
-	private static final String sqlUpdate = "update  articles_vendus set nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?,etatVente=?   where no_article=?";
+	private static final String sqlUpdate = "update  articles_vendus set nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?,etatVente=?  where no_article=?";
 	private static final String sqlInsert = "insert into articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,etatVente) values(?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "delete from articles_vendus where no_article=?";
 	@Override
@@ -112,16 +112,13 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			rqt.setString(2, data.getDescription());
 			rqt.setTimestamp(3,  Timestamp.valueOf(data.getDateDebutEncheres()));
 			rqt.setTimestamp(4,  Timestamp.valueOf(data.getDateFinEncheres()));
-          //  data.setDateDebutEncheres(((Timestamp) ((ResultSet) rqt).getObject(4)).toLocalDateTime());
-          //  data.setDateFinEncheres(((Timestamp) ((ResultSet) rqt).getObject(5)).toLocalDateTime());
-			//rqt.setDate(3, (Date) data.getDateDebutEncheres());
-			//rqt.setDate(4, (Date) data.getDateFinEncheres());
 			rqt.setInt(5, data.getMiseAPrix());
 			rqt.setInt(6, data.getPrixVente());
 			rqt.setInt(7, data.getNoUtilisateur());
 			rqt.setInt(8, data.getNoCategorie());
-			rqt.setInt(9, data.getNoArticle());
-			rqt.setString(10, data.getEtatVente().toString());
+			rqt.setString(9, data.getEtatVente().toString());
+			rqt.setInt(10, data.getNoArticle());
+			
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {

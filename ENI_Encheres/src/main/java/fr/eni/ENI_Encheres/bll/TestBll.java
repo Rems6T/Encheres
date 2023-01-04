@@ -1,11 +1,13 @@
 package fr.eni.ENI_Encheres.bll;
 
+import fr.eni.ENI_Encheres.bo.ArticleVendu;
+import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.bo.Retrait;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.RetraitJdbcImpl;
 
 public class TestBll {
-	public static void main(String[] args)  {
+	public static void main(String[] args) {
 //	Utilisateur utilisateur = new Utilisateur("man06",	"Manu", "Valance", "manu@orange.com", "0643063142", "rue", "06420", "St Sau", "mdp", 0, false);
 //	try {
 //		UtilisateurManager mger = new UtilisateurManager();
@@ -18,17 +20,23 @@ public class TestBll {
 //		// TODO Auto-generated catch block
 //		e.printStackTrace();
 //	}
-		Retrait retrait = new Retrait(26, "rue", "06200", "Nice"); 
-		RetraitJdbcImpl retraitMger = new RetraitJdbcImpl();
 		
 		try {
-			retraitMger.insert(retrait);
-			System.out.println(retrait);
-		} catch (DALException e) {
+			ArticleManager artmger = new ArticleManager();
+			ArticleVendu a = artmger.getArticleById(43);
+			System.out.println(a);
+			a.setEtatVente(EtatVente.EN_COURS);
+			System.out.println(a);
+
+			artmger.modifierArticle(a);
+			ArticleVendu a2 = artmger.getArticleById(43);
+			System.out.println("modif faite");
+			System.out.println(a2);
+			
+		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-	
 	}
 }

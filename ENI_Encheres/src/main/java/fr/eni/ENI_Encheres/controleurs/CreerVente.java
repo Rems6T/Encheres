@@ -112,7 +112,7 @@ public class CreerVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		article.setEtatVente(EtatVente.CREE);
+		
 		//on ajoute le retrait
 		String rue =request.getParameter("rue").trim();
 		String codePostal =request.getParameter("codePostal").trim();
