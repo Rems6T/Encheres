@@ -52,7 +52,7 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 
-				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), ((Timestamp) rs.getObject(2)).toLocalDateTime(),
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),  rs.getTimestamp("date_enchere").toLocalDateTime(),
 						rs.getInt("montant_enchere"));
 
 			}
