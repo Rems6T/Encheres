@@ -103,8 +103,8 @@
 				Vous etes le vendeur
 			</c:when>
 			<c:when test="${articleAffiche.etatVente == 'CREE' }">L'enchere n'a pas encore debutée</c:when>
-			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' || enchere.getNoUtilisateur == ConnectedUser.no_utilisateur }"> 
-			<button class="btn type="submit" >Retrait effectué</button>
+			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' && enchere.noUtilisateur == ConnectedUser.no_utilisateur }"> 
+			<button class="btn" >Retrait effectué</button>
 			
 			</c:when>
 			<c:otherwise>

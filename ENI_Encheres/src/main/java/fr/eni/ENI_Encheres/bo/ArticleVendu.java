@@ -1,6 +1,6 @@
 package fr.eni.ENI_Encheres.bo;
 
-import java.sql.Date;
+
 import java.time.LocalDateTime;
 
 public class ArticleVendu {
@@ -18,10 +18,44 @@ public class ArticleVendu {
 	int noUtilisateur;
 	int noCategorie;
 	private EtatVente etatVente;
+	String pseudoUtil;
 	
 	
 	
 	
+
+
+	/**
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 * @param etatVente
+	 * @param pseudoUtil
+	 */
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
+			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie,
+			EtatVente etatVente, String pseudoUtil) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.etatVente = etatVente;
+		this.pseudoUtil = pseudoUtil;
+	}
+
+
 	public ArticleVendu(String nomArticle, String description, LocalDateTime dateDebutEncheres,
 			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie,
 			EtatVente etatVente) {
@@ -182,13 +216,29 @@ public class ArticleVendu {
 	}
 
 
+
+
+
+	public String getPseudoUtil() {
+		return pseudoUtil;
+	}
+
+
+	public void setPseudoUtil(String pseudoUtil) {
+		this.pseudoUtil = pseudoUtil;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
 				+ miseAPrix + ", prixVente=" + prixVente + ", noUtilisateur=" + noUtilisateur + ", noCategorie="
-				+ noCategorie + ", etatVente=" + etatVente + "]";
+				+ noCategorie + ", etatVente=" + etatVente + ", pseudoUtil=" + pseudoUtil + "]";
 	}
+
+
+	
 
 
 	

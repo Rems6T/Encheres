@@ -59,7 +59,7 @@
 
 		<br /> <br /> <br />
 		<div class="row d-flex justify-content-center">
-			<c:forEach items="${ArticleList}" var="article">
+			<c:forEach items="${ArticleListU}" var="article" end = "6">
 			<div class="col-4 d-flex" style="border: solid black 2px">
 				<div class="col-2 m-2"
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
@@ -70,7 +70,7 @@
 					
 					<p>Prix : ${article.prixVente} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
-					<p>Vendeur : ${article.noUtilisateur}</p>
+					<p>Vendeur : ${article.pseudoUtil }</p>
 					<p>Statut de la vente : ${article.etatVente}</p>
 					
 					
