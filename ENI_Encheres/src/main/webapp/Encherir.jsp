@@ -34,7 +34,7 @@
 			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' && enchere.noUtilisateur == ConnectedUser.no_utilisateur }"><h1>Vous avez remporté la vente !</h1>
 			</c:when>
 			<c:otherwise>
-				<h1> ${enchere.noUtilisateur } a remporté l'enchère ! </h1>
+				<h1> ${enchereU.pseudo } a remporté l'enchère ! </h1>
 			</c:otherwise>
 		</c:choose>
 	
@@ -104,7 +104,7 @@
 			</c:when>
 			<c:when test="${articleAffiche.etatVente == 'CREE' }">L'enchere n'a pas encore debutée</c:when>
 			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' || enchere.getNoUtilisateur == ConnectedUser.no_utilisateur }"> 
-			<button class="btn type="submit">Retrait effectué</button>
+			<button class="btn type="submit" >Retrait effectué</button>
 			
 			</c:when>
 			<c:otherwise>

@@ -49,9 +49,9 @@ public class PageAccueil extends HttpServlet {
 			//Si l'enchere est termine
 			if(now.compareTo(finEnchere)>0 ) {
 				//on verifie si ce n'est pas deja fait
-				System.out.println(articleVendu);
 				
-				if (articleVendu.getEtatVente().equals("ENCHERES_TERMINEES")==false ) {
+				
+				if (articleVendu.getEtatVente().equals(EtatVente.ENCHERES_TERMINEES)==false ) {
 					articleVendu.setEtatVente(EtatVente.ENCHERES_TERMINEES);
 					// on le save en Bd
 					try {
@@ -67,7 +67,7 @@ public class PageAccueil extends HttpServlet {
 				//verifie si l'enchere a debuté
 				if(now.compareTo(debutEnchere)>0 ) {
 					//on verifie si pas deja fait
-					if (articleVendu.getEtatVente().equals("EN_COURS")==false) {
+					if (articleVendu.getEtatVente().equals(EtatVente.EN_COURS)==false) {
 						articleVendu.setEtatVente(EtatVente.EN_COURS);
 						// on le save en bd
 						try {

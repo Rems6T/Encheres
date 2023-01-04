@@ -80,6 +80,18 @@ public class Encherir extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("enchere", enchere);
+		//on recupere le pseudo pour l'enchere
+		Utilisateur u = null;
+		int noU = enchere.getNoUtilisateur();
+		try {
+			UtilisateurManager uMger =new UtilisateurManager();
+			u = uMger.getUtilisateurById(noU);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("enchereU", u);
+		
 		// on redirige vers la page de l'enchere
 		request.getRequestDispatcher("Encherir.jsp").forward(request, response);
 
