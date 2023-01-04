@@ -29,7 +29,6 @@
 	<div class="head">
 		<h1>Détail Vente</h1>
 	</div>
-	
 
 	<div class="container">
 		<div>
@@ -78,9 +77,11 @@
 
 			<c:when test="${ConnectedUser == null}"></c:when>
 			<c:when
-				test="${vendeur.no_utilisateur == ConnectedUser.no_utilisateur} ">
-				<p>Vous etes le vendeur</p>
+				test="${articleAffiche.noUtilisateur == ConnectedUser.no_utilisateur }">
+				Vous etes le vendeur
 			</c:when>
+			<c:when test="${articleAffiche.etatVente == 'CREE' }">L'enchere n'a pas encore debutée</c:when>
+			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' }">L'enchere est fini</c:when>
 			<c:otherwise>
 				<form action="<%=request.getContextPath()%>/Encherir" method="post">
 					<div class="input-field">
@@ -102,6 +103,7 @@
 
 			</c:otherwise>
 		</c:choose>
+		<br>
 		<a href="Accueil"><button class="btn" type="button">
 				<!--change that with index.html file location-->
 				Back
