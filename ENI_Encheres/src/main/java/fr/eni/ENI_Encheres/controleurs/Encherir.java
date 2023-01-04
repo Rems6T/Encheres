@@ -73,8 +73,23 @@ public class Encherir extends HttpServlet {
 		//on recupere l'enchere
 		Encheres enchere = null;
 		EnchereJdbcImpl eMger = new EnchereJdbcImpl();
-		try {
+		/* 
+		 * 
+		 * try {
+			
 			enchere = eMger.selectById(noArticle);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 * 
+		 * Modif enchere
+		 */
+		List<Encheres> enchereList ;
+		try {
+			enchereList = eMger.selectAllByArticle(noArticle);
+			System.out.println(enchereList.size());
+			enchere = enchereList.get(enchereList.size()-1);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,9 +200,9 @@ public class Encherir extends HttpServlet {
 		enchere.setNoUtilisateur(utilisateurConnecte.getNo_utilisateur());
 		// On indique le nouveau montant
 		enchere.setMontantEnchere(newMontant);
-		// On le change en base de données
+		// On l'ajoute en base de données
 		try {
-			enMger.update(enchere);
+			enMger.insert(enchere);
 			System.out.println("enchere modifié :" + enchere);
 		} catch (DALException e) {
 			e.printStackTrace();
