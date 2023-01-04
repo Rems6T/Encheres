@@ -9,12 +9,22 @@
   </session-config>
   <servlet>
     <description></description>
-    <display-name>Boutique</display-name>
-    <servlet-name>Boutique</servlet-name>
-    <servlet-class>fr.eni.ENI_Encheres.controleurs.Boutique</servlet-class>
+    <display-name>VoirProfil1</display-name>
+    <servlet-name>VoirProfil1</servlet-name>
+    <servlet-class>fr.eni.ENI_Encheres.controleurs.VoirProfil1</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Boutique</servlet-name>
-    <url-pattern>/Boutique</url-pattern>
+    <servlet-name>VoirProfil1</servlet-name>
+    <url-pattern>/VoirProfil1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VoirProfil2</display-name>
+    <servlet-name>VoirProfil2</servlet-name>
+    <servlet-class>fr.eni.ENI_Encheres.controleurs.VoirProfil2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VoirProfil2</servlet-name>
+    <url-pattern>/VoirProfil2</url-pattern>
   </servlet-mapping>
 </web-app>

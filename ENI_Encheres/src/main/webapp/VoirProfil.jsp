@@ -13,7 +13,7 @@
 	<header>
 		<div>
 		
-
+<!--  -->
 					<% ArticleVendu article = (ArticleVendu)request.getAttribute("ArticleAffiche"); %>
 				
 				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		
