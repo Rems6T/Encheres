@@ -72,7 +72,7 @@ ul li a:hover {
 /* FOOTER */
 
 footer {
-   position:absolute;
+display : flex;
    bottom:0;
     background: var(--couleur_footer_fond);
     justify-content: center;

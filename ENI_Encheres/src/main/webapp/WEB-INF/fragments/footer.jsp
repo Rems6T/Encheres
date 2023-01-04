@@ -1,4 +1,4 @@
 
 <footer>
-    <p>© 2022 L'équipe verte</p>
+    <p>© 2022 Le duo vert</p>
 </footer>
