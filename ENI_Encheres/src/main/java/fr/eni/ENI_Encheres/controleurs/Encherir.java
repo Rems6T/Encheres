@@ -74,6 +74,8 @@ public class Encherir extends HttpServlet {
 
 		// on redirige vers la page de l'enchere
 		request.getRequestDispatcher("Encherir.jsp").forward(request, response);
+
+
 	}
 
 	@Override

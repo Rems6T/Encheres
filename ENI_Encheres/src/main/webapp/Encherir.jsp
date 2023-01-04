@@ -17,6 +17,7 @@
 		
 
 					<% ArticleVendu article = (ArticleVendu)request.getAttribute("ArticleAffiche"); %>
+			<% Encheres enchere = (Encheres)request.getAttribute("enchere"); %>
 				
 				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		
 				<%@include file="WEB-INF/fragments/headerInvite.jsp"%>
@@ -27,7 +28,17 @@
 	</header>
 	<main class="ms-3">
 	<div class="head">
-		<h1>Détail Vente</h1>
+	
+			<c:choose>
+			<c:when test="${articleAffiche.etatVente == 'CREE'|| articleAffiche.etatVente == 'EN_COURS' }"><h1>Détail Vente</h1></c:when>
+			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' || enchere.getNoUtilisateur == ConnectedUser.no_utilisateur }"><h1>Vous avez remporté la vente !</h1>
+</c:when>
+			<c:otherwise>
+				<h1> ${enchere.getNoUtilisateur.getNom} a remporté l'enchère ! </h1>
+			</c:otherwise>
+		</c:choose>
+	
+		
 	</div>
 
 	<div class="container">
@@ -74,7 +85,9 @@
 				<c:otherwise>
 				<td class="td1"><p class="value-td1">Vendeur:</p></td>
 				<td class="td2"><a href="VoirProfil?id=${vendeur.no_utilisateur}" class="value-td2">${vendeur.pseudo}</a></td>
-				</c:otherwise>
+			<tr>		<td class="td1"><p class="value-td1">Telephone:</p></td>
+				<td class="td2"><a href="VoirProfil?id=${vendeur.telephone}" class="value-td2">${vendeur.telephone}</a></td>
+				</tr></c:otherwise>
 			</c:choose>
 			</tr>
 		</table>
@@ -90,8 +103,8 @@
 				Vous etes le vendeur
 			</c:when>
 			<c:when test="${articleAffiche.etatVente == 'CREE' }">L'enchere n'a pas encore debutée</c:when>
-			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' }">
-					<a href="PageAcquisition"><button class="btn" >Voir résultat de la vente</button></a>
+			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' || enchere.getNoUtilisateur == ConnectedUser.no_utilisateur }"> 
+			<button class="btn type="submit">Retrait effectué</button>
 			
 			</c:when>
 			<c:otherwise>
@@ -107,7 +120,7 @@
 							id="noVendeur" name="noVendeur">
 					</div>
 					<div>
-						<button class="btn-login" type="submit">Enchérir</button>
+						<a href="Accueil"><button class="btn-login" type="submit">Enchérir</button></a>
 					</div>
 
 				</form>
