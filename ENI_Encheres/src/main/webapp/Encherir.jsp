@@ -65,8 +65,17 @@
 						${retraitVente.code_postal }, ${retraitVente.ville }</p></td>
 			</tr>
 			<tr>
+			<c:choose>
+			<c:when
+				test="${articleAffiche.noUtilisateur == ConnectedUser.no_utilisateur }">
 				<td class="td1"><p class="value-td1">Vendeur:</p></td>
 				<td class="td2"><p class="value-td2">${vendeur.pseudo}</p></td>
+				</c:when>
+				<c:otherwise>
+				<td class="td1"><p class="value-td1">Vendeur:</p></td>
+				<td class="td2"><a href="VoirProfil?id=${vendeur.no_utilisateur}" class="value-td2">${vendeur.pseudo}</a></td>
+				</c:otherwise>
+			</c:choose>
 			</tr>
 		</table>
 
