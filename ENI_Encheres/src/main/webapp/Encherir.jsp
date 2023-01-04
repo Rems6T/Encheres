@@ -90,7 +90,10 @@
 				Vous etes le vendeur
 			</c:when>
 			<c:when test="${articleAffiche.etatVente == 'CREE' }">L'enchere n'a pas encore debutée</c:when>
-			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' }">L'enchere est fini</c:when>
+			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' }">
+					<a href="PageAcquisition"><button class="btn" >Voir résultat de la vente</button></a>
+			
+			</c:when>
 			<c:otherwise>
 				<form action="<%=request.getContextPath()%>/Encherir" method="post">
 					<div class="input-field">
