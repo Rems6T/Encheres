@@ -71,26 +71,8 @@ public class CreerVente extends HttpServlet {
 		//on ajoute l'article
 		String nomArticle = request.getParameter("nom").trim();
 		String description = request.getParameter("description").trim();
-		
-		
-	//	String dateDebut=request.getParameter("debutEnchere");
-	//	String dateFin=request.getParameter("finEnchere");
 		LocalDateTime dateDebut = LocalDateTime.parse(request.getParameter("debutEnchere"));
 		LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("finEnchere"));
-	/*	LocalDateTime utilDateDebut=null;
-		LocalDateTime utilDateFin=null;
-		*/
-    /*    try {
-			utilDateDebut= new SimpleDateFormat("yyyy-mm-dd").parse(dateDebut);
-			 utilDateFin= new SimpleDateFormat("yyyy-mm-dd").parse(dateFin);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        */
-	//	LocalDateTime sqlDateDebut = new java.sql.Date(utilDateDebut.getTime());	
-	//	LocalDateTime sqlDateFin = new java.sql.Date(utilDateFin.getTime());	
-		
 		int miseAprix = Integer.parseInt(request.getParameter("miseAPrix"));
 		int prixVente = Integer.parseInt(request.getParameter("miseAPrix"));
 		int noUtilisateur = u.getNo_utilisateur();

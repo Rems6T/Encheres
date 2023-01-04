@@ -99,7 +99,7 @@ public class RetraitJdbcImpl implements DAO<Retrait> {
 			rqt.setString(1, data.getRue());
 			rqt.setString(2, data.getCode_postal());
 			rqt.setString(3, data.getVille());
-		
+			rqt.setInt(4, data.getNo_article());
 
 			rqt.executeUpdate();
 

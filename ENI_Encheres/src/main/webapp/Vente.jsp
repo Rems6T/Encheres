@@ -47,8 +47,9 @@
 					<p>${article.nomArticle}</p>
 					<p>Prix : ${article.miseAPrix} points</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
+					<c:if test="${article.etatVente == 'CREE' }">
 					<a href="ModifierVente?id=${article.noArticle}">Modifier</a>
-					
+					</c:if>
 				</div>
 			</div>
 			<div class="col-1"></div>

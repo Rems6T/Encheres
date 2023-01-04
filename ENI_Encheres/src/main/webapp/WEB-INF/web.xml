@@ -17,5 +17,4 @@
     <servlet-name>Boutique</servlet-name>
     <url-pattern>/Boutique</url-pattern>
   </servlet-mapping>
- 
 </web-app>
