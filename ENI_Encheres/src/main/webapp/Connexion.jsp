@@ -22,7 +22,6 @@
 				
 					<label for="pseudo" >Identifiant : </label> <input
 						type="text"  name="pseudo" required/>
-			
 				<br />
 			
 					<label for="motDePasse"> Mot de passe : </label> <input
@@ -35,7 +34,7 @@
 				<br />
 				
 				
-						<input type="checkbox" name="remember" id="remember" /> <label
+						 <label
 							for="remember">Se souvenir de moi</label> <br />  
 			
 					<br />

@@ -3,11 +3,7 @@
 :root {
   --couleur_bandeau_fond: #1A1E23;
   --couleur_bandeau_texte: #198CE6;
-    
-  
 }
-
-
 
 .connection{
 	
@@ -31,8 +27,6 @@
   vertical-align: center;
   margin: 6px;
 }
-
-
 
 .vente{
 	
@@ -73,9 +67,7 @@ margin-top : 10px;
 
   font-size: 16px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  
 }
-
 
 .double
 {
@@ -86,6 +78,4 @@ margin-right : 20px;
  
 .large
 	{width: 75%;}
-
- 
 

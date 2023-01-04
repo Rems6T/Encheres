@@ -7,4 +7,14 @@
   <session-config>
     <session-timeout>5</session-timeout>
   </session-config>
+  <servlet>
+    <description></description>
+    <display-name>Boutique</display-name>
+    <servlet-name>Boutique</servlet-name>
+    <servlet-class>fr.eni.ENI_Encheres.controleurs.Boutique</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Boutique</servlet-name>
+    <url-pattern>/Boutique</url-pattern>
+  </servlet-mapping>
 </web-app>
