@@ -12,3 +12,5 @@ ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/Encherir.java
 ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/Encherir.java
 ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleurs/Encherir.java
 ENI_Encheres/src/main/webapp/VoirProfil.jsp
+ENI_Encheres/src/main/java/fr/eni/ENI_Encheres/controleursAdmin/Supprimer.java
+ENI_Encheres/build/classes/fr/eni/ENI_Encheres/controleursAdmin/Supprimer.class
