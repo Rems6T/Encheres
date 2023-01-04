@@ -47,24 +47,36 @@ public class PageAccueil extends HttpServlet {
 			LocalDateTime debutEnchere = articleVendu.getDateDebutEncheres();
 			LocalDateTime finEnchere = articleVendu.getDateFinEncheres();
 			//Si l'enchere est termine
-			if(now.compareTo(finEnchere)>0) {
-				articleVendu.setEtatVente(EtatVente.ENCHERES_TERMINEES);
-				//on le save en Bd
-				try {
-					artmger.modifierArticle(articleVendu);
-				} catch (BLLException e) {
-					e.printStackTrace();
-				}
-			}else {
-				//verifie si l'enchere a debuté
-				if(now.compareTo(debutEnchere)>0) {
-					articleVendu.setEtatVente(EtatVente.EN_COURS);
-					//on le save en bd
+			if(now.compareTo(finEnchere)>0 ) {
+				//on verifie si ce n'est pas deja fait
+				System.out.println(articleVendu);
+				
+				if (articleVendu.getEtatVente().equals("ENCHERES_TERMINEES")==false ) {
+					articleVendu.setEtatVente(EtatVente.ENCHERES_TERMINEES);
+					// on le save en Bd
 					try {
+
 						artmger.modifierArticle(articleVendu);
+
 					} catch (BLLException e) {
 						e.printStackTrace();
 					}
+				}
+				
+			}else {
+				//verifie si l'enchere a debuté
+				if(now.compareTo(debutEnchere)>0 ) {
+					//on verifie si pas deja fait
+					if (articleVendu.getEtatVente().equals("EN_COURS")==false) {
+						articleVendu.setEtatVente(EtatVente.EN_COURS);
+						// on le save en bd
+						try {
+							artmger.modifierArticle(articleVendu);
+						} catch (BLLException e) {
+							e.printStackTrace();
+						}
+					}
+					
 				}
 			} 
 		}
