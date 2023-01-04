@@ -17,4 +17,14 @@
     <servlet-name>sezg</servlet-name>
     <url-pattern>/sezg</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SupprimerVente</display-name>
+    <servlet-name>SupprimerVente</servlet-name>
+    <servlet-class>fr.eni.ENI_Encheres.controleurs.SupprimerVente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupprimerVente</servlet-name>
+    <url-pattern>/SupprimerVente</url-pattern>
+  </servlet-mapping>
 </web-app>
