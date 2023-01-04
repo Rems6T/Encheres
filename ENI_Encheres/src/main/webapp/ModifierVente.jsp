@@ -58,6 +58,14 @@
 	</fieldset>
 	<button class="btn" type="submit"  value="ModifierVente">Modifier Vente</button>
 		</form>
-
+	<br>
+	<form action="<%=request.getContextPath()%>/SupprimerVente"
+		method="post">
+		<input type="hidden" name="noArticle" value="${articleAffiche.noArticle }">
+		<label for="suppr">Cocher pour supprimer : <input type="checkbox"
+			id="suppr" name="suppr" required>
+		</label>
+		<button class="btn" type="submit"  value="SupprimerVente">Supprimer Vente</button>
+		</form>
 </body>
 </html>
