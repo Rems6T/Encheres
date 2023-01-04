@@ -86,7 +86,7 @@
 				<td class="td1"><p class="value-td1">Vendeur:</p></td>
 				<td class="td2"><a href="VoirProfil?id=${vendeur.no_utilisateur}" class="value-td2">${vendeur.pseudo}</a></td>
 			<tr>		<td class="td1"><p class="value-td1">Telephone:</p></td>
-				<td class="td2"><a href="VoirProfil?id=${vendeur.telephone}" class="value-td2">${vendeur.telephone}</a></td>
+				<td class="td2"> ${vendeur.telephone}</td>
 				</tr></c:otherwise>
 			</c:choose>
 			</tr>
