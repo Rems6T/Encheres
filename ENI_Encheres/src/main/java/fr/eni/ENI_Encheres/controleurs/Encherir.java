@@ -70,8 +70,16 @@ public class Encherir extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("vendeur", vendeur);
-		
-
+		//on recupere l'enchere
+		Encheres enchere = null;
+		EnchereJdbcImpl eMger = new EnchereJdbcImpl();
+		try {
+			enchere = eMger.selectById(noArticle);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("enchere", enchere);
 		// on redirige vers la page de l'enchere
 		request.getRequestDispatcher("Encherir.jsp").forward(request, response);
 

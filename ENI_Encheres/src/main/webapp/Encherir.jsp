@@ -31,10 +31,10 @@
 	
 			<c:choose>
 			<c:when test="${articleAffiche.etatVente == 'CREE'|| articleAffiche.etatVente == 'EN_COURS' }"><h1>Détail Vente</h1></c:when>
-			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' || enchere.getNoUtilisateur == ConnectedUser.no_utilisateur }"><h1>Vous avez remporté la vente !</h1>
-</c:when>
+			<c:when test="${articleAffiche.etatVente == 'ENCHERES_TERMINEES' && enchere.noUtilisateur == ConnectedUser.no_utilisateur }"><h1>Vous avez remporté la vente !</h1>
+			</c:when>
 			<c:otherwise>
-				<h1> ${enchere.getNoUtilisateur.getNom} a remporté l'enchère ! </h1>
+				<h1> ${enchere.noUtilisateur } a remporté l'enchère ! </h1>
 			</c:otherwise>
 		</c:choose>
 	
