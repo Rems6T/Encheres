@@ -39,11 +39,11 @@
 							for="remember">Se souvenir de moi</label> <br />  
 			
 					<br />
-						<button class="btn" type="submit"  >Connexion</button>
+						<button class="btn double" type="submit"  >Connexion</button>
 					
 					
 							
-							<a href="EmailMdpOublier"><button class="btn" >Mot
+							<a href="EmailMdpOublier"><button class="btn double" >Mot
 							de passe oublié</button></a>
 							
 							

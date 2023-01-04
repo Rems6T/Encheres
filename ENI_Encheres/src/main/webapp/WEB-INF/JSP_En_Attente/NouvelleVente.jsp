@@ -6,7 +6,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
   <body>
-    <%@ include file="WEB-INF/fragments/HeaderAutre.jsp"%>
+    <%@ include file="/WEB-INF/fragments/HeaderAutre.jsp"%>
     <main class="p-5">
       <div class="d-flex justify-content-center pb-5">
         <h1>Nouvelle vente</h1>
