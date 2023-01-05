@@ -11,6 +11,7 @@
 <body>
 <div class="vente">
 	<h1>Nouvelle Vente</h1>
+	
 	<form action="<%=request.getContextPath()%>/CreerVente" method="post">
 
 
@@ -37,10 +38,10 @@
 		</label>
 		
 		<label for="debutEnchere">Début de l'enchère : <input type="datetime-local"
-			id="debutEnchere" name="debutEnchere">
+			id="debutEnchere" name="debutEnchere" min="${tempsDebut }" value="${tempsDebut }">
 		</label>
 		<label for="finEnchere">Fin de l'enchère : <input  type="datetime-local"
-			id="finEnchere" name="finEnchere">
+			id="finEnchere" name="finEnchere" min="${tempsFin }" value="${tempsFin }">
 		</label>
 		<fieldset>
     <legend>Retrait</legend>

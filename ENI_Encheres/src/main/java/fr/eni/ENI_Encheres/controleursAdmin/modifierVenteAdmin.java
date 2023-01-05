@@ -104,7 +104,9 @@ public class modifierVenteAdmin extends HttpServlet {
 					uMger.modifierUtilisateur(encherisseur);
 				}
 				//on supprime les enchere
-				eMger.delete(enchere);
+				for (Encheres encheres : enchereList) {
+					eMger.delete(encheres);
+				}
 				//on recupere le retrait
 				RetraitJdbcImpl rMger = new RetraitJdbcImpl();
 				Retrait retrait = rMger.selectById(articleVendu.getNoArticle());

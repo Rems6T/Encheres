@@ -1,5 +1,7 @@
 package fr.eni.ENI_Encheres.bll;
 
+import java.time.LocalDateTime;
+
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.bo.Retrait;
@@ -21,22 +23,28 @@ public class TestBll {
 //		e.printStackTrace();
 //	}
 		
-		try {
-			ArticleManager artmger = new ArticleManager();
-			ArticleVendu a = artmger.getArticleById(43);
-			System.out.println(a);
-			a.setEtatVente(EtatVente.EN_COURS);
-			System.out.println(a);
+//		try {
+//			ArticleManager artmger = new ArticleManager();
+//			ArticleVendu a = artmger.getArticleById(43);
+//			System.out.println(a);
+//			a.setEtatVente(EtatVente.EN_COURS);
+//			System.out.println(a);
+//
+//			artmger.modifierArticle(a);
+//			ArticleVendu a2 = artmger.getArticleById(43);
+//			System.out.println("modif faite");
+//			System.out.println(a2);
+//			
+//		} catch (BLLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
-			artmger.modifierArticle(a);
-			ArticleVendu a2 = artmger.getArticleById(43);
-			System.out.println("modif faite");
-			System.out.println(a2);
-			
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		LocalDateTime test = LocalDateTime.now();
+		System.out.println(test);
+		LocalDateTime test1 = LocalDateTime.now().plusMinutes(10);
+		System.out.println(test1);
+		LocalDateTime test2 = LocalDateTime.now().plusMinutes(10).plusHours(1);
+		System.out.println(test2);
 	}
 }

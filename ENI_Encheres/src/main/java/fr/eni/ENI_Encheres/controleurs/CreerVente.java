@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -54,7 +55,22 @@ public class CreerVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		request.setAttribute("categorieList", categorieList);
+		//format pour l'heure
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
+		//On ajoute un attribut pour le temps de debut (now + 10 min)
+		LocalDateTime tempsDebut = LocalDateTime.now().plusMinutes(10);
+		  
+	        String formatTempsDebut = tempsDebut.format(format);  
+		request.setAttribute("tempsDebut", formatTempsDebut);
+		
+		//On ajoute un attribut pour le temps de fin (now + 10 min)
+		LocalDateTime tempsFin = LocalDateTime.now().plusMinutes(10).plusHours(1);
+		 
+        String formatTempsFin = tempsFin.format(format);  
+		request.setAttribute("tempsFin", formatTempsFin);
+		
 		request.getRequestDispatcher("/CreerVente.jsp").forward(request, response);
 	}
 
