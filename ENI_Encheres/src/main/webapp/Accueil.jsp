@@ -69,18 +69,18 @@
 						${checkAchat }> <label for="achat">Achats</label>
 					<div>
 						<a href="lister?etatVente=CREE&id=0&check=1"><input
-							type="radio" id="debut" name="choixEnchere" disabled="disabled"
+							type="checkbox" id="debut" name="choixEnchere" disabled="disabled"
 							${check1 }><label for="debut">encheres non débuté</label></a>
 					</div>
 					<div>
 						<a href="lister?etatVente=EN_COURS&id=0&check=2"><input
-							type="radio" id="ouvertes" name="choixEnchere"
+							type="checkbox" id="ouvertes" name="choixEnchere"
 							disabled="disabled" ${check2 }><label for="ouvertes">encheres
 								ouvertes</label></a>
 					</div>
 					<div>
 						<a href="lister?etatVente=ENCHERES_TERMINEES&id=0&check=3"><input
-							type="radio" id="termine" name="choixEnchere" disabled="disabled"
+							type="checkbox" id="termine" name="choixEnchere" disabled="disabled"
 							${check3 }><label for="termine">encheres terminé</label></a>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
 						<div>
 							<a
 								href="lister?etatVente=CREE&id=${ConnectedUser.no_utilisateur }&check=4"><input
-								type="radio" id="debutVente" name="debutVente"
+								type="checkbox" id="debutVente" name="debutVente"
 								disabled="disabled" ${check4 }><label for="debutVente">Ventes
 									non débuté</label></a>
 						</div>
@@ -99,13 +99,13 @@
 						<div>
 							<a
 								href="lister?etatVente=EN_COURS&id=${ConnectedUser.no_utilisateur }&check=5"><input
-								type="radio" id="ouvertesVente" name="ouvertesVente" ${check5 }><label
+								type="checkbox" id="ouvertesVente" name="ouvertesVente" ${check5 }><label
 								for="ouvertesVente">Ventes ouvertes</label></a>
 						</div>
 						<div>
 							<a
 								href="lister?etatVente=ENCHERES_TERMINEES&id=${ConnectedUser.no_utilisateur }&check=6"><input
-								type="radio" id="termineVente" name="termineVente" ${check6 }><label
+								type="checkbox" id="termineVente" name="termineVente" ${check6 }><label
 								for="termineVente">Ventes terminés</label></a>
 						</div>
 					</div>
