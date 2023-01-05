@@ -10,7 +10,7 @@
 	</header>
 <body>
 
-
+<div class="vente">
 	<h1>Modifier Vente</h1>
 	
 	<form action="<%=request.getContextPath()%>/ModifierVente"
@@ -66,6 +66,6 @@
 			id="suppr" name="suppr" required>
 		</label>
 		<button class="btn" type="submit"  value="SupprimerVente">Supprimer Vente</button>
-		</form>
+		</form></div>
 </body>
 </html>
