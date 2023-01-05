@@ -23,16 +23,9 @@ main {
 
 }
 
-.header2 {
-  display: flex;
-  height: 100px;
-justify-content: right;
-  align-items: end;
-  text-align: center;
-  background: var(--couleur_bandeau_fond);
-}
 
 .logo {
+
      position: absolute;
     left: 0px;
     top: 0px;
@@ -67,6 +60,42 @@ ul li a {
 ul li a:hover {
   background-size: 100%;
 }
+
+
+label, #toggle
+{
+    display: none;
+}
+ 
+@media all and (max-width: 991px)
+{
+.header1 {
+height : 15%;
+        flex-direction: column;
+}
+.logo {
+	height : 50px;
+}
+
+   nav
+    {
+        height: auto;
+    }
+ 
+    nav ul
+    {
+
+        flex-direction: column;
+
+    
+    }
+ 
+    ul li {
+  padding: 1px ;
+  margin-right:20px;
+}
+}
+
 
 
 /* FOOTER */
