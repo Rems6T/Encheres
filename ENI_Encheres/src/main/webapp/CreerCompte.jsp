@@ -17,10 +17,10 @@
 
 	<form action="<%=request.getContextPath()%>/CreerCompte" method="post">
 
-		<div class="row g-3">
-			<div class="col">
-				<label for="pseudo">Pseudo :</label> <input type="text" id="pseudo"
-					name="pseudo" pattern="[a-zA-Z0-9]{2,20}"/>
+		<div class="vente">
+			<div>
+				<label for="pseudo">Pseudo : <input type="text" id="pseudo"
+					name="pseudo" pattern="[a-zA-Z0-9]{2,20}"/></label>
 
 				<%
 				if (request.getAttribute("pseudoUniqueOK") != null) {
@@ -33,26 +33,18 @@
 				<%
 				}
 				}
-				%>
-			</div>
+				%> </div>
+			<div ><label for="nom">Nom :  <input type="text" id="nom"
+							name="nom" required /></label> </div>
+		
 
-
-
-
-			<div class="col">
-				<label for="nom">Nom : </label> <input type="text" id="nom"
-							name="nom" required /> <br>
-			</div>
-		</div>
-
-		<div class="row g-3">
-			<div class="col">
-				<label for="prenom">prenom : </label> <input type="text" id="prenom"
-					name="prenom" required/> <br>
-			</div>
-			<div class="col">
-<label for="mail">mail :</label> <input type="text" id="mail"
-							name="mail" required/>
+		
+			<div><label for="prenom">prenom : <input type="text" id="prenom"
+					name="prenom" required/></label>  </div>
+					
+					
+			<div ><label for="mail">mail : <input type="text" id="mail"
+							name="mail" required/></label>
 						<%
 							if (request.getAttribute("emailUniqueOK")!=null){
 								boolean emailUniqueOK = (boolean) request.getAttribute("emailUniqueOK");
@@ -64,54 +56,47 @@
 						<%
 								}
 							}
-						%>
-		</div></div>
+						%></div>
 
-		<div class="row g-3">
-			<div class="col">
-				<label for="telephone">telephone : </label> <input type="text"
-					id="telephone" name="telephone" required/> <br>
-			</div>
-			<div class="col">
-				<label for="rue">Rue : </label> <input type="text" id="rue"
-							name="rue" required/> <br>
-			</div>
-		</div>
-
-		<div class="row g-3">
-			<div class="col">
-				<label for="codePostal">Code Postal : </label> <input type="text"
-							id="codePostal" name="codePostal" required/>
-				<br>
-			</div>
-			<div class="col">
-				<label for="ville">ville : </label> <input type="text" id="ville"
-							name="ville" required/> <br>
-			</div>
-		</div>
-
-		<div class="row g-3">
-			<div class="col">
-				<label for="motDePasse"> Mot de passe : </label><input type="text" id="motDePasse" name="motDePasse" required>
-				<br>
-			</div>
-			<div class="col">
-				<label for="motDePasse_confirm"> Confirmation : </label><input type="text"
-					name="motDePasse_confirm" id="motDePasse_confirm" required> <br>
-			</div>
-		</div>
-
-
-		<div class="row g-3">
 		
-						<div class="col">
-										<button class ="btn" type="submit"  value="CréerCmpte">Valider</button>
-						
-				</div>
+			<div>
+				<label for="telephone">telephone :  <input type="text"
+					id="telephone" name="telephone" required/> </label>
+			</div>
+			<div>
+				<label for="rue">Rue :  <input type="text" id="rue"
+							name="rue" required/></label> 
+			</div>
+		
 
-				<div class="col">
+		
+			<div>
+				<label for="codePostal">Code Postal :  <input type="text"
+							id="codePostal" name="codePostal" required/></label>
+				
+			</div>
+			<div>
+				<label for="ville">ville : <input type="text" id="ville"
+							name="ville" required/> </label> 
+			</div>
+		
+
+		
+			<div>
+				<label for="motDePasse"> Mot de passe : <input type="text" id="motDePasse" name="motDePasse" required></label>
+			 	
+			</div>
+			<div>
+				<label for="motDePasse_confirm"> Confirmation :<input type="text"
+					name="motDePasse_confirm" id="motDePasse_confirm" required> </label> 
+			</div>
+		
+
+						<div>
+						<button class ="btn double" type="submit"  value="CréerCmpte">Valider</button>				
+		
 					<a href="<%=request.getContextPath()%>/Accueil">
-						<button class="btn" type="button">Annuler</button>
+						<button class="btn double " type="button">Annuler</button>
 					</a>
 				</div>
 		
