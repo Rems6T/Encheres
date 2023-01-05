@@ -5,14 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
-import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 

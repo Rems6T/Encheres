@@ -7,18 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
 import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
-import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Categorie;
 import fr.eni.ENI_Encheres.bo.Encheres;
@@ -81,14 +74,13 @@ public class CreerVente extends HttpServlet {
 		
 		
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("ConnectedUser");
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
+
 		
 		
 		//on ajoute l'article
 		String nomArticle = request.getParameter("nom").trim();
 		String description = request.getParameter("description").trim();
 		LocalDateTime dateDebut = LocalDateTime.parse(request.getParameter("debutEnchere"));
-		String formatDateDebut = dateDebut.format(format); 
 		LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("finEnchere"));
 		int miseAprix = Integer.parseInt(request.getParameter("miseAPrix"));
 		int prixVente = Integer.parseInt(request.getParameter("miseAPrix"));

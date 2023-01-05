@@ -5,7 +5,6 @@ import java.io.IOException;
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
-import fr.eni.ENI_Encheres.dal.DALException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

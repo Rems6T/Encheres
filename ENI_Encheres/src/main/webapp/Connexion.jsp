@@ -38,6 +38,7 @@
 							for="remember">Se souvenir de moi  <input type="checkbox"></input></label> <br />  
 			
 					<br />
+					<div>
 						<button class="btn double" type="submit"  >Connexion</button>
 					
 					
@@ -45,7 +46,7 @@
 							<a href="EmailMdpOublier"><button class="btn double" >Mot
 							de passe oublié</button></a>
 							
-							
+					</div>		
 	
 					
 				

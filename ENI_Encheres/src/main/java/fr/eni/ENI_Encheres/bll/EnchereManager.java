@@ -1,14 +1,10 @@
 package fr.eni.ENI_Encheres.bll;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
-import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.EnchereJdbcImpl;

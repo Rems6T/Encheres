@@ -1,14 +1,5 @@
 package fr.eni.ENI_Encheres.bll;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import fr.eni.ENI_Encheres.bo.ArticleVendu;
-import fr.eni.ENI_Encheres.bo.EtatVente;
-import fr.eni.ENI_Encheres.bo.Retrait;
-import fr.eni.ENI_Encheres.dal.DALException;
-import fr.eni.ENI_Encheres.jdbcImpl.RetraitJdbcImpl;
-
 public class TestBll {
 	public static void main(String[] args) {
 //	Utilisateur utilisateur = new Utilisateur("man06",	"Manu", "Valance", "manu@orange.com", "0643063142", "rue", "06420", "St Sau", "mdp", 0, false);

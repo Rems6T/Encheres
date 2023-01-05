@@ -26,7 +26,7 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 	private static final String sqlUpdate = "update  encheres set no_utilisateur=?,date_enchere=?,montant_enchere=?   where no_article=?";
 	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?,?)";
 	private static final String sqlDelete = "delete from encheres where no_article=?";
-	private static final String GET_ALL_BY_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
+	//private static final String GET_ALL_BY_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article=?";
 	   private static final String IS_MEILLEUR_ENCHERISSEUR = "SELECT e.no_utilisateur, e.montant_enchere, u.pseudo " +
 			    "FROM Encheres e " +
 			    "INNER JOIN Articles a on a.no_article = e.no_article " +
@@ -348,6 +348,7 @@ public boolean isMeilleurEncherisseur(int noArticle, int noUtilisateur) throws S
     boolean isMeilleurEncherisseur = false;
     
 	Connection cnx = null;
+	cnx = JdbcTools.getConnection();
 PreparedStatement pstmt = cnx.prepareStatement(IS_MEILLEUR_ENCHERISSEUR);
         pstmt.setInt(1, noArticle);
         pstmt.setInt(2, noUtilisateur);
@@ -365,7 +366,8 @@ PreparedStatement pstmt = cnx.prepareStatement(IS_MEILLEUR_ENCHERISSEUR);
 }
 	 public Utilisateur selectMeilleurEncherisseur(ArticleVendu article) throws BLLException, SQLException {
 	        Utilisateur utilisateur = null;
-	    	Connection cnx = null;	            
+	    	Connection cnx = null;
+	    	cnx = JdbcTools.getConnection();
 	    	PreparedStatement pstmt = cnx.prepareStatement(SELECT_MEILLEUR_ENCHERISSEUR);
 	            pstmt.setInt(1, article.getNoArticle());
 	            ResultSet rs = pstmt.executeQuery();

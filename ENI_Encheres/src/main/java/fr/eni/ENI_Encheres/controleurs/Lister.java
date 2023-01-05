@@ -10,15 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
-import fr.eni.ENI_Encheres.bo.Categorie;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.ArticleVenduJdbcImpl;
-import fr.eni.ENI_Encheres.jdbcImpl.CategorieJdbcImpl;
 
 /**
  * Servlet implementation class Lister

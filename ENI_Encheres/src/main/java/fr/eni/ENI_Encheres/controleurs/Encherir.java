@@ -1,15 +1,10 @@
 package fr.eni.ENI_Encheres.controleurs;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
-import fr.eni.ENI_Encheres.bll.EnchereManager;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.Encheres;
@@ -23,7 +18,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Encherir

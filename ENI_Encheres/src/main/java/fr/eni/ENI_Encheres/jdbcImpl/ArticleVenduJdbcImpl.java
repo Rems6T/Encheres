@@ -18,7 +18,6 @@ import fr.eni.ENI_Encheres.dal.JdbcTools;
 public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 	private static final String sqlSelectById = "select * from articles_vendus where no_article=?";
 	private static final String sqlSelectAll = "select * from articles_vendus";
-	private static final String sqlSelectAllByEtat = "select * from articles_vendus where etatVente=?";
 	private static final String sqlUpdate = "update  articles_vendus set nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?,etatVente=?  where no_article=?";
 	private static final String sqlInsert = "insert into articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,etatVente) values(?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "delete from articles_vendus where no_article=?";
