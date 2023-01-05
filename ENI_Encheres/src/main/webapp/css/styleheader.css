@@ -57,11 +57,7 @@ ul li a:hover {
 }
 
 
-label, #toggle
-{
-    display: none;
-}
- 
+
 @media all and (max-width: 991px)
 {
 .header1 {
