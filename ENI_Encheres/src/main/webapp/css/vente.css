@@ -21,8 +21,16 @@ h1{
 .contenant2{
 
     display: flex;
-    align-items: center;
+    align-items: space-around;
     justify-content: center;
+    flex-direction : column;
+    
+}
+
+.contenu{
+	display: flex;
+	margin:10px;
+	padding:10px;
 }
 
 .article{

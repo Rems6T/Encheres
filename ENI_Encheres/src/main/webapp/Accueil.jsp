@@ -32,18 +32,18 @@
 		</div>
 	</header>
 
-	<main class="ms-3">
+	<main >
 
 		<!-- Nom de la page -->
 
-		<div class="d-flex justify-content-center">
+	
 			<h1>Liste des enchères</h1>
-		</div>
+	
 
 		<!-- Espace de recherche des articles -->
 
-		<div class="row my-5">
-			<div class="ms-auto col-3">
+		<div class="contenant2">
+			<div class="contenu">
 				<b>Recherche :</b> <br />
 				<div>
 					<input id="searchbar" type="text" name="search"
@@ -55,11 +55,10 @@
 						</c:forEach>
 					</select>
 				</div>
+			
+				<button class="btn" type="submit">Rechercher</button>
 			</div>
-			<div class="me-auto col-3">
-
-				<button type="submit" style="width: 100%; height: 100%">Rechercher</button>
-			</div>
+			<br>
 			<div class="trier">
 			<fieldset >
 				<legend>Trier par :</legend>
@@ -166,13 +165,10 @@
 		</script>
 		<!-- Affichage des articles -->
 
-		<br /> <br /> <br />
-		<div class="row d-flex justify-content-center">
+		
+		<div class="contenant">
 			<c:forEach items="${ArticleListU}" var="article" end="6">
-				<div class="col-4 d-flex" style="border: solid black 2px">
-					<div class="col-2 m-2"
-						style="border: solid black 2px; height: 100px; width: 100px"></div>
-					<div>
+				<div class="article">
 
 
 						<p>
@@ -187,8 +183,8 @@
 
 
 					</div>
-				</div>
-				<div class="col-1"></div>
+				
+				
 			</c:forEach>
 		</div>
 
