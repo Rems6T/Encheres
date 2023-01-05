@@ -74,7 +74,6 @@ public class Encherir extends HttpServlet {
 
 			enchere = enchereList.get(enchereList.size() - 1);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("enchere", enchere);

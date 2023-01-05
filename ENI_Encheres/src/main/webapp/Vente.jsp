@@ -19,7 +19,7 @@
 		<!-- Affichage des articles -->
 
 		<br />
-			<c:forEach items="${articleList}" var="article">
+			<c:forEach items="${articleList }" var="article">
 			<div class="article">
 
 				
