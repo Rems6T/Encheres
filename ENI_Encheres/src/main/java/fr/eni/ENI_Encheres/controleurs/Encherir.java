@@ -197,6 +197,7 @@ public class Encherir extends HttpServlet {
 			ArticleManager aMger = new ArticleManager();
 			ArticleVendu article = aMger.getArticleById(noArticle);
 			article.setPrixVente(newMontant);
+			//On le save en base
 			aMger.modifierArticle(article);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
