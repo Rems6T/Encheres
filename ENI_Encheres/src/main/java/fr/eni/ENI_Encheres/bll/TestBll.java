@@ -40,11 +40,7 @@ public class TestBll {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime test = LocalDateTime.now();
 		
-		
-		LocalDateTime dateTime = LocalDateTime.parse(str, format);
 		
 	}
 }
