@@ -1,9 +1,6 @@
 
 <body>
 
- <label for="toggle">☰</label>
-    <input type="checkbox" id="toggle">
-
 	<div class="header1">
 	<div class="logo">
 <a href="<%=request.getContextPath()%>/Accueil"><img 

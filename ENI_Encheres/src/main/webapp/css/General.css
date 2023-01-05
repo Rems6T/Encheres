@@ -1,0 +1,47 @@
+@charset "ISO-8859-1";
+
+main {
+	width : auto;
+	margin : 10px;
+
+}
+
+
+/* FOOTER */
+
+footer {
+display : flex;
+   bottom:0;
+    background: var(--couleur_footer_fond);
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    
+    bottom: 0;
+    width: 100%;
+    margin-top: 24px;
+}
+
+footer>p {
+    font-size: 14px;
+    color: var(--couleur_bandeau_fond);
+}
+
+
+
+/* RESPONSIVE DESIGN */
+
+@media all and (max-width: 991px)
+{
+	header{
+	height:10%;}
+	main{
+	height : 80%}
+	
+	
+.footer {
+height : 10%;
+
+}
+}
