@@ -1,6 +1,7 @@
 package fr.eni.ENI_Encheres.bll;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
 import fr.eni.ENI_Encheres.bo.EtatVente;
@@ -39,12 +40,7 @@ public class TestBll {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-
-		LocalDateTime test = LocalDateTime.now();
-		System.out.println(test);
-		LocalDateTime test1 = LocalDateTime.now().plusMinutes(10);
-		System.out.println(test1);
-		LocalDateTime test2 = LocalDateTime.now().plusMinutes(10).plusHours(1);
-		System.out.println(test2);
+		
+		
 	}
 }

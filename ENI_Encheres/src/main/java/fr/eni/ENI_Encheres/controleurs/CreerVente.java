@@ -81,13 +81,14 @@ public class CreerVente extends HttpServlet {
 		
 		
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("ConnectedUser");
-		
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
 		
 		
 		//on ajoute l'article
 		String nomArticle = request.getParameter("nom").trim();
 		String description = request.getParameter("description").trim();
 		LocalDateTime dateDebut = LocalDateTime.parse(request.getParameter("debutEnchere"));
+		String formatDateDebut = dateDebut.format(format); 
 		LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("finEnchere"));
 		int miseAprix = Integer.parseInt(request.getParameter("miseAPrix"));
 		int prixVente = Integer.parseInt(request.getParameter("miseAPrix"));
