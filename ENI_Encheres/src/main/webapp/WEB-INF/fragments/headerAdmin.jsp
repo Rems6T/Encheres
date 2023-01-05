@@ -13,14 +13,14 @@
 <a href="<%=request.getContextPath()%>/Accueil"><img 
 					src="<%=request.getContextPath()%>/Images/logo1.png"
 					alt="logo" height=100px ></a> </div>
-			<div><nav>
+			<nav>
 				<ul>
 				<li><a  href="<%=request.getContextPath()%>/ProfilAdmin"> Profil </a>
                 <li><a  href="<%=request.getContextPath()%>/CategorieAdmin"> Categories </a> </li>
                 <li ><a href="<%=request.getContextPath()%>/Logout">Deconnexion  </a></li>
                 
                 				</ul>
-			</nav> </div>
+			</nav> 
 </div>
  
        

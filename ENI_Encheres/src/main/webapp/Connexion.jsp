@@ -8,10 +8,10 @@
 
 <body>
 	<header>
-		<div>
+		
 
 	<%@ include file="/WEB-INF/fragments/HeaderAutre.jsp"%>
-	</div>
+	
 	</header>
 
 	<!-- Formulaire de connexion -->

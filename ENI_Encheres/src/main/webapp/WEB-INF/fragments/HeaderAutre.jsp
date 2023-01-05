@@ -11,13 +11,20 @@
 <title>Accueil</title>
 </head>
 <body>
-	<div class="header2">
+		<div class="header1">
+
 	<div class="logo">
 <a href="<%=request.getContextPath()%>/Accueil"><img 
 					src="<%=request.getContextPath()%>/Images/logo1.png"
 					alt="logo" height=100px ></a> </div>
-			</div>
-		
+					
+					
+			<nav> 
+				<ul>
+
+				</ul>
+		</nav> 
+		</div>
 
 
 </body>
