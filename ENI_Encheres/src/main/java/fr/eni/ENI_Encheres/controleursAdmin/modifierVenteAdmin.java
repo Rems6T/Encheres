@@ -86,8 +86,14 @@ public class modifierVenteAdmin extends HttpServlet {
 		// Pour Chaque article on recupere l'enchere
 		EnchereJdbcImpl eMger = new EnchereJdbcImpl();
 		for (ArticleVendu articleVendu : ArticleList) {
+		
+			Encheres enchere = null;
+			List<Encheres> enchereList;
+
 			try {
-				Encheres enchere = eMger.selectById(articleVendu.getNoArticle());
+				//on recupere la derniere enchere
+				enchereList = eMger.selectAllByArticle(articleVendu.getNoArticle());
+				enchere = enchereList.get(enchereList.size()-1);
 				// On recupere l'utilisateur associé si ce n'est pas le vendeur
 				if (articleVendu.getNoUtilisateur() != enchere.getNoUtilisateur()) {
 					Utilisateur encherisseur = uMger.getUtilisateurById(enchere.getNoUtilisateur());
@@ -97,7 +103,7 @@ public class modifierVenteAdmin extends HttpServlet {
 					// on le save en bd
 					uMger.modifierUtilisateur(encherisseur);
 				}
-				//on supprime l'enchere
+				//on supprime les enchere
 				eMger.delete(enchere);
 				//on recupere le retrait
 				RetraitJdbcImpl rMger = new RetraitJdbcImpl();

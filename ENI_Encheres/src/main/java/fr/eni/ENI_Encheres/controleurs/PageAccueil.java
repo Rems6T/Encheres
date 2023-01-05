@@ -106,10 +106,9 @@ public class PageAccueil extends HttpServlet {
 					articleVendu.getDateDebutEncheres(), articleVendu.getDateFinEncheres(), articleVendu.getMiseAPrix(),
 					articleVendu.getPrixVente(), articleVendu.getNoUtilisateur(), articleVendu.getNoCategorie(), articleVendu.getEtatVente(),
 					pseudoU);
-			System.out.println(a);
 			ArticleListU.add(a);
 		}
-		System.out.println(ArticleListU.size());
+
 		request.setAttribute("ArticleListU", ArticleListU);
 
 		request.getRequestDispatcher("/Accueil.jsp").forward(request, response);

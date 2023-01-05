@@ -67,6 +67,10 @@
 						pts</p></td>
 			</tr>
 			<tr>
+				<td class="td1"><p class="value-td1">Debut de l'enchère:</p></td>
+				<td class="td2"><p class="value-td2">${articleAffiche.dateDebutEncheres }</p></td>
+			</tr>
+			<tr>
 				<td class="td1"><p class="value-td1">Fin de l'enchère:</p></td>
 				<td class="td2"><p class="value-td2">${articleAffiche.dateFinEncheres }</p></td>
 			</tr>

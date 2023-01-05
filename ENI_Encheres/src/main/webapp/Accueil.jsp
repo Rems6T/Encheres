@@ -69,6 +69,7 @@
 			<p>Article : <a href="Encherir?noArticle=${article.noArticle}" >${article.nomArticle}</a></p>
 					
 					<p>Prix : ${article.prixVente} points</p>
+					<p>Debut de l'enchère : ${article.dateDebutEncheres}</p>
 					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
 					<p>Vendeur : ${article.pseudoUtil }</p>
 					<p>Statut de la vente : ${article.etatVente}</p>

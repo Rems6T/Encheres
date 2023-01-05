@@ -70,104 +70,63 @@ public class Encherir extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("vendeur", vendeur);
-		//on recupere l'enchere
+		// on recupere l'enchere
 		Encheres enchere = null;
 		EnchereJdbcImpl eMger = new EnchereJdbcImpl();
-		/* 
-		 * 
-		 * try {
-			
-			enchere = eMger.selectById(noArticle);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 * 
-		 * Modif enchere
-		 */
-		List<Encheres> enchereList ;
+
+		List<Encheres> enchereList;
 		try {
 			enchereList = eMger.selectAllByArticle(noArticle);
-			System.out.println(enchereList.size());
-			enchere = enchereList.get(enchereList.size()-1);
+
+			enchere = enchereList.get(enchereList.size() - 1);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("enchere", enchere);
-		//on recupere le pseudo pour l'enchere
+		// on recupere le pseudo pour l'enchere
 		Utilisateur u = null;
 		int noU = enchere.getNoUtilisateur();
 		try {
-			UtilisateurManager uMger =new UtilisateurManager();
+			UtilisateurManager uMger = new UtilisateurManager();
 			u = uMger.getUtilisateurById(noU);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("enchereU", u);
-		
+
 		// on redirige vers la page de l'enchere
 		request.getRequestDispatcher("Encherir.jsp").forward(request, response);
-
 
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//        //On encherie
-//				try {
-//					encherir(request, response);
-//				} catch (ServletException | IOException | BLLException | SQLException | DALException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				try {
-//					preleverCredit(request, response);
-//				} catch (BLLException | ServletException | IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//	try {
-//		updatePrixVenteArticle(request, response);
-//	} catch (ServletException | IOException | BLLException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	
-//    HttpSession session = request.getSession();
-//            session.setAttribute("succes","Enchère ajoutée avec succès");
-//            response.sendRedirect(request.getContextPath()+"/accueil");
 
-		/*
-		 * Nouvelle essai plus simple
-		 * 
-		 * 
-		 * 
-		 */
-		
+		EnchereJdbcImpl eMger = new EnchereJdbcImpl();
 		UtilisateurManager uMger = null;
 		try {
 			uMger = new UtilisateurManager();
 		} catch (BLLException e1) {
-		
+
 			e1.printStackTrace();
 		}
 		// On recupere le montant de la nouvelle enchere
 		int newMontant = Integer.valueOf(request.getParameter("mPrix"));
-		System.out.println("NewMontant :" + newMontant);
+
 		// On recupere l'utlisateur connecte
 		Utilisateur utilisateurConnecte = (Utilisateur) request.getSession().getAttribute("ConnectedUser");
 		// Pas de check si il a le pognon c'est fait dans le formulaire
-
-		// On recupere l'enchere
+	
+		// On recupere la derniere enchere
 		int noArticle = Integer.valueOf(request.getParameter("noArticle"));
-		EnchereJdbcImpl enMger = new EnchereJdbcImpl();
 		Encheres enchere = null;
+		List<Encheres> enchereList;
 		try {
-			enchere = enMger.selectById(noArticle);
-			System.out.println("enchere :" + enchere);
+			enchereList = eMger.selectAllByArticle(noArticle);
+			enchere = enchereList.get(enchereList.size() - 1);
 		} catch (DALException e) {
 
 			e.printStackTrace();
@@ -176,20 +135,19 @@ public class Encherir extends HttpServlet {
 		// Si ce n'est pas le vendeur
 		// On recup le numero du vendeur
 		int noVendeur = Integer.valueOf(request.getParameter("noVendeur"));
-		
+
 		if (enchere.getNoUtilisateur() != noVendeur) {
 			// On recupere l'ancien encherisseur
 			Utilisateur ancienEncherisseur;
 			try {
-				
+
 				ancienEncherisseur = uMger.getUtilisateurById(enchere.getNoUtilisateur());
-				System.out.println("Ancien encherisseur :" + ancienEncherisseur);
+
 				// On lui rend l'argent
 				int argentRendu = ancienEncherisseur.getCredit() + enchere.getMontantEnchere();
 				ancienEncherisseur.setCredit(argentRendu);
 				// et on le modifie en base de données
 				uMger.modifierUtilisateur(ancienEncherisseur);
-				System.out.println("Ancien encherisseur modifié :" + ancienEncherisseur);
 
 			} catch (BLLException e) {
 				e.printStackTrace();
@@ -200,21 +158,41 @@ public class Encherir extends HttpServlet {
 		enchere.setNoUtilisateur(utilisateurConnecte.getNo_utilisateur());
 		// On indique le nouveau montant
 		enchere.setMontantEnchere(newMontant);
-		// On l'ajoute en base de données
+
+		// On regarde si il a deja fait une enchere
+		
+		Encheres enchereUtil = null;
 		try {
-			enMger.insert(enchere);
-			System.out.println("enchere modifié :" + enchere);
-		} catch (DALException e) {
-			e.printStackTrace();
+			
+			enchereUtil = eMger.selectByUtil(utilisateurConnecte.getNo_utilisateur());
+		} catch (DALException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if (enchereUtil!=null) {
+			// si deja une enchere, On la supprime
+			try {
+				eMger.delete(enchereUtil);
+
+			} catch (DALException e) {
+				e.printStackTrace();
+			}
+		} 
+		//On l'ajoute en base 
+		try {
+			eMger.insert(enchere);
+		} catch (DALException e1) {
+
+			e1.printStackTrace();
 		}
 		// On enleve le pognon aux nouvelle encherisseur
-		System.out.println("nouvelle encherisseur  :" + utilisateurConnecte);
+
 		int argentPris = utilisateurConnecte.getCredit() - newMontant;
 		utilisateurConnecte.setCredit(argentPris);
 		// On le change en base de données
 		try {
 			uMger.modifierUtilisateur(utilisateurConnecte);
-			System.out.println("Ancien encherisseur modifié :" + utilisateurConnecte);
+
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -236,124 +214,5 @@ public class Encherir extends HttpServlet {
 
 	}
 
-	private void encherir(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, BLLException, SQLException, DALException {
-		// On recupere l'enchere
-		Encheres enchere = creerEnchere(request);
-		isMeilleurEncherisseur(request);
-
-		EnchereManager enchereManager = new EnchereManager();
-		// On recupere l'article
-		int noArticle = Integer.valueOf(request.getParameter("noArticle"));
-
-		Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
-
-		ArticleVendu article = null;
-		article.setNoArticle(noArticle);
-		article.setPrixVente(prixVente);
-		Utilisateur encherisseurPrecedent = enchereManager.selectMeilleurEncherisseur(article);
-		// si il n'y a eu aucune enchère sur l'article on insère l'enchère en base
-		if (encherisseurPrecedent == null) {
-			EnchereManager.ajoutEnchere(enchere);
-		} else {
-			// s'il y a une autre enchère sur l'article on rend les crédit à l'enchérisseur
-			// précédent avant d'ajouter notre enchère
-
-			rendreCredit(encherisseurPrecedent, prixVente);
-
-			EnchereManager.ajoutEnchere(enchere);
-		}
-	}
-
-	private Encheres creerEnchere(HttpServletRequest request) {
-
-		// Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
-
-//        ArticleVendu article = null ;
-//        article.setNoArticle(noArticle);
-//        article.setPrixVente(prixVente);
-
-		// On recupere l'utilisateur connecte
-		HttpSession session = request.getSession();
-		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
-		// On recupere le numero de l'article
-		int noArticle = Integer.valueOf(request.getParameter("noArticle"));
-		LocalDateTime dateEnchere = LocalDateTime.now();
-		
-
-		int montant = Integer.parseInt(request.getParameter("montant"));
-
-		Encheres enchere = new Encheres(utilisateurConnecte.getNo_utilisateur(), noArticle, dateEnchere,
-				montant);
-
-		return enchere;
-	}
-
-	private void isMeilleurEncherisseur(HttpServletRequest request) throws BLLException, SQLException {
-		HttpSession session = request.getSession();
-		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("utilisateur");
-		Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
-		Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
-		ArticleVendu article = null;
-		article.setNoArticle(noArticle);
-		article.setPrixVente(prixVente);
-		EnchereManager enchereManager = new EnchereManager();
-
-		// On vérifie si l'utilisateur est déjà le meilleur encherisseur, si c'est le
-		// cas on ajoute une erreur
-		boolean isMeilleurEncherisseur = enchereManager.isMeilleurEncherisseur(article.getNoArticle(),
-				utilisateurConnecte.getNo_utilisateur());
-
-	}
-
-	private void preleverCredit(HttpServletRequest request, HttpServletResponse response)
-			throws BLLException, ServletException, IOException {
-		HttpSession session = request.getSession();
-
-		// récupérer utilisateur en session et soustraire à son crédit le montant de
-		// l'enchère
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		UtilisateurManager utilisateurManager = new UtilisateurManager();
-
-		Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
-
-		int montant = Integer.parseInt(request.getParameter("montant"));
-
-		Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
-		ArticleVendu article = null;
-		article.setNoArticle(noArticle);
-		article.setPrixVente(prixVente);
-		utilisateur.setCredit(utilisateur.getCredit() - article.getPrixVente());
-
-		utilisateurManager.modifierUtilisateur(utilisateur);
-
-		// l'utilisateur est update en base, on le remet correctement dans la session
-		session.setAttribute("utilisateur", utilisateur);
-	}
-
-	private void rendreCredit(Utilisateur u, Integer prixVente) throws BLLException {
-		UtilisateurManager utilisateurManager = new UtilisateurManager();
-
-		Utilisateur encherisseurPrecedent = u;
-		encherisseurPrecedent.setCredit(encherisseurPrecedent.getCredit() + prixVente);
-		utilisateurManager.modifierUtilisateur(encherisseurPrecedent);
-	}
-
-	private void updatePrixVenteArticle(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, BLLException {
-		Integer prixVente = Integer.valueOf(request.getParameter("prixVente"));
-		Integer noArticle = Integer.valueOf(request.getParameter("noArticle"));
-		ArticleVendu article = null;
-		article.setNoArticle(noArticle);
-		article.setPrixVente(prixVente);
-
-		// Récupérer l'article au complet
-		ArticleManager articleManager = new ArticleManager();
-		ArticleVendu fullArticle = articleManager.getArticleById(article.getNoArticle());
-
-		// Set nouveau prix de vente
-		fullArticle.setPrixVente(Integer.valueOf(request.getParameter("montant")));
-		articleManager.modifierArticle(fullArticle);
-	}
 
 }

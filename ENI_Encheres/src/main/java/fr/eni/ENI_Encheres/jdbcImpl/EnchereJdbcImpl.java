@@ -19,8 +19,10 @@ import fr.eni.ENI_Encheres.dal.JdbcTools;
 
 public class EnchereJdbcImpl implements DAO<Encheres> {
 	private static final String sqlSelectById = "select * from encheres where no_article=?";
+	private static final String sqlSelectByUtil = "select * from encheres where no_utilisateur=?";
 	private static final String sqlSelectAll = "select * from encheres";
-	private static final String sqlSelectAllByArticle = "select * from encheres where no_article=?";
+	private static final String sqlSelectAllByArticle = "select * from encheres where no_article=? ORDER BY montant_enchere";
+	private static final String sqlSelectAllByUtil = "select * from encheres where no_utilisateur=? ORDER BY montant_enchere";
 	private static final String sqlUpdate = "update  encheres set no_utilisateur=?,date_enchere=?,montant_enchere=?   where no_article=?";
 	private static final String sqlInsert = "insert into encheres(no_utilisateur,no_article,date_enchere,montant_enchere) values(?,?,?,?)";
 	private static final String sqlDelete = "delete from encheres where no_article=?";
@@ -48,6 +50,40 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectById);
+			rqt.setInt(1, id);
+
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"),  rs.getTimestamp("date_enchere").toLocalDateTime(),
+						rs.getInt("montant_enchere"));
+
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectByIdEnchere failed - id = " + id, e);
+		} finally {
+			try {
+
+				if (rqt != null) {
+					rqt.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			JdbcTools.closeConnection();
+
+		}
+		return encheres;
+	}
+	public Encheres selectByUtil(int id) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Encheres encheres = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByUtil);
 			rqt.setInt(1, id);
 
 			rs = rqt.executeQuery();
@@ -117,6 +153,42 @@ public class EnchereJdbcImpl implements DAO<Encheres> {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectAllByArticle);
+			rqt.setInt(1, id);
+
+			rs = rqt.executeQuery();
+			Encheres encheres = null;
+
+			while (rs.next()) {
+
+				encheres = new Encheres(rs.getInt("no_utilisateur"), rs.getInt("no_article"), rs.getTimestamp("date_enchere").toLocalDateTime(),
+						rs.getInt("montant_enchere"));
+				liste.add(encheres);
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectAllUtilisateur failed - ", e);
+		} finally {
+			try {
+
+				if (rqt != null) {
+					rqt.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			JdbcTools.closeConnection();
+		}
+		return liste;
+	}
+	public List<Encheres> selectAllByUtil(int id) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<Encheres> liste = new ArrayList<Encheres>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectAllByUtil);
 			rqt.setInt(1, id);
 
 			rs = rqt.executeQuery();

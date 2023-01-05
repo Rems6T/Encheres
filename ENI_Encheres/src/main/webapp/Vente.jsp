@@ -30,7 +30,7 @@
 					<a href="ModifierVente?id=${article.noArticle}">Modifier</a>
 					</c:if>
 				</div>
->
+
 		
 			</c:forEach>
 			</div>
