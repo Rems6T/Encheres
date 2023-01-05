@@ -43,6 +43,10 @@
     color: var(--couleur_bandeau_fond);
 }
 
+.vente label, input{
+	margin : 5px;
+}
+
 
 
  .btn {
