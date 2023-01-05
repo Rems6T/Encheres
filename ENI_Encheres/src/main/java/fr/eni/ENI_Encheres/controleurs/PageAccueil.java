@@ -110,7 +110,24 @@ public class PageAccueil extends HttpServlet {
 		}
 
 		request.setAttribute("ArticleListU", ArticleListU);
-
+		//Attribut pour les check
+		String checkAchat = "";
+		String check1 = "";
+		String check2 = "";
+		String check3 = "";
+		String checkVente = "";
+		String check4 = "";
+		String check5 = "";
+		String check6 = "";
+		// on envoie les huit attribut
+				request.setAttribute("checkAchat", checkAchat);
+				request.setAttribute("check1", check1);
+				request.setAttribute("check2", check2);
+				request.setAttribute("check3", check3);
+				request.setAttribute("check4", check4);
+				request.setAttribute("check5", check5);
+				request.setAttribute("check6", check6);
+				request.setAttribute("checkVente", checkVente);
 		request.getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 	}

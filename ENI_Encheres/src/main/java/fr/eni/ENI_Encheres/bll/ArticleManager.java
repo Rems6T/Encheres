@@ -36,6 +36,7 @@ public class ArticleManager {
 		
 		return articles;
 	}
+	
 	/**
 	 * Select by Id
 	 * 
