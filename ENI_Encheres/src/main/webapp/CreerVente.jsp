@@ -25,7 +25,7 @@
 		<label for="categorie"> Categorie : 
 		<select name="categorie">
 		<c:forEach items="${categorieList}" var="categorie">
-		<option value="${categorie.noCategorie }" >${categorie.libelle }</option>
+		<option value="${categorie.noCategorie }">${categorie.libelle }</option>
 		</c:forEach>
 		</select>
 		</label>

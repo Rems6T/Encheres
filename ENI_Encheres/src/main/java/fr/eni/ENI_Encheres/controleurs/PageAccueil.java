@@ -11,8 +11,11 @@ import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
+import fr.eni.ENI_Encheres.bo.Categorie;
 import fr.eni.ENI_Encheres.bo.EtatVente;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
+import fr.eni.ENI_Encheres.dal.DALException;
+import fr.eni.ENI_Encheres.jdbcImpl.CategorieJdbcImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -128,6 +131,17 @@ public class PageAccueil extends HttpServlet {
 				request.setAttribute("check5", check5);
 				request.setAttribute("check6", check6);
 				request.setAttribute("checkVente", checkVente);
+				//ajout de la liste categorie
+				CategorieJdbcImpl categorieJdbcImpl = new CategorieJdbcImpl();
+				List<Categorie> categorieList = null ;
+				try {
+					categorieList = categorieJdbcImpl.selectAll();
+				} catch (DALException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				request.setAttribute("categorieList", categorieList);		
 		request.getRequestDispatcher("/Accueil.jsp").forward(request, response);
 
 	}

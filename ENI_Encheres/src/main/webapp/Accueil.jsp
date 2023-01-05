@@ -49,11 +49,10 @@
 					<input id="searchbar" type="text" name="search"
 						placeholder="Le nom de l'article" /> <br /> <br /> Categorie :
 					<select name="categorie" id="categorie">
-						<option value="toutes">Toutes</option>
-						<option value="informatique">Informatique</option>
-						<option value="ameublement">Ameublement</option>
-						<option value="vetement">Vêtements</option>
-						<option value="sportloisirs">Sport & Loisirs</option>
+						<option value="0">Toutes</option>
+						<c:forEach items="${categorieList}" var="categorie">
+							<option value="${categorie.noCategorie }">${categorie.libelle }</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>
@@ -64,39 +63,50 @@
 			<fieldset>
 				<legend>Trier par :</legend>
 				<div>
-					<input type="radio" id="achat" name="choixTri" value="achat" ${checkAchat }>
-					<label for="achat">Achats</label>
+					<input type="radio" id="achat" name="choixTri" value="achat"
+						${checkAchat }> <label for="achat">Achats</label>
 					<div>
-						<a href="lister?etatVente=CREE&id=0&check=1"><input type="radio" id="debut" name="choixEnchere" disabled="disabled" ${check1 }><label
-							for="debut">encheres non débuté</label></a>
+						<a href="lister?etatVente=CREE&id=0&check=1"><input
+							type="radio" id="debut" name="choixEnchere" disabled="disabled"
+							${check1 }><label for="debut">encheres non débuté</label></a>
 					</div>
 					<div>
-						<a href="lister?etatVente=EN_COURS&id=0&check=2"><input type="radio" id="ouvertes" name="choixEnchere" disabled="disabled" ${check2 }><label
-							for="ouvertes">encheres ouvertes</label></a>
+						<a href="lister?etatVente=EN_COURS&id=0&check=2"><input
+							type="radio" id="ouvertes" name="choixEnchere"
+							disabled="disabled" ${check2 }><label for="ouvertes">encheres
+								ouvertes</label></a>
 					</div>
 					<div>
-						<a href="lister?etatVente=ENCHERES_TERMINEES&id=0&check=3"><input type="radio" id="termine" name="choixEnchere" disabled="disabled" ${check3 }><label
-							for="termine">encheres terminé</label></a>
+						<a href="lister?etatVente=ENCHERES_TERMINEES&id=0&check=3"><input
+							type="radio" id="termine" name="choixEnchere" disabled="disabled"
+							${check3 }><label for="termine">encheres terminé</label></a>
 					</div>
 				</div>
 				<c:if test="${ConnectedUser!=null }">
-				<div>
-					<input type="radio" id="vente" name="choixTri" value="vente" ${checkVente }>
-					<label for="vente">Mes ventes</label>
 					<div>
-						<a href="lister?etatVente=CREE&id=${ConnectedUser.no_utilisateur }&check=4"><input type="radio" id="debutVente" name="debutVente"
-							disabled="disabled" ${check4 }><label for="debutVente">Ventes non débuté</label></a>
-					</div>
+						<input type="radio" id="vente" name="choixTri" value="vente"
+							${checkVente }> <label for="vente">Mes ventes</label>
+						<div>
+							<a
+								href="lister?etatVente=CREE&id=${ConnectedUser.no_utilisateur }&check=4"><input
+								type="radio" id="debutVente" name="debutVente"
+								disabled="disabled" ${check4 }><label for="debutVente">Ventes
+									non débuté</label></a>
+						</div>
 
-					<div>
-						<a href="lister?etatVente=EN_COURS&id=${ConnectedUser.no_utilisateur }&check=5"><input type="radio" id="ouvertesVente" name="ouvertesVente" ${check5 }><label
-							for="ouvertesVente">Ventes ouvertes</label></a>
+						<div>
+							<a
+								href="lister?etatVente=EN_COURS&id=${ConnectedUser.no_utilisateur }&check=5"><input
+								type="radio" id="ouvertesVente" name="ouvertesVente" ${check5 }><label
+								for="ouvertesVente">Ventes ouvertes</label></a>
+						</div>
+						<div>
+							<a
+								href="lister?etatVente=ENCHERES_TERMINEES&id=${ConnectedUser.no_utilisateur }&check=6"><input
+								type="radio" id="termineVente" name="termineVente" ${check6 }><label
+								for="termineVente">Ventes terminés</label></a>
+						</div>
 					</div>
-					<div>
-						<a href="lister?etatVente=ENCHERES_TERMINEES&id=${ConnectedUser.no_utilisateur }&check=6"><input type="radio" id="termineVente" name="termineVente" ${check6 }><label
-							for="termineVente">Ventes terminés</label></a>
-					</div>
-				</div>
 				</c:if>
 			</fieldset>
 		</div>
@@ -115,7 +125,7 @@
 					document.getElementById("ouvertesVente").disabled = true;
 					document.getElementById("termineVente").disabled = true;
 				} else {
-					
+
 					document.getElementById("debut").disabled = true;
 					document.getElementById("ouvertes").disabled = true;
 					document.getElementById("termine").disabled = true;
@@ -140,7 +150,7 @@
 					document.getElementById("ouvertes").disabled = true;
 					document.getElementById("termine").disabled = true;
 				} else {
-					
+
 					document.getElementById("debutVente").disabled = true;
 					document.getElementById("ouvertesVente").disabled = true;
 					document.getElementById("termineVente").disabled = true;

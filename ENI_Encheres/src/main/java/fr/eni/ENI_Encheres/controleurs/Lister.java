@@ -14,9 +14,11 @@ import fr.eni.ENI_Encheres.bll.ArticleManager;
 import fr.eni.ENI_Encheres.bll.BLLException;
 import fr.eni.ENI_Encheres.bll.UtilisateurManager;
 import fr.eni.ENI_Encheres.bo.ArticleVendu;
+import fr.eni.ENI_Encheres.bo.Categorie;
 import fr.eni.ENI_Encheres.bo.Utilisateur;
 import fr.eni.ENI_Encheres.dal.DALException;
 import fr.eni.ENI_Encheres.jdbcImpl.ArticleVenduJdbcImpl;
+import fr.eni.ENI_Encheres.jdbcImpl.CategorieJdbcImpl;
 
 /**
  * Servlet implementation class Lister
@@ -149,6 +151,7 @@ public class Lister extends HttpServlet {
 		request.setAttribute("check6", check6);
 		request.setAttribute("checkVente", checkVente);
 		getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
+		
 	}
 
 }
