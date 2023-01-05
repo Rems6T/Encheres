@@ -41,9 +41,8 @@ public class TestBll {
 //			e.printStackTrace();
 //		}
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime test = LocalDateTime.now().;
-		System.out.println(test);
-		String str
+		LocalDateTime test = LocalDateTime.now();
+		
 		
 		LocalDateTime dateTime = LocalDateTime.parse(str, format);
 		
