@@ -35,7 +35,7 @@
 				
 				
 						 <label
-							for="remember">Se souvenir de moi</label> <br />  
+							for="remember">Se souvenir de moi  <input type="checkbox"></input></label> <br />  
 			
 					<br />
 						<button class="btn double" type="submit"  >Connexion</button>

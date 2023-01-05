@@ -10,12 +10,12 @@
 	</header>
 <body>
 
-
+<h1>Mes ventes</h1>
 
 			<div class="contenant">
 
 
-		<h1>Mes ventes</h1>
+		
 		<!-- Affichage des articles -->
 
 		<br />
