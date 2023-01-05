@@ -7,9 +7,9 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"></jsp:include>
 
 
-<body class="container">
+<body>
 
-	<%@ include file="WEB-INF/fragments/header.html"%>
+	<%@ include file="WEB-INF/fragments/HeaderAutre.jsp"%>
 
 	<h1>Mon profil</h1>
 
@@ -18,9 +18,9 @@
 		method="post">
 		<input type="hidden" name="id" value="${utilisateur.no_utilisateur }">
 		<input type="hidden" name="credit" value="${utilisateur.credit }">
-
-		<div class="row g-3">
-			<div class="col">
+<div class="vente">
+		
+			<div>
 				<label> Pseudo : </label><input type="text" name="pseudo"
 					value="${utilisateur.pseudo }"> <br>
 				<%
@@ -36,18 +36,19 @@
 				}
 				%>
 			</div>
-			<div class="col">
+			
+			<div>
 				<label> Nom : </label><input type="text" name="nom"
 					value="${utilisateur.nom }"> <br>
 			</div>
-		</div>
+		
 
-		<div class="row g-3">
-			<div class="col">
+		
+			<div>
 				<label> Prénom : </label><input type="text" name="prenom"
 					value="${utilisateur.prenom }"><br>
 			</div>
-			<div class="col">
+			<div>
 				<label> Email : </label><input type="text" name="email"
 					value="${utilisateur.email}"> <br>
 				<%
@@ -63,48 +64,49 @@
 				}
 				%>
 			</div>
-		</div>
+		
 
-		<div class="row g-3">
-			<div class="col">
+		
+			<div>
 				<label> Téléphone : </label><input type="text" name="telephone"
 					value="${utilisateur.telephone }"> <br>
 			</div>
-			<div class="col">
+			
+			<div>
 				<label> Rue : </label><input type="text" name="rue"
 					value="${utilisateur.rue }"> <br>
 			</div>
-		</div>
+		
 
-		<div class="row g-3">
-			<div class="col">
+		
+			<div>
 				<label> Code Postal : </label><input type="text" name="codePostal"
 					value="${utilisateur.codePostal }"> <br>
 			</div>
-			<div class="col">
+			
+			<div>
 				<label> Ville : </label><input type="text" name="ville"
 					value="${utilisateur.ville}"> <br>
 			</div>
-		</div>
+		
 
-		<div class="row g-3">
-			<div class="col">
+		<div>
 				<label> Mot de passe : </label><input type="text" name="AncienmotDePasse"
 					value="${utilisateur.motDePasse }"> <br>
 			</div>
-			<div class="col">
+			
+			<div>
 				<label> Confirmation : </label><input type="text"
 					name="AncienmotDePasse" value="">
 				<br>
 			</div>
-		</div>
 
 
-		<div class="row g-3">
-			<div class="col">
 
-				<button type="submit" value="ModifierCompte" name="choix"
-					style="text-align: center;">Modifier</button>
+			<div>
+
+				<button class="btn" type="submit" value="ModifierCompte" name="choix"
+					">Modifier</button>
 			</div>
 
 
@@ -112,19 +114,25 @@
 		</div>
 		
 	</form>
+	
+	
+	<div class="vente">
 	<form action="<%=request.getContextPath()%>/SupprimerCompte"
 		method="post">
-			<div class="col">
+			<div>
 
 				<input type="checkbox" value="ModifierCompte" name="supprimer" required>
 					<label>Cocher la case pour confirmer la suppression du compte</label>
 			</div>
-		<div class="col">
-				<button type="submit" name="choix" value="supprimer">Supprimer</button>
+			
+		<div>
+				<button class="btn" type="submit" name="choix" value="supprimer">Supprimer</button>
 			</div>
+			
+			
 		</form>
 
-
+</div>
 
 </body>
 
