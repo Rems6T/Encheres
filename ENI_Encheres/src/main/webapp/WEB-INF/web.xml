@@ -7,10 +7,5 @@
   <session-config>
     <session-timeout>5</session-timeout>
   </session-config>
-  <servlet>
-    <description></description>
-    <display-name>sezg</display-name>
-    <servlet-name>sezg</servlet-name>
-    <servlet-class>fr.eni.ENI_Encheres.controleurs.sezg</servlet-class>
-  </servlet>
+  
 </web-app>

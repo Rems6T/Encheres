@@ -18,6 +18,7 @@ import fr.eni.ENI_Encheres.dal.JdbcTools;
 public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 	private static final String sqlSelectById = "select * from articles_vendus where no_article=?";
 	private static final String sqlSelectAll = "select * from articles_vendus";
+	private static final String sqlSelectAllByEtat = "select * from articles_vendus where etatVente=?";
 	private static final String sqlUpdate = "update  articles_vendus set nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?,etatVente=?  where no_article=?";
 	private static final String sqlInsert = "insert into articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,etatVente) values(?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "delete from articles_vendus where no_article=?";
@@ -70,6 +71,55 @@ public class ArticleVenduJdbcImpl implements DAO<ArticleVendu> {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
+			ArticleVendu articleVendu = null;
+			if (rs.next()) {
+			while (rs.next()) {
+
+				articleVendu = new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"), rs.getString("description"),
+					rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
+					rs.getTimestamp("date_fin_encheres").toLocalDateTime(),
+					//	((Timestamp) rs.getObject(4)).toLocalDateTime(),
+					//	((Timestamp) rs.getObject(5)).toLocalDateTime(),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), 
+						rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), EtatVente.valueOf(rs.getString("etatVente")) );
+				liste.add(articleVendu);
+			}}
+		} catch (SQLException e) {
+			throw new DALException("selectAllArticles failed - ", e);
+		} finally {
+			try {
+
+				if (rqt != null) {
+					rqt.close();
+				}
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			JdbcTools.closeConnection();
+		}
+		return liste;
+	}
+	public List<ArticleVendu> selectAllBy(String etatVente, int id) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<ArticleVendu> liste = new ArrayList<ArticleVendu>();
+		try {
+			cnx = JdbcTools.getConnection();
+			if(id==0)
+			{
+				 rqt= cnx.prepareStatement("select * from articles_vendus where etatVente=?");
+				 rqt.setString(1, etatVente);
+			}
+			else
+			{
+				 rqt= cnx.prepareStatement("select * from articles_vendus where etatVente=? and no_utilisateur=?");
+				 rqt.setString(1, etatVente);
+				 rqt.setInt(2, id);
+			}
+			rs = rqt.executeQuery();
 			ArticleVendu articleVendu = null;
 
 			while (rs.next()) {

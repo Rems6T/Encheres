@@ -11,3 +11,6 @@ alter table articles_vendus add etatVente varchar(80) not null
 delete from RETRAITS
 delete from encheres
 delete from ARTICLES_VENDUS
+
+--insert pour l'admin
+insert into UTILISATEURS (pseudo,nom,prenom,email,rue,code_postal,ville,mot_de_passe,credit,administrateur)values('admin','admin','admin','admin@gmail.com','rue','code_postal','ville','adminmdp',0,'true')

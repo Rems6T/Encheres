@@ -12,15 +12,23 @@
 <body>
 	<header>
 		<div>
-		
 
-					<% ArticleVendu article = (ArticleVendu)request.getAttribute("ArticleAffiche"); %>
-				
-				<%  if (request.getSession().getAttribute("ConnectedUser")==null){ %>		
-				<%@include file="WEB-INF/fragments/headerInvite.jsp"%>
-	<%} else {%>
-		<%@include file="WEB-INF/fragments/headerConnecte.jsp"%>
-	<%} %>
+
+			<%
+			ArticleVendu article = (ArticleVendu) request.getAttribute("ArticleAffiche");
+			%>
+
+			<%
+			if (request.getSession().getAttribute("ConnectedUser") == null) {
+			%>
+			<%@include file="WEB-INF/fragments/headerInvite.jsp"%>
+			<%
+			} else {
+			%>
+			<%@include file="WEB-INF/fragments/headerConnecte.jsp"%>
+			<%
+			}
+			%>
 		</div>
 	</header>
 
@@ -50,37 +58,126 @@
 				</div>
 			</div>
 			<div class="me-auto col-3">
-				
-					<button type="submit" style="width: 100%; height: 100%" >Rechercher</button>
-			</div>
-		</div>
 
+				<button type="submit" style="width: 100%; height: 100%">Rechercher</button>
+			</div>
+			<fieldset>
+				<legend>Trier par :</legend>
+				<div>
+					<input type="radio" id="achat" name="choixTri" value="achat" ${checkAchat }>
+					<label for="achat">Achats</label>
+					<div>
+						<a href="lister?etatVente=CREE&id=0&check=1"><input type="radio" id="debut" name="choixEnchere" disabled="disabled" ${check1 }><label
+							for="debut">encheres non débuté</label></a>
+					</div>
+					<div>
+						<a href="lister?etatVente=EN_COURS&id=0&check=2"><input type="radio" id="ouvertes" name="choixEnchere" disabled="disabled" ${check2 }><label
+							for="ouvertes">encheres ouvertes</label></a>
+					</div>
+					<div>
+						<a href="lister?etatVente=ENCHERES_TERMINEES&id=0&check=3"><input type="radio" id="termine" name="choixEnchere" disabled="disabled" ${check3 }><label
+							for="termine">encheres terminé</label></a>
+					</div>
+				</div>
+				<c:if test="${ConnectedUser!=null }">
+				<div>
+					<input type="radio" id="vente" name="choixTri" value="vente" ${checkVente }>
+					<label for="vente">Mes ventes</label>
+					<div>
+						<a href="lister?etatVente=CREE&id=${ConnectedUser.no_utilisateur }&check=4"><input type="radio" id="debutVente" name="debutVente"
+							disabled="disabled" ${check4 }><label for="debutVente">Ventes non débuté</label></a>
+					</div>
+
+					<div>
+						<a href="lister?etatVente=EN_COURS&id=${ConnectedUser.no_utilisateur }&check=5"><input type="radio" id="ouvertesVente" name="ouvertesVente" ${check5 }><label
+							for="ouvertesVente">Ventes ouvertes</label></a>
+					</div>
+					<div>
+						<a href="lister?etatVente=ENCHERES_TERMINEES&id=${ConnectedUser.no_utilisateur }&check=6"><input type="radio" id="termineVente" name="termineVente" ${check6 }><label
+							for="termineVente">Ventes terminés</label></a>
+					</div>
+				</div>
+				</c:if>
+			</fieldset>
+		</div>
+		<script type="text/javascript">
+			//fonstion pour Achats
+			// Get your checkbox who determine the condition
+			var determine1 = document.getElementById("achat");
+			// Make a function who disabled or enabled your conditioned checkbox
+			var disableCheckboxConditioned1 = function() {
+				if (determine1.checked) {
+					document.getElementById("debut").disabled = false;
+					document.getElementById("ouvertes").disabled = false;
+					document.getElementById("termine").disabled = false;
+					//on desactives les radio de vente
+					document.getElementById("debutVente").disabled = true;
+					document.getElementById("ouvertesVente").disabled = true;
+					document.getElementById("termineVente").disabled = true;
+				} else {
+					
+					document.getElementById("debut").disabled = true;
+					document.getElementById("ouvertes").disabled = true;
+					document.getElementById("termine").disabled = true;
+				}
+			}
+			// On click active your function
+			determine1.onclick = disableCheckboxConditioned1;
+			disableCheckboxConditioned1();
+		</script>
+		<script type="text/javascript">
+			//fonstion pour Ventes
+			// Get your checkbox who determine the condition
+			var determine = document.getElementById("vente");
+			// Make a function who disabled or enabled your conditioned checkbox
+			var disableCheckboxConditioned = function() {
+				if (determine.checked) {
+					document.getElementById("debutVente").disabled = false;
+					document.getElementById("ouvertesVente").disabled = false;
+					document.getElementById("termineVente").disabled = false;
+					//on desactive les radio de achats
+					document.getElementById("debut").disabled = true;
+					document.getElementById("ouvertes").disabled = true;
+					document.getElementById("termine").disabled = true;
+				} else {
+					
+					document.getElementById("debutVente").disabled = true;
+					document.getElementById("ouvertesVente").disabled = true;
+					document.getElementById("termineVente").disabled = true;
+				}
+			}
+			// On click active your function
+			determine.onclick = disableCheckboxConditioned;
+			disableCheckboxConditioned();
+		</script>
 		<!-- Affichage des articles -->
 
 		<br /> <br /> <br />
 		<div class="row d-flex justify-content-center">
-			<c:forEach items="${ArticleListU}" var="article" end ="6">
-			<div class="col-4 d-flex" style="border: solid black 2px">
-				<div class="col-2 m-2"
-					style="border: solid black 2px; height: 100px; width: 100px"></div>
-				<div>
-				
-					
-			<p>Article : <a href="Encherir?noArticle=${article.noArticle}" >${article.nomArticle}</a></p>
-					
-					<p>Prix : ${article.prixVente} points</p>
-					<p>Debut de l'enchère : ${article.dateDebutEncheres}</p>
-					<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
-					<p>Vendeur : ${article.pseudoUtil }</p>
-					<p>Statut de la vente : ${article.etatVente}</p>
-					
-					
+			<c:forEach items="${ArticleListU}" var="article" end="6">
+				<div class="col-4 d-flex" style="border: solid black 2px">
+					<div class="col-2 m-2"
+						style="border: solid black 2px; height: 100px; width: 100px"></div>
+					<div>
+
+
+						<p>
+							Article : <a href="Encherir?noArticle=${article.noArticle}">${article.nomArticle}</a>
+						</p>
+
+						<p>Prix : ${article.prixVente} points</p>
+						<p>Debut de l'enchère : ${article.dateDebutEncheres}</p>
+						<p>Fin de l'enchère : ${article.dateFinEncheres}</p>
+						<p>Vendeur : ${article.pseudoUtil }</p>
+						<p>Statut de la vente : ${article.etatVente}</p>
+
+
+					</div>
 				</div>
-			</div>
-			<div class="col-1"></div>
+				<div class="col-1"></div>
 			</c:forEach>
-			</div>
-			<!-- 
+		</div>
+		<!-- 
 			<div class="col-4 d-flex" style="border: solid black 2px">
 				<div class="col-2 m-2"
 					style="border: solid black 2px; height: 100px; width: 100px"></div>
@@ -95,7 +192,7 @@
 			</div>
 		</div> -->
 	</main>
-<%@include file="WEB-INF/fragments/footer.jsp"%>
+	<%@include file="WEB-INF/fragments/footer.jsp"%>
 	<!-- Bootstrap JavaScript Libraries -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
