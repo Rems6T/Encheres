@@ -60,9 +60,11 @@
 
 				<button type="submit" style="width: 100%; height: 100%">Rechercher</button>
 			</div>
-			<fieldset>
+			<div class="trier">
+			<fieldset >
 				<legend>Trier par :</legend>
-				<div>
+				<div class="trier2">
+				<div class="trier3">
 					<input type="radio" id="achat" name="choixTri" value="achat"
 						${checkAchat }> <label for="achat">Achats</label>
 					<div>
@@ -83,7 +85,7 @@
 					</div>
 				</div>
 				<c:if test="${ConnectedUser!=null }">
-					<div>
+					<div class="trier3">
 						<input type="radio" id="vente" name="choixTri" value="vente"
 							${checkVente }> <label for="vente">Mes ventes</label>
 						<div>
@@ -108,7 +110,9 @@
 						</div>
 					</div>
 				</c:if>
+				</div>
 			</fieldset>
+			</div>
 		</div>
 		<script type="text/javascript">
 			//fonstion pour Achats
@@ -187,20 +191,7 @@
 				<div class="col-1"></div>
 			</c:forEach>
 		</div>
-		<!-- 
-			<div class="col-4 d-flex" style="border: solid black 2px">
-				<div class="col-2 m-2"
-					style="border: solid black 2px; height: 100px; width: 100px"></div>
-				<div class="">
-					<p>
-						<u>Article 2</u>
-					</p>
-					<p>Prix : X points</p>
-					<p>Fin de l'enchère : XX/XX/XXXX</p>
-					<p>Vendeur : nom_vendeur</p>
-				</div>
-			</div>
-		</div> -->
+
 	</main>
 	<%@include file="WEB-INF/fragments/footer.jsp"%>
 	<!-- Bootstrap JavaScript Libraries -->

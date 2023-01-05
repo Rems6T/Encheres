@@ -70,3 +70,16 @@ margin-right : 20px;
 .large
 	{width: 75%;}
 
+.trier{
+	display: flex ;
+	justify-content: center;
+	margin: 25 px;
+    
+}
+.trier2{
+	display: flex ;
+	flex-direction: row;
+}
+.trier3{
+	margin: 20px;
+}

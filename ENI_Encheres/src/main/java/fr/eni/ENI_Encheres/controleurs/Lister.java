@@ -150,7 +150,7 @@ public class Lister extends HttpServlet {
 		request.setAttribute("check5", check5);
 		request.setAttribute("check6", check6);
 		request.setAttribute("checkVente", checkVente);
-		getServletContext().getRequestDispatcher("/Accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("/Accueil.jsp").forward(request, response);
 		
 	}
 
