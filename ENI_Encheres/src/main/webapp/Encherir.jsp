@@ -125,7 +125,7 @@
 							id="noVendeur" name="noVendeur">
 					</div>
 					<div>
-						<a href="Accueil"><button class="btn-login" type="submit">Enchérir</button></a>
+						<a href="Accueil"><button class="btn" type="submit">Enchérir</button></a>
 					</div>
 
 				</form>
