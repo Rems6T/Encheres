@@ -9,7 +9,7 @@
 		<%@include file="WEB-INF/fragments/headerAdmin.jsp"%>
 	</header>
 <h1>Liste des ventes</h1>
-<h2>"${u.pseudo}"</h2>
+<h2>${u.pseudo}</h2>
 <div class="row d-flex justify-content-center">
 			<c:forEach items="${ArticleList}" var="article">
 			<div class="col-4 d-flex" style="border: solid black 2px">
