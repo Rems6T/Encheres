@@ -166,7 +166,7 @@
 		<!-- Affichage des articles -->
 
 		
-		<div class="contenant">
+		<div>
 			<c:forEach items="${ArticleListU}" var="article" end="6">
 				<div class="article">
 
